@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div>
+      <div class="mainDiv">
+        <div class="innerDiv">
+          <section class="section1">
+            <header class="header">
+              <h1 class="LoginText">Login to SHO</h1>
+              <h1 class="compText">Complaint Management System</h1>
+            </header>
+            <form class="loginForm">
+              <label for="">Username</label>
+              <input
+                type="text"
+                id="username"
+                class=""
+                placeholder="Username"
+              />
+
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                class=""
+                placeholder="Password"
+              />
+
+              <div>
+                <div>
+                  <input type="checkbox" class="checkbox" id="remember" />
+                  <label for="remember" class=""> Remember me </label>
+                </div>
+                <a href="" class="forgotLink"> Forgot Password? </a>
+              </div>
+            </form>
+            <button class="loginButton" onClick="login()">Login</button>
+          </section>
+          <section>
+            <img src="/login-image.png" class="image" alt="Haryana CMS" />
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  const url = `https://haryanacms.onrender.com/user/login`;
+
+  const get = (id) => {
+    return document.getElementById(id);
+  };
+  const login = async () => {
+    let obj = {
+      email: get("username").value,
+      password: get("password").value,
+    };
+    obj = JSON.stringify(obj);
+    try {
+      let res = await fetch(url, {
+        method: "POST",
+        body: obj,
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      res = await res.json();
+      if (res.message === "login succesfully") {
+        localStorage.setItem("userID", JSON.stringify(res.userId));
+        alert("Login Successful!");
+        window.location.href = "./Dashboard.html";
+      } else {
+        alert("Login Failed");
+      }
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+</script>

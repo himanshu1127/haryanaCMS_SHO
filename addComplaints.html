@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Complaint</title>
+    <script
+      src="https://kit.fontawesome.com/ffe2b9fea9.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./Dashboard.css" />
+    <link rel="stylesheet" href="./addComplaints.css" />
+  </head>
+  <body>
+    <header>
+      <div class="headerLeft">
+        <img src="./haryana_police_logo.webp" alt="" />
+        <h2>Haryana CMS</h2>
+      </div>
+      <div class="headerRight">
+        <div class="inputDivMain">
+          <div class="hemIcon">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <div class="inputHeader">
+            <input type="text" placeholder="search" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
+        <div class="userDetails">
+          <div>
+            <h2>USER: <span>Munish Kumar, IO, Sadar Thana</span></h2>
+          </div>
+          <div class="userImage">
+            <img src="./haryana_police_logo.webp" alt="" />
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="mainDiv1">
+      <div id="sidebar">
+        <div class="sideTop">
+          <div>Main</div>
+          <div>
+            <a href="./Dashboard.html"
+              ><i class="fa-sharp fa-solid fa-house"></i> Dashboard</a
+            >
+          </div>
+        </div>
+        <div id="sideMenu">
+          <p>Manage Complaints</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="./allComplaints.html">
+                <i class="fa-solid fa-book-open"></i> All Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-calendar-day"></i> Total Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-fire"></i>High Priority</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#">
+                <i class="fa-sharp fa-regular fa-clock"></i> Pending
+                Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-eye"></i>View Reports</a
+              >
+            </li>
+          </ul>
+          <p>Manage Officers</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="#">
+                <i class="fa-solid fa-user"></i> View IO
+              </a>
+            </li>
+            <li class="liText">
+              <a class="aTag" href="./IoReport.html"
+                ><i class="fa-solid fa-square-poll-horizontal"></i>IO Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
+              >
+            </li>
+            <!-- <li class="liText">
+                  <a class="aTag" href="#">Add/View/Update SHO</a>
+                </li>
+                <li class="liText">
+                  <a class="aTag" href="#">Add/View/Update IO</a>
+                </li> -->
+          </ul>
+          <!-- <p>Manage Category</p>
+              <ul>
+                <li class="liText">
+                  <a class="aTag" href="#"
+                    >Add/View/Update Category</a
+                  >
+                </li>
+                <li class="liText">
+                  <a class="aTag" href="#">Add/View/Update ACT</a>
+                </li>
+              </ul> -->
+          <p>Manage Reports</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-circle-exclamation"></i>Pending
+                Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-circle-check"></i>Closed Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-bullseye"></i>Range Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-circle-exclamation"></i>High Priority
+                Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-pdf"></i>View all Reports</a
+              >
+            </li>
+          </ul>
+          <div id="buttonDiv">
+            <button id="logoutButton" onclick="logout()">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </button>
+          </div>
+          <!-- <p>Manage Dept.</p>
+                  <p>Manage Category</p>
+                  <p>Manage Users (SHO)</p>
+                  <p>Manage Data</p> -->
+        </div>
+      </div>
+      <div class="rightContent">
+        <div class="complaintsRightTop">
+          <span>
+            <span class="complaintsSpan">ADD</span>
+            <span class="complaintsSpan">>></span>
+            <span class="complaintsSpan complaintsNewComplaints"
+              >NEW COMPLAINT</span
+            >
+          </span>
+          <!-- <span>
+            <select name="" id="">
+              <option value="">Select District</option>
+              <option value="hisar">Hisar</option>
+              <option value="karnal">Karnal</option>
+            </select>
+          </span> -->
+          <!-- <span class="complaintsNumber">
+            <span>
+              <span>Total complaints: </span>
+              <span class="complaintsNewComplaints">2500</span>
+            </span>
+            <span>
+              <span>Total complaints: </span>
+              <span class="complaintsNewComplaints">2500</span>
+            </span>
+            <span>
+              <span>Total complaints: </span>
+              <span class="complaintsNewComplaints">2500</span>
+            </span>
+            <span>
+              <span>Total complaints: </span>
+              <span class="complaintsNewComplaints">2500</span>
+            </span>
+          </span> -->
+        </div>
+        <div>
+          <div class="divComplaints">
+            <div class="complaintsContent">
+              <div class="">
+                <label class="complaintsFormLabel">Complaint Number:</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="text"
+                    name=""
+                    id="complainantNumber"
+                    placeholder="Complaint Number"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+              <div>
+                <label class="complaintsFormLabel">Complaint Name:</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="text"
+                    name=""
+                    id="complainantName"
+                    placeholder="Complaint Name"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+              <div>
+                <label class="complaintsFormLabel">Father's Name :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="text"
+                    name=""
+                    id="fatherName"
+                    placeholder="Father's Name"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+              <div>
+                <label class="complaintsFormLabel">Email ID:</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="text"
+                    name=""
+                    id="complainantEmail"
+                    placeholder="Email"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="addressLine1andMobileDiv">
+              <div class="complaintsAddressDiv">
+                <label class="complaintsFormLabel">Address Line 1</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="text"
+                    name=""
+                    id="address"
+                    placeholder="Address Line 1"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+              <div class="complaintPhoneDiv">
+                <label class="complaintsFormLabel">Mobile Number. :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="text"
+                    name=""
+                    id="mobileNo"
+                    placeholder="Phone Number"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="complaintsContentDivtopLeft contentDiv">
+              <div class="complaintsAddressDiv">
+                <label class="complaintsFormLabel">Address Line 2</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="text"
+                    name=""
+                    id="addressLine1"
+                    placeholder="Address Line 2"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+              <div class="complaintPhoneDiv">
+                <label class="complaintsFormLabel">Alternate Number. :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="text"
+                    name=""
+                    id="alternateNumber"
+                    placeholder="Alternate Number"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="cityandState">
+              <div class="">
+                <label class="complaintsFormLabel">City :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="text"
+                    name=""
+                    id="cityInput"
+                    placeholder="Complaint Number"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+              <div class="">
+                <label class="complaintsFormLabel">District :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <select name="" id="districtInput" class="complaintsInput">
+                    <option value="">Select District</option>
+                  </select>
+                  <!-- <input
+                    type="text"
+                    name=""
+                    id="districtInput"
+                    placeholder="Complaint Name"
+                    class="complaintsInput"
+                  /> -->
+                </div>
+              </div>
+              <div class="">
+                <label class="complaintsFormLabel">State :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <select name="State" id="stateInput" class="complaintsInput">
+                    <option value="HARYANA">HARYANA</option>
+                  </select>
+                  <!-- <input
+                    type="text"
+                    name=""
+                    id="stateInput"
+                    placeholder="Complaint Name"
+                    class="complaintsInput"
+                  /> -->
+                </div>
+              </div>
+            </div>
+  
+            <div class="rangeAndSP">
+              <div class="">
+                <label class="complaintsFormLabel">Range :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <select name="" id="rangeInput" class="complaintsInput">
+                   <option value="">Select Range</option>
+                  </select>
+                </div>
+              </div>
+              <div class="">
+                <label class="complaintsFormLabel">Mark to IO :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <select name="" id="IOName" class="complaintsInput">
+                    <option value="">Select IO</option>
+                  </select>
+                </div>
+              </div>
+  
+              <div>
+                <label class="complaintsFormLabel">Status :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <select name="" id="complainStatus" class="complaintsInput">
+                    <option value="PENDING">PENDING</option>
+                    <option value="IN-PROCESS">IN-PROCESS</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="complaintsText">
+              <div class="">
+                <label class="complaintsFormLabel"
+                  >Complaint Short Description</label
+                >
+                <div class="complaintsTextArea">
+                  <textarea
+                    type="text"
+                    name=""
+                    id="shortDescription"
+                    placeholder="Complaint Short Description"
+                    class="p-2 mr-2 border-2 rounded w-full h-44"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="complaintsText bottomDiv">
+              <div class="m-5 flex-1">
+                <label class="complaintsFormLabel">Date of Submission</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="date"
+                    name=""
+                    id="dateOfSub"
+                    placeholder=""
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+              <div class="m-5 flex-1">
+                <label class="complaintsFormLabel">Target deadline</label>
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="date"
+                    name=""
+                    id="emailInput"
+                    placeholder="="
+                    class="complaintsInput"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="highPriorityCheckDiv">
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    placeholder="First Name"
+                    class="border-2 rounded h-5 w-5"
+                  />
+                </div>
+                <label class="text-xl">High Priority</label>
+              </div>
+            </div>
+            <div class="specialDiv">
+              <div>
+                <label class="complaintsFormLabel">Complaints Category :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <select name="" id="complainCategory" class="complaintsInput">
+                    <option value="CAW">CAW Complaints</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="complaintsFormLabel" for="sections"
+                  >Sections :</label
+                >
+                <div class="sectionsDisplay"></div>
+              </div>
+              <div>
+                <label class="complaintsFormLabel">Sections :</label>
+                <div class="complaintContnetDivLeftTop">
+                  <select name="" id="sections" class="complaintsInput">
+                    <option value="301">301</option>
+                    <option value="275">275</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="filesDiv">
+              <p>Upload Files</p>
+              <div class="specialDiv">
+                <div class="specialDivInner">
+                  <label class="complaintsFormLabel">From Internet</label>
+                  <input type="radio" />
+                  <div class="complaintContnetDivLeftTop">
+                    <input
+                      type="file"
+                      name=""
+                      id="emailInput"
+                      placeholder="Special Remark"
+                      class="complaintsInput"
+                    />
+                  </div>
+                </div>
+                <div class="specialDivInner">
+                  <label class="complaintsFormLabel" for="computer"
+                    >From My Computer</label
+                  >
+                  <input type="radio" name="computer" id="" />
+                  <div class="complaintContnetDivLeftTop">
+                    <input
+                      type="file"
+                      name=""
+                      id="emailInput"
+                      placeholder="Write Complaint Here"
+                      class="complaintsInput"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="addButtonDiv">
+              <button
+                onclick="addComplain()"
+                type="submit"
+                class="addButton my-5 p-3 border-2 border-green-400 hover:border-green-600 hover:bg-green-600 transition-all rounded font-bold hover:text-white"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="./ranges.js"></script>
+<script src="./commonFunctions.js"></script>
+<script src="./addComplain.js"></script>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./Dashboard.css" />
+    <link rel="stylesheet" href="./table.css" />
+    <style>
+      .tableDiv1 {
+        padding: 1rem;
+        background: white;
+      }
+    </style>
+    <script
+      src="https://kit.fontawesome.com/ffe2b9fea9.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="headerLeft">
+        <img src="./haryana_police_logo.webp" alt="" />
+        <h2>Haryana CMS</h2>
+      </div>
+      <div class="headerRight">
+        <div class="inputDivMain">
+          <div class="hemIcon">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <div class="inputHeader">
+            <input type="text" placeholder="search" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
+        <div class="userDetails">
+          <div>
+            <h2>USER: <span>Munish Kumar, IO, Sadar Thana</span></h2>
+          </div>
+          <div class="userImage">
+            <img src="./haryana_police_logo.webp" alt="" />
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="mainDiv1">
+      <div id="sidebar">
+        <div class="sideTop">
+          <div>Main</div>
+          <div>
+            <a href="./Dashboard.html"
+              ><i class="fa-sharp fa-solid fa-house"></i> Dashboard</a
+            >
+          </div>
+        </div>
+        <div id="sideMenu">
+          <p>Manage Complaints</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="./allComplaints.html">
+                <i class="fa-solid fa-book-open"></i> All Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-calendar-day"></i> Total Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-fire"></i>High Priority</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#">
+                <i class="fa-sharp fa-regular fa-clock"></i> Pending
+                Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-eye"></i>View Reports</a
+              >
+            </li>
+          </ul>
+          <p>Manage Officers</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="#">
+                <i class="fa-solid fa-user"></i> View IO
+              </a>
+            </li>
+            <li class="liText">
+              <a class="aTag" href="./IoReport.html"
+                ><i class="fa-solid fa-square-poll-horizontal"></i>IO Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
+              >
+            </li>
+            <!-- <li class="liText">
+                    <a class="aTag" href="#">Add/View/Update SHO</a>
+                  </li>
+                  <li class="liText">
+                    <a class="aTag" href="#">Add/View/Update IO</a>
+                  </li> -->
+          </ul>
+          <!-- <p>Manage Category</p>
+                <ul>
+                  <li class="liText">
+                    <a class="aTag" href="#"
+                      >Add/View/Update Category</a
+                    >
+                  </li>
+                  <li class="liText">
+                    <a class="aTag" href="#">Add/View/Update ACT</a>
+                  </li>
+                </ul> -->
+          <p>Manage Reports</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-circle-exclamation"></i>Pending
+                Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-circle-check"></i>Closed Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-bullseye"></i>Range Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-circle-exclamation"></i>High Priority
+                Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-pdf"></i>View all Reports</a
+              >
+            </li>
+          </ul>
+          <div id="buttonDiv">
+            <button id="logoutButton" onclick="logout()">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </button>
+          </div>
+          <!-- <p>Manage Dept.</p>
+                    <p>Manage Category</p>
+                    <p>Manage Users (SHO)</p>
+                    <p>Manage Data</p> -->
+        </div>
+      </div>
+      <div class="rightContent">
+        <div class="tableDiv tableDiv1">
+          <table border="1" class="table">
+            <thead class="tableHead">
+              <tr class="trHead">
+                <th class="thHead" style="width: 20%">IO Id</th>
+                <th class="thHead" style="width: 30%">IO Name</th>
+                <th class="thHead" style="width: 20%">Download Report</th>
+                <!-- <th class="thHead thHead9">Actio</th> -->
+                <!-- <th class="thHead thHead4">Issued Date</th>
+                  <th class="thHead thHead5">Deadline</th>
+                  <th class="thHead thHead6">Area</th> -->
+                <!-- <th class="thHead thHead7">Status</th> -->
+                <!-- <th class="thHead" style="width: 30%">Action</th> -->
+              </tr>
+            </thead>
+            <tbody class="tableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./commonFunctions.js"></script>
+</html>
+<script>
+  // const Data = [
+  //   {
+  //     id: 1,
+  //     ioId: "#5542",
+  //     ioName: "Vikas Kumar",
+  //   },
+  //   {
+  //     id: 2,
+  //     ioId: "#5542",
+  //     ioName: "Vikas Kumar",
+  //   },
+  // ];
+  const getData = async () => {
+    let res = await fetch("https://haryanacms.onrender.com/user/allio");
+    res = await res.json();
+    console.log(res);
+    append(res);
+  };
+
+  const append = (data) => {
+    let container = document.querySelector(".tableBody");
+    container.innerHTML = null;
+    i = 0;
+    data.forEach((el) => {
+      i++;
+      // console.log(el);
+      let tr = document.createElement("tr");
+      tr.setAttribute("class", "tableRow");
+      tr.style.height="40px"
+      let td1 = document.createElement("td");
+      td1.setAttribute("class", "tablecol");
+      td1.setAttribute("class", "tablecol1");
+      td1.innerText = i;
+      let td2 = document.createElement("td");
+      td2.setAttribute("class", "tablecol");
+      td2.setAttribute("class", "tablecol2");
+      td2.innerText = `${el.fname} ${el.lname}`;
+      let td3 = document.createElement("td");
+      let downloadButton = document.createElement("button");
+      downloadButton.style.height="30px"
+      td3.setAttribute("class", "tablecol");
+      td3.setAttribute("class", "tablecol3");
+      downloadButton.innerText = "Download";
+      td3.append(downloadButton);
+      let td8 = document.createElement("td");
+      let divtd8 = document.createElement("div");
+      divtd8.style.display = "inline";
+      let updateIcon = document.createElement("button");
+
+      let viewIcon = document.createElement("button");
+      let commentsIcon = document.createElement("button");
+      updateIcon.setAttribute("class", "buttonsAction");
+      viewIcon.setAttribute("class", "buttonsAction");
+      commentsIcon.setAttribute("class", "buttonsAction");
+      updateIcon.innerText = "Update";
+      updateIcon.style.width = "30%";
+
+      viewIcon.innerText = "View";
+      viewIcon.style.margin = "5px";
+      viewIcon.style.width = "20%";
+
+      commentsIcon.innerText = "Comment";
+      commentsIcon.style.width = "40%";
+      // commentsIcon.style.margin="5px"
+
+      // td8.innerText = "hi";
+      // updateIcon.innerHTML('<i class="fa-light fa-pen"></i>')
+
+      divtd8.append(updateIcon, viewIcon, commentsIcon);
+      td8.append(divtd8);
+      tr.append(td1, td2, td3);
+      // console.log(tr);
+      container.append(tr);
+    });
+  };
+  getData();
+</script>

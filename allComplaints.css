@@ -1,0 +1,21 @@
+.tableDiv{
+    /* border: 1px solid red; */
+    height: 85%;
+    overflow-y: scroll;
+}
+.dateFilterDiv{
+    display: flex;
+    /* border: 1px solid red; */
+    width: 40%;
+    justify-content: space-between;
+    /* height: 30px; */
+    /* align-items: center; */
+}
+.dateFilterDiv button{
+    /* height: 80%; */
+    width: 70px;
+    border: none;
+    border-radius: 3px;
+    background: rgb(92, 92, 234);
+    color: white;
+}

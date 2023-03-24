@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/ffe2b9fea9.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./Dashboard.css" />
+    <link rel="stylesheet" href="./table.css" />
+    <link rel="stylesheet" href="./allComplaints.css" />
+    <link rel="stylesheet" href="addComplaints.css">
+    <style>
+      .upperDivAddComp{
+        text-align: center;
+        margin: 1rem;
+        position: relative;
+      }
+      .displayUpdateComp {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        /* border: 1px solid red; */
+        height: 80%;
+        width: 80%;
+        font-size: 16px;
+        margin: auto;
+        z-index: 100;
+        background: #e2e8f0;
+        overflow-y: scroll;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 5px;
+      }
+
+      .updateComp {
+        height: 100%;
+        width: 100%;
+      }
+      .closeIconUpdate {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        cursor: pointer;
+        /* border: 1px solid red; */
+      }
+      .closeIconUpdate div {
+        border: 1px solid black;
+        width: 20px;
+        font-weight: 900;
+      }
+      .activeUpdateComp {
+        display: block;
+      }
+      .line1{
+        transform: rotate(45deg);
+      }
+      .line2{
+        transform: rotate(-45deg);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="headerLeft">
+        <img src="./haryana_police_logo.webp" alt="" />
+        <h2>Haryana CMS</h2>
+      </div>
+      <div class="headerRight">
+        <div class="inputDivMain">
+          <div class="hemIcon">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <div class="inputHeader">
+            <input type="text" placeholder="search" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
+        <div class="userDetails">
+          <div>
+            <h2>USER: <span>Munish Kumar, IO, Sadar Thana</span></h2>
+          </div>
+          <div class="userImage">
+            <img src="./haryana_police_logo.webp" alt="" />
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="mainDiv1">
+      <div id="sidebar">
+        <div class="sideTop">
+          <div>Main</div>
+          <div>
+            <a href="./Dashboard.html"
+              ><i class="fa-sharp fa-solid fa-house"></i> Dashboard</a
+            >
+          </div>
+        </div>
+        <div id="sideMenu">
+          <p>Manage Complaints</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="./allComplaints.html">
+                <i class="fa-solid fa-book-open"></i> All Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-calendar-day"></i> Total Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-fire"></i>High Priority</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#">
+                <i class="fa-sharp fa-regular fa-clock"></i> Pending
+                Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-eye"></i>View Reports</a
+              >
+            </li>
+          </ul>
+          <p>Manage Officers</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="#">
+                <i class="fa-solid fa-user"></i> View IO
+              </a>
+            </li>
+            <li class="liText">
+              <a class="aTag" href="./IoReport.html"
+                ><i class="fa-solid fa-square-poll-horizontal"></i>IO Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
+              >
+            </li>
+            <!-- <li class="liText">
+                  <a class="aTag" href="#">Add/View/Update SHO</a>
+                </li>
+                <li class="liText">
+                  <a class="aTag" href="#">Add/View/Update IO</a>
+                </li> -->
+          </ul>
+          <!-- <p>Manage Category</p>
+              <ul>
+                <li class="liText">
+                  <a class="aTag" href="#"
+                    >Add/View/Update Category</a
+                  >
+                </li>
+                <li class="liText">
+                  <a class="aTag" href="#">Add/View/Update ACT</a>
+                </li>
+              </ul> -->
+          <p>Manage Reports</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-circle-exclamation"></i>Pending
+                Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-circle-check"></i>Closed Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-bullseye"></i>Range Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-circle-exclamation"></i>High Priority
+                Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-pdf"></i>View all Reports</a
+              >
+            </li>
+          </ul>
+          <div id="buttonDiv">
+            <button id="logoutButton" onclick="logout()">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </button>
+          </div>
+          <!-- <p>Manage Dept.</p>
+                  <p>Manage Category</p>
+                  <p>Manage Users (SHO)</p>
+                  <p>Manage Data</p> -->
+        </div>
+      </div>
+      <div class="rightContent">
+        <div id="table" style="width: 100%; margin: auto; height: 700px">
+          <div
+            style="
+              height: 80px;
+              display: flex;
+              /* border: 1px solid red; */
+              width: 100%;
+              padding: 10px;
+              box-sizing: border-box;
+              font-size: 12px;
+            "
+          >
+            <div
+              style="
+                align-self: center;
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+              "
+            >
+              <div>District Wise >> <span>All Complaints</span></div>
+              <div>
+                <select name="" onchange="changeComplains()" id="ioselect" style="border: none; outline: none">
+                  <option value="">Select IO</option>
+                 
+                  <!-- <option value="closed">Gurugram</option> -->
+                </select>
+              </div>
+              <div class="dateFilterDiv">
+                <div>Form: <input type="date" name="" id="initialDate" /></div>
+                <div>To: <input type="date" name="" id="finalDate" /></div>
+                <button onclick="searchData()">Submit</button>
+              </div>
+              <!-- <div style="display: flex">
+                <span>Total Complaints : &nbsp; </span>
+                <p style="color: blue">224</p>
+              </div>
+              <div style="display: flex">
+                <span>Pending Complaints : &nbsp; </span>
+                <p style="color: blue">224</p>
+              </div> -->
+              <!-- <div style="display: flex">
+                  <span>Closed Complaints : &nbsp; </span>
+                  <p style="color: blue">224</p>
+                </div> -->
+              <!-- <div style="display: flex">
+                <span style="color: red"
+                  >High Priority Complaints : &nbsp;
+                </span>
+                <p style="color: blue">224</p>
+              </div> -->
+            </div>
+          </div>
+          <div class="tableDiv">
+            <table border="1" class="table">
+              <thead class="tableHead">
+                <tr class="trHead">
+                  <th class="thHead thHead1">Tracking Id</th>
+                  <th class="thHead thHead3">Complaint</th>
+                  <th class="thHead thHead9">Complaint Type</th>
+                  <th class="thHead thHead4">Issued Date</th>
+                  <th class="thHead thHead5">Deadline</th>
+                  <th class="thHead thHead6">Area</th>
+                  <th class="thHead">Flaging</th>
+                  <th class="thHead thHead8">Action</th>
+                </tr>
+              </thead>
+              <tbody class="tableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="displayUpdateComp">
+      <div class="updateComp">
+        <div>
+          <div class="upperDivAddComp">
+            <h3 class="h3AddComp">Update Complaints</h3>
+            <div class="closeIconUpdate">
+              <div class="line1"></div>
+              <div class="line2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="divComplaints">
+          <div class="complaintsContent">
+            <div class="">
+              <label class="complaintsFormLabel">Complaint Number:</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="text"
+                  name=""
+                  id="complainantNumber"
+                  readonly
+                  placeholder="Complaint Number"
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="complaintsFormLabel">Complaint Name:</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="text"
+                  name=""
+                  id="complainantNameUpdate"
+                  placeholder="Complaint Name"
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="complaintsFormLabel">Father's Name :</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="text"
+                  name=""
+                  id="fatherNameUpdate"
+                  placeholder="Father's Name"
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="complaintsFormLabel">Email ID:</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="text"
+                  name=""
+                  id="complainantEmailUpdate"
+                  placeholder="Email"
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="addressLine1andMobileDiv">
+            <div class="complaintsAddressDiv">
+              <label class="complaintsFormLabel">Address Line 1</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="text"
+                  name=""
+                  id="addressUpdate"
+                  placeholder="Address Line 1"
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+            <div class="complaintPhoneDiv">
+              <label class="complaintsFormLabel">Mobile Number. :</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="text"
+                  name=""
+                  id="mobileNoUpdate"
+                  placeholder="Phone Number"
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="complaintsContentDivtopLeft contentDiv">
+            <div class="complaintsAddressDiv">
+              <label class="complaintsFormLabel">Address Line 2</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="text"
+                  name=""
+                  id="addressLine1Update"
+                  placeholder="Address Line 2"
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+            <div class="complaintPhoneDiv">
+              <label class="complaintsFormLabel">Alternate Number. :</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="text"
+                  name=""
+                  id="alternateNumberUpdate"
+                  placeholder="Alternate Number"
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="cityandState">
+            <div class="">
+              <label class="complaintsFormLabel">City :</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="text"
+                  name=""
+                  id="cityInputUpdate"
+                  placeholder="Complaint Number"
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+            <div class="">
+              <label class="complaintsFormLabel">State :</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="text"
+                  name=""
+                  id="stateInputUpdate"
+                  placeholder="Complaint Name"
+                  class="complaintsInput"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="rangeAndSP">
+            <div class="">
+              <label class="complaintsFormLabel">Range :</label>
+              <div class="complaintContnetDivLeftTop">
+                <select name="" id="rangeInputUpdate" class="complaintsInput">
+                  <option value="HISAR">HISAR</option>
+                  <option value="AMBALA">AMBALA</option>
+                </select>
+              </div>
+            </div>
+            <div class="">
+              <label class="complaintsFormLabel">SP Name :</label>
+              <div class="complaintContnetDivLeftTop">
+                <select name="" id="SPNameUpdate" class="complaintsInput">
+                  <option value="SP 1">SP 1</option>
+                  <option value="SP 2">SP 2</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="complaintsFormLabel">Status :</label>
+              <div class="complaintContnetDivLeftTop">
+                <select
+                  name=""
+                  id="complainStatusUpdate"
+                  class="complaintsInput"
+                >
+                  <option value="PENDING">PENDING</option>
+                  <option value="IN-PROCESS">IN-PROCESS</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="complaintsText">
+            <div class="">
+              <label class="complaintsFormLabel"
+                >Complaint Short Description</label
+              >
+              <div class="complaintsTextArea">
+                <textarea
+                  type="text"
+                  name=""
+                  id="shortDescriptionUpdate"
+                  placeholder="Complaint Short Description"
+                  class="p-2 mr-2 border-2 rounded w-full h-44"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="complaintsText bottomDiv">
+            <div class="m-5 flex-1">
+              <label class="complaintsFormLabel">Date of Submission</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="date"
+                  name=""
+                  id="dateOfSubUpdate"
+                  placeholder=""
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+            <div class="m-5 flex-1">
+              <label class="complaintsFormLabel">Target deadline</label>
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="date"
+                  name=""
+                  id="emailInput"
+                  placeholder="="
+                  class="complaintsInput"
+                />
+              </div>
+            </div>
+            <div class="highPriorityCheckDiv">
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="checkbox"
+                  name=""
+                  id="highPriorityUpdate"
+                  placeholder="First Name"
+                  class="border-2 rounded h-5 w-5"
+                />
+              </div>
+              <label class="text-xl">High Priority</label>
+            </div>
+          </div>
+          <div class="specialDiv">
+            <div>
+              <label class="complaintsFormLabel">Complaints Category :</label>
+              <div class="complaintContnetDivLeftTop">
+                <select
+                  name=""
+                  id="complainCategoryUpdate"
+                  class="complaintsInput"
+                >
+                  <option value="CAW">CAW Complaints</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="complaintsFormLabel" for="sections"
+                >Sections :</label
+              >
+              <div class="sectionsDisplay"></div>
+            </div>
+            <div>
+              <label class="complaintsFormLabel">Sections :</label>
+              <div class="complaintContnetDivLeftTop">
+                <select name="" id="sectionsUpdate" class="complaintsInput">
+                  <option value="301">301</option>
+                  <option value="275">275</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="filesDiv">
+            <p>Upload Files</p>
+            <div class="specialDiv">
+              <div class="specialDivInner">
+                <label class="complaintsFormLabel">From Internet</label>
+                <input type="radio" />
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="file"
+                    name=""
+                    id="emailInput"
+                    placeholder="Special Remark"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+              <div class="specialDivInner">
+                <label class="complaintsFormLabel" for="computer"
+                  >From My Computer</label
+                >
+                <input type="radio" name="computer" id="" />
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="file"
+                    name=""
+                    id="emailInput"
+                    placeholder="Write Complaint Here"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="addButtonDiv">
+            <button
+              onclick="updateComplain()"
+              type="submit"
+              class="addButton my-5 p-3 border-2 border-green-400 hover:border-green-600 hover:bg-green-600 transition-all rounded font-bold hover:text-white"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script src="./allComplaints.js"></script>
+<script src="./commonFunctions.js"></script>

@@ -1,0 +1,218 @@
+.complaintsRightTop {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  padding: 1.25rem;
+  /* border: 1px slid red; */
+}
+.complaintsSpan {
+  font-size: 0.75em;
+  /* border: 1px solid red; */
+}
+.complaintsNewComplaints {
+  color: #dc2626;
+}
+.complaintsNumber {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.divComplaints {
+  width: 100%;
+  padding: 1.25rem;
+  /* border: 1px solid cyan; */
+}
+
+.complaintsContent {
+  display: flex;
+  /* border: 1px solid cyan; */
+  width: 100%;
+  justify-content: space-between;
+}
+.complaintsContent > div {
+  /* border: 1px solid red; */
+  width: 23%;
+}
+.complaintsContent input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.complaintsContentDivtopLeft {
+  /* margin: 1.25rem; */
+  /* flex-grow: 1; */
+  /* border: 1px solid red; */
+  width: 100%;
+}
+.addressLine1andMobileDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+}
+.complaintContnetDivLeftTop {
+  /* border: 1px solid cyan; */
+}
+.complaintContnetDivLeftTop input {
+  width: 100%;
+}
+.cityandState {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+  margin-bottom: 20px;
+}
+.cityandState > div {
+  width: 30%;
+}
+.cityandState select {
+  width: 100%;
+  
+}
+.rangeAndSP {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.rangeAndSP > div {
+  width: 30%;
+}
+.rangeAndSP select {
+  width: 100%;
+}
+.complaintsInput {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border: 2px solid gray;
+  border-radius: 0.25rem;
+  width: 45%;
+}
+.contentDiv {
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+}
+.complaintEmailDiv {
+  margin: 1.25rem;
+}
+#emailInput {
+  width: 100%;
+}
+.complaintsAddressDiv {
+  margin-bottom: 1.25rem;
+  width: 60%;
+}
+.complaintPhoneDiv {
+  margin-bottom: 1.25rem;
+  width: 30%;
+  margin-right: 2.5rem;
+}
+.complaintsCityDiv {
+  width: 60%;
+  display: flex;
+  /* gap: 20px; */
+  /* border: 1px solid red; */
+  justify-content: space-between;
+}
+#stateInput {
+  width: 100%;
+}
+.stateDiv {
+  width: 40%;
+  /* border: 1px solid red; */
+  margin-right: 0;
+}
+.ForwardDiv {
+  /* border: 1px solid cyan; */
+  margin: auto;
+}
+.complaintsText {
+  /* border: 1px solid red; */
+  margin-bottom: 20px;
+  height: 150px;
+  width: 100%;
+}
+.complaintsTextArea {
+  width: 100%;
+  height: 120px;
+}
+.complaintsTextArea > textarea {
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+}
+.complaintsTextArea > textarea:focus {
+  outline: none;
+}
+.bottomDiv {
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+}
+.highPriorityCheckDiv {
+  margin: 5px;
+  /* flex: 1; */
+  display: flex;
+  /* border: 1px solid red; */
+  align-items: center;
+  height: 60px;
+  /* justify-content: flex-start; */
+  margin-bottom: 30px;
+  gap: 3px;
+}
+.specialDiv {
+  display: flex;
+  height: fit-content;
+  width: 100%;
+  /* border: 1px solid cyan; */
+  /* margin: 1.25rem; */
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.specialDiv > div {
+  width: 30%;
+  /* border: 1px solid red; */
+}
+.specialDiv select {
+  width: 100%;
+}
+.sectionsDisplay {
+  min-height: 50px;
+  border: 1px solid gray;
+  background: white;
+  overflow-y: scroll;
+  max-height: fit-content;
+}
+.addButtonDiv {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  /* border: 1px solid cyan; */
+  margin: 1.25rem;
+  justify-content: space-between;
+}
+.addButton {
+  height: 70%;
+  width: 100px;
+  /* margin-top: 1.25rem; Equivalent to my-5 with default line height */
+  /* margin-bottom: 1.25rem; Equivalent to my-5 with default line height */
+  padding: 0.75rem; /* Equivalent to p-3 with default line height */
+  border: 2px solid #34d399; /* Equivalent to border-2 border-green-400 */
+  transition-duration: 0.3s; /* Default transition duration */
+  transition-property: all; /* Animate all properties on hover */
+  border-radius: 0.375rem; /* Equivalent to rounded */
+  font-weight: bold; /* Equivalent to font-bold */
+  color: #34d399;
+}
+.addButton:hover {
+  border-color: #10b981; /* Equivalent to hover:border-green-600 */
+  background-color: #10b981; /* Equivalent to hover:bg-green-600 */
+  color: #fff;
+}
+.filesDiv {
+  height: 120px;
+  width: 100%;
+  /* margin: 1.25rem; */
+  /* border: 1px solid cyan; */
+}
