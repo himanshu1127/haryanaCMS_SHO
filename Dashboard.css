@@ -169,6 +169,9 @@ ul {
   color: #d88206;
   margin-left: 20px;
 }
+ul .liText{
+  cursor: pointer;
+}
 #buttonDiv {
   margin-top: 0.5rem;
   /* border: 1px solid red; */

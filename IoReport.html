@@ -36,7 +36,7 @@
         </div>
         <div class="userDetails">
           <div>
-            <h2>USER: <span>Munish Kumar, IO, Sadar Thana</span></h2>
+            <h2>USER: <span id="userDetail"></span></h2>
           </div>
           <div class="userImage">
             <img src="./haryana_police_logo.webp" alt="" />
@@ -73,7 +73,7 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#">
+              <a class="aTag" href="./pending.html">
                 <i class="fa-sharp fa-regular fa-clock"></i> Pending
                 Complaints</a
               >
@@ -218,7 +218,7 @@
       // console.log(el);
       let tr = document.createElement("tr");
       tr.setAttribute("class", "tableRow");
-      tr.style.height="40px"
+      tr.style.height = "40px";
       let td1 = document.createElement("td");
       td1.setAttribute("class", "tablecol");
       td1.setAttribute("class", "tablecol1");
@@ -229,7 +229,7 @@
       td2.innerText = `${el.fname} ${el.lname}`;
       let td3 = document.createElement("td");
       let downloadButton = document.createElement("button");
-      downloadButton.style.height="30px"
+      downloadButton.style.height = "30px";
       td3.setAttribute("class", "tablecol");
       td3.setAttribute("class", "tablecol3");
       downloadButton.innerText = "Download";
@@ -266,4 +266,15 @@
     });
   };
   getData();
+</script>
+<script type="module">
+  import { getUser } from "./Components/getData.js";
+  let userName = document.getElementById("userDetail");
+  async function a() {
+    const result = await getUser();
+    console.log(result);
+    userName.innerText = `${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`;
+  }
+
+  a();
 </script>

@@ -30,7 +30,7 @@
         </div>
         <div class="userDetails">
           <div>
-            <h2>USER: <span>Munish Kumar, IO, Sadar Thana</span></h2>
+            <h2>USER: <span id="userDetail"></span></h2>
           </div>
           <div class="userImage">
             <img src="./haryana_police_logo.webp" alt="" />
@@ -121,7 +121,7 @@
           <p>Manage Reports</p>
           <ul>
             <li class="liText">
-              <a class="aTag" href="#"
+              <a class="aTag" href="./pending.html"
                 ><i class="fa-solid fa-file-circle-exclamation"></i>Pending
                 Reports</a
               >
@@ -503,3 +503,14 @@
 <script src="./ranges.js"></script>
 <script src="./commonFunctions.js"></script>
 <script src="./addComplain.js"></script>
+<script type="module">
+  import { getUser } from "./Components/getData.js";
+  let userName = document.getElementById("userDetail")
+  async function a() {
+    const result = await getUser();
+    console.log(result);
+    userName.innerText=`${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`
+  }
+
+  a();
+</script>

@@ -1,65 +1,46 @@
 let dataArr = [];
-const changeComplains = () => {
-  const value = document.getElementById("ioselect").value;
-  console.log(dataArr);
-  let newData = dataArr.filter((el) => {
-    console.log(value);
-    if (value === "") {
-      return el;
-    } else {
-      return el.Markto === value;
-    }
-  });
-  console.log(newData);
-  append(newData);
-};
-const pending =()=>{
-  // window.location.href="./allComplaints.html"
-  let newData = dataArr.filter((el) => {
-    return el.Status ==="PENDING"
-  })
-  console.log(newData);
-  append(newData);
+const userID = JSON.parse(localStorage.getItem("userID"));
+let get =(id)=>{
+    return document.getElementById(id)
 }
+
 const getComp = async () => {
   const url = `https://haryanacms.onrender.com/complain/allcomplain`;
   let res = await fetch(url);
   let data = await res.json();
   console.log(data);
+  data=data.filter((el)=>{
+    return el.Status ==="PENDING"
+  })
+  console.log(data);
   append(data);
-  dataArr = data;
-  return dataArr;
+//   dataArr = data;
+//   return dataArr;
 };
-
-let localEl = {};
-let get = (id) => {
-  return document.getElementById(id);
-};
-let container = document.querySelector(".tableBody");
 let convertDate = (id) => {
-  let myDate = new Date(id);
-  return myDate.toLocaleDateString();
-};
-const getIO = async () => {
-  let res = await fetch(`https://haryanacms.onrender.com/user/allio`);
-  res = await res.json();
-  // console.log(res);
-  appendIo(res);
-};
-const appendIo = (data) => {
-  let container = document.getElementById("ioselect");
-  let updateCont = document.getElementById("");
-
-  data.map((el) => {
-    let option = document.createElement("option");
-    option.innerText = `${el.fname} ${el.lname}`;
-    option.value = el.email;
-    // console.log(option)
-    container.append(option);
-    // updateCont.append(option)
-  });
-};
-const userID = JSON.parse(localStorage.getItem("userID"));
+    let myDate = new Date(id);
+    return myDate.toLocaleDateString();
+  };
+  const getIO = async () => {
+    let res = await fetch(`https://haryanacms.onrender.com/user/allio`);
+    res = await res.json();
+    // console.log(res);
+    appendIo(res);
+  };
+  const appendIo = (data) => {
+    let container = document.getElementById("ioselect");
+    let updateCont = document.getElementById("");
+  
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = `${el.fname} ${el.lname}`;
+      option.value = el.email;
+      // console.log(option)
+      container.append(option);
+      // updateCont.append(option)
+    });
+  };
+let container = document.querySelector(".tableBody");
 const append = (data) => {
   container.innerHTML = null;
   let i = 0;
@@ -227,27 +208,6 @@ const append = (data) => {
     container.append(tr);
   });
 };
-const searchData = () => {
-  let initial = document.getElementById("initialDate").value;
-  let final = document.getElementById("finalDate").value;
-
-  // console.log(typeof initial)
-  let obj = {
-    ini: initial,
-    fin: final,
-  };
-  let newData = Data.filter((el, index) => {
-    // console.log(el.IssuedDate, "  ",initial)
-    if (el.IssuedDate >= initial && el.IssuedDate <= final) {
-      // console.log(el)
-
-      return el;
-    }
-  });
-  console.log(newData);
-  append(newData);
-  // console.log(obj);
-};
 const updateData = async (el) => {
   let displayUpdateComp = document.querySelector(".displayUpdateComp");
   displayUpdateComp.classList.toggle("activeUpdateComp");
@@ -358,5 +318,5 @@ const viewData = (el) => {
   get("complainantNumberView").value = el.trackingId;
   // get("dateOfSubView").value = convertDate(el.createdAt);
 };
-getComp();
-getIO();
+
+// getComp()

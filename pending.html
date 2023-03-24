@@ -158,8 +158,7 @@
             </li>
             <li class="liText">
               <a class="aTag" href="./pending.html">
-                <i class="fa-sharp fa-regular fa-clock"></i> Pending
-                Complaints</a
+                <i class="fa-sharp fa-regular fa-clock"></i> PendingComplaints</a
               >
             </li>
             <li class="liText">
@@ -974,7 +973,7 @@
   </body>
 </html>
 
-<script src="./allComplaints.js"></script>
+<script src="./pending.js"></script>
 <script src="./commonFunctions.js"></script>
 <script type="module">
   import {
@@ -991,16 +990,19 @@
   }
 
   async function b() {
-    const resultComplain = await getComplain();
+    let resultComplain = await getComplain();
     const resRange = await getRange();
     const resIO = await getIO();
+    resultComplain=resultComplain.filter((el)=>{
+      return el.Status ==="PENDING"
+    })
     append(resultComplain);
     appendrangeInputUpdate(resRange);
     appendrangeInputView1(resRange);
     appendIOUpdate(resIO);
     appendIONameView1(resIO);
 
-    console.log(resultComplain);
+    // console.log(resultComplain);
   }
   const appendrangeInputUpdate = (data) => {
     let rangeInputUpdate = document.getElementById("rangeInputUpdate");
