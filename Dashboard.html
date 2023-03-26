@@ -147,12 +147,12 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-calendar-day"></i> Total Complaints</a
+              <a class="aTag" href="./todayComplain.html"
+                ><i class="fa-solid fa-calendar-day"></i> Today Complaints</a
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
+              <a class="aTag" href="./highPriority.html"
                 ><i class="fa-solid fa-fire"></i>High Priority</a
               >
             </li>
@@ -268,7 +268,9 @@
           <div class="rightTopRight">
             <div class="a">
               <button class="buttonTopLeft">View Report</button>
-              <button class="buttonTopLeft" onclick="goToIO()" >IO Details</button>
+              <button class="buttonTopLeft" onclick="goToIO()">
+                IO Details
+              </button>
             </div>
             <div class="b">Home / <span>Dashboard</span></div>
           </div>
@@ -276,7 +278,7 @@
         <div class="stats">
           <div class="totalComplaintsStats">
             <div class="totalComplaintsStatsLeft">
-              <p>Total Complaints</p>
+              <p>Today Complaints</p>
               <h4>12</h4>
             </div>
             <div class="totalComplaintsStatsRight">
@@ -1325,9 +1327,7 @@
   };
 
   const updateComplain = async () => {
-    console.log(
-      `https://haryanacms.onrender.com/complain/update/${localEl._id}`
-    );
+    console.log(`https://hrycms.onrender.com/complain/update/${localEl._id}`);
     let obj = {
       ComplainantName: document.getElementById("complainantNameUpdate").value,
       Email: document.getElementById("complainantEmailUpdate").value,
@@ -1361,7 +1361,7 @@
 
     try {
       let res = await fetch(
-        `https://haryanacms.onrender.com/complain/update/${localEl._id}`,
+        `https://hrycms.onrender.com/complain/update/${localEl._id}`,
         {
           method: "PUT",
           body: obj,

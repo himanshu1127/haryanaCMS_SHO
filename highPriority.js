@@ -1,26 +1,9 @@
-let dataArr = [];
-const userID = JSON.parse(localStorage.getItem("userID"));
-let get = (id) => {
-  return document.getElementById(id);
-};
-
-const getComp = async () => {
-  const url = `https://hrycms.onrender.com/complain/allcomplain`;
-  let res = await fetch(url);
-  let data = await res.json();
-  console.log(data);
-  data = data.filter((el) => {
-    return el.Status === "PENDING";
-  });
-  console.log(data);
-  append(data);
-  //   dataArr = data;
-  //   return dataArr;
-};
 let convertDate = (id) => {
   let myDate = new Date(id);
-  return myDate.toLocaleDateString();
+  myDate = myDate.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  return myDate.split(", ")[0].split("/").reverse().join("-");
 };
+const userID = JSON.parse(localStorage.getItem("userID"));
 const getIO = async () => {
   let res = await fetch(`https://hrycms.onrender.com/user/allio`);
   res = await res.json();
@@ -39,6 +22,9 @@ const appendIo = (data) => {
     container.append(option);
     // updateCont.append(option)
   });
+};
+let get = (id) => {
+  return document.getElementById(id);
 };
 let container = document.querySelector(".tableBody");
 const append = (data) => {
@@ -208,6 +194,7 @@ const append = (data) => {
     container.append(tr);
   });
 };
+
 const updateData = async (el) => {
   let displayUpdateComp = document.querySelector(".displayUpdateComp");
   displayUpdateComp.classList.toggle("activeUpdateComp");
@@ -319,8 +306,7 @@ const viewData = (el) => {
   get("shortDescriptionView").value = el.ComplaintShortDescription;
   get("complainCategoryView").value = el.ComplaintCategory;
   get("complainantNumberView").value = el.trackingId;
-  get("highPriorityView").checked = el.highPriority;
+  get("highPriorityView").checked=el.highPriority
   // get("dateOfSubView").value = convertDate(el.createdAt);
 };
-
-// getComp()
+getIO();

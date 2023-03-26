@@ -1,6 +1,6 @@
-const url = `https://haryanacms.onrender.com`;
+const url = `https://hrycms.onrender.com`;
 
-// // let dataArr = [];
+let dataArr = [];
 const userID = JSON.parse(localStorage.getItem("userID"));
 // let getUser = async () => {
 //   let res = await fetch(`${url}/user/user/${userID}`);
@@ -42,6 +42,7 @@ async function getUser() {
 async function getComplain() {
   let res = await fetch(`${url}/complain/allcomplain`);
   res = await res.json();
+  dataArr = res;
   return res;
 }
 async function getRange() {
@@ -55,8 +56,12 @@ async function getIO() {
   res = await res.json();
   return res;
 }
-async function getCategory(){
-  
+async function getCategory() {}
+
+async function loading() {
+  return `
+  <h1>Loading...</h1>
+  `;
 }
 
-export { getUser, getComplain, getRange, getIO };
+export { getUser, getComplain, getRange, getIO, loading, dataArr };

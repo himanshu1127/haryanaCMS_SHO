@@ -16,32 +16,37 @@
               <h1 class="LoginText">Login to SHO</h1>
               <h1 class="compText">Complaint Management System</h1>
             </header>
-            <form class="loginForm">
-              <label for="">Username</label>
+            <form class="loginForm" onsubmit="login(event)">
+              <label for="">Username <span class="required">*</span></label>
               <input
-                type="text"
+                type="email"
                 id="username"
                 class=""
                 placeholder="Username"
+                required
               />
 
-              <label for="password">Password</label>
+              <label for="password"
+                >Password <span class="required">*</span></label
+              >
               <input
                 type="password"
                 id="password"
                 class=""
                 placeholder="Password"
+                required
               />
 
-              <div>
+              <!-- <div>
                 <div>
                   <input type="checkbox" class="checkbox" id="remember" />
                   <label for="remember" class=""> Remember me </label>
                 </div>
                 <a href="" class="forgotLink"> Forgot Password? </a>
-              </div>
+              </div> -->
+              <input type="submit" class="loginButton" value="Login" />
             </form>
-            <button class="loginButton" onClick="login()">Login</button>
+            <!-- <button class="loginButton" onClick="login()">Login</button> -->
           </section>
           <section>
             <img src="/login-image.png" class="image" alt="Haryana CMS" />
@@ -52,18 +57,23 @@
   </body>
 </html>
 <script>
-  const url = `https://haryanacms.onrender.com/user/login`;
+  const url = `https://hrycms.onrender.com/user/login`;
 
   const get = (id) => {
     return document.getElementById(id);
   };
-  const login = async () => {
+  let loading = false;
+  const login = async (event) => {
+    event.preventDefault();
     let obj = {
       email: get("username").value,
       password: get("password").value,
     };
     obj = JSON.stringify(obj);
     try {
+      loading = true;
+      console.log(loading);
+      appendButtonText();
       let res = await fetch(url, {
         method: "POST",
         body: obj,
@@ -72,16 +82,32 @@
         },
       });
       res = await res.json();
-      if (res.message === "login succesfully") {
+      if (res.status === 200) {
         localStorage.setItem("userID", JSON.stringify(res.userId));
+        loading = false;
+        console.log(loading);
+        appendButtonText();
         alert("Login Successful!");
         window.location.href = "./Dashboard.html";
       } else {
+        loading = false;
+        appendButtonText();
         alert("Login Failed");
       }
       console.log(res);
+      loading = false;
+      appendButtonText();
     } catch (err) {
       console.log(err);
+    }
+  };
+  let appendButtonText = () => {
+    let button = document.querySelector(".loginButton");
+    button.innerHTML = null;
+    if (loading) {
+      button.value = "Loading...";
+    } else {
+      button.value = "Login";
     }
   };
 </script>

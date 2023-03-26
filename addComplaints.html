@@ -57,12 +57,12 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-calendar-day"></i> Total Complaints</a
+              <a class="aTag" href="./todayComplain.html"
+                ><i class="fa-solid fa-calendar-day"></i> Today Complaints</a
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
+              <a class="aTag" href="./highPriority.html"
                 ><i class="fa-solid fa-fire"></i>High Priority</a
               >
             </li>
@@ -177,19 +177,19 @@
           </span> -->
           <!-- <span class="complaintsNumber">
             <span>
-              <span>Total complaints: </span>
+              <span>Today Complaints: </span>
               <span class="complaintsNewComplaints">2500</span>
             </span>
             <span>
-              <span>Total complaints: </span>
+              <span>Today Complaints: </span>
               <span class="complaintsNewComplaints">2500</span>
             </span>
             <span>
-              <span>Total complaints: </span>
+              <span>Today Complaints: </span>
               <span class="complaintsNewComplaints">2500</span>
             </span>
             <span>
-              <span>Total complaints: </span>
+              <span>Today Complaints: </span>
               <span class="complaintsNewComplaints">2500</span>
             </span>
           </span> -->
@@ -206,6 +206,7 @@
                     id="complainantNumber"
                     placeholder="Complaint Number"
                     class="complaintsInput"
+                    disabled
                   />
                 </div>
               </div>
@@ -342,13 +343,13 @@
                 </div>
               </div>
             </div>
-  
+
             <div class="rangeAndSP">
               <div class="">
                 <label class="complaintsFormLabel">Range :</label>
                 <div class="complaintContnetDivLeftTop">
                   <select name="" id="rangeInput" class="complaintsInput">
-                   <option value="">Select Range</option>
+                    <option value="">Select Range</option>
                   </select>
                 </div>
               </div>
@@ -360,7 +361,7 @@
                   </select>
                 </div>
               </div>
-  
+
               <div>
                 <label class="complaintsFormLabel">Status :</label>
                 <div class="complaintContnetDivLeftTop">
@@ -418,7 +419,7 @@
                   <input
                     type="checkbox"
                     name=""
-                    id=""
+                    id="highPriority"
                     placeholder="First Name"
                     class="border-2 rounded h-5 w-5"
                   />
@@ -484,7 +485,7 @@
                 </div>
               </div>
             </div>
-  
+
             <div class="addButtonDiv">
               <button
                 onclick="addComplain()"
@@ -505,11 +506,11 @@
 <script src="./addComplain.js"></script>
 <script type="module">
   import { getUser } from "./Components/getData.js";
-  let userName = document.getElementById("userDetail")
+  let userName = document.getElementById("userDetail");
   async function a() {
     const result = await getUser();
     console.log(result);
-    userName.innerText=`${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`
+    userName.innerText = `${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`;
   }
 
   a();

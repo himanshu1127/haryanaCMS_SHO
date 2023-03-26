@@ -8,6 +8,12 @@
 button {
   cursor: pointer;
 }
+input[type="submit"] {
+  cursor: pointer;
+}
+.required {
+  color: red;
+}
 .mainDiv {
   border: 1px solid red;
   background-color: rgb(243 244 246);
@@ -101,20 +107,21 @@ button {
   color: #a0aec0;
 }
 .loginButton {
-  margin-top: 1rem;
-  background-color: #ed8936; /* equivalent to Tailwind bg-orange-500 */
+  margin-top: 2rem;
+  background-color: #ed8936;
   padding-top: 1rem; /* equivalent to Tailwind py-4 */
   padding-bottom: 1rem; /* equivalent to Tailwind py-4 */
   padding-left: 2rem; /* equivalent to Tailwind px-8 */
   padding-right: 2rem; /* equivalent to Tailwind px-8 */
   border-radius: 0.25rem; /* equivalent to Tailwind rounded */
   width: 100%; /* equivalent to Tailwind w-full */
-  color: #fff; /* equivalent to Tailwind text-white */
+  color: black; /* equivalent to Tailwind text-white */
   border: none;
 }
 
 .loginButton:hover {
-  background-color: #dd6b20; /* equivalent to Tailwind hover:bg-orange-600 */
+  background-color: #dd6b20;
+  color: #fff;
 }
 .image {
   max-width: 28rem;

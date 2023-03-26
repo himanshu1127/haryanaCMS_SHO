@@ -1,5 +1,5 @@
 let userId = JSON.parse(localStorage.getItem("userID"));
-const url = `https://haryanacms.onrender.com`;
+const url = `https://hrycms.onrender.com`;
 
 const get = (id) => {
   return document.getElementById(id);
@@ -36,10 +36,10 @@ const addComplain = async () => {
     SPName: get("IOName").value,
     Status: get("complainStatus").value,
     Markto: get("IOName").value,
-    trackingId:document.getElementById("complainantNumber").value,
-    complainDate:"",
-    targetDate:"",
-  
+    trackingId: document.getElementById("complainantNumber").value,
+    complainDate: "",
+    targetDate: "",
+    highPriority: document.getElementById("highPriority").checked,
   };
   console.log(obj);
   obj = JSON.stringify(obj);

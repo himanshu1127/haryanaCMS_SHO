@@ -1,11 +1,11 @@
-const url1 = `https://haryanacms.onrender.com`;
+const url1 = `https://hrycms.onrender.com`;
 
 // Get data
 
 const getRange = async () => {
   let res = await fetch(`${url1}/range/getRange`);
   res = await res.json();
-//   console.log(res);
+  //   console.log(res);
   appendRange(res);
 };
 
@@ -13,7 +13,7 @@ const getRange = async () => {
 const getDistrict = async () => {
   let res = await fetch(`${url1}/district/getDistrict`);
   res = await res.json();
-//   console.log(res);
+  //   console.log(res);
   appendDistrict(res);
 };
 const getIO = async () => {
@@ -26,7 +26,7 @@ const getIO = async () => {
 
 const appendRange = (data) => {
   let container = document.getElementById("rangeInput");
-  let UpdateCont = document.getElementById("")
+  let UpdateCont = document.getElementById("");
 
   data.map((el) => {
     let option = document.createElement("option");
@@ -40,7 +40,7 @@ const appendRange = (data) => {
 
 const appendDistrict = (data) => {
   let container = document.getElementById("districtInput");
-  let updateCont = document.getElementById("")
+  let updateCont = document.getElementById("");
 
   data.map((el) => {
     let option = document.createElement("option");
@@ -53,7 +53,7 @@ const appendDistrict = (data) => {
 };
 const appendIo = (data) => {
   let container = document.getElementById("IOName");
-  let updateCont = document.getElementById("")
+  let updateCont = document.getElementById("");
 
   data.map((el) => {
     let option = document.createElement("option");
@@ -69,4 +69,4 @@ const appendIo = (data) => {
 
 getRange();
 getDistrict();
-getIO()
+getIO();

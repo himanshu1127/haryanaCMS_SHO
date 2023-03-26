@@ -270,7 +270,7 @@
                 justify-content: space-between;
               "
             >
-              <div>District Wise >> <span>Pending Complaints</span></div>
+              <div>District Wise >> <span>High Priority Complaints</span></div>
               <div>
                 <select
                   name=""
@@ -974,38 +974,36 @@
   </body>
 </html>
 
-<script src="./pending.js"></script>
+<script src="./highPriority.js"></script>
 <script src="./commonFunctions.js"></script>
 <script type="module">
   import {
-    getUser,
     getComplain,
+    dataArr,
+    getUser,
     getRange,
     getIO,
   } from "./Components/GetData.js";
   let userName = document.getElementById("userDetail");
-  async function a() {
-    const result = await getUser();
-    console.log(result);
-    userName.innerText = `${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`;
-  }
+  //   async function a() {
+  //
+  //     console.log(result);
+  //
+  //   }
 
-  async function b() {
-    let resultComplain = await getComplain();
+  const a = async () => {
+    const result = await getComplain();
+    const user = await getUser();
+    userName.innerText = `${user.fname} ${user.lname}, ${user.designation}, ${user.policestation}`;
     const resRange = await getRange();
     const resIO = await getIO();
-    resultComplain = resultComplain.filter((el) => {
-      return el.Status === "PENDING";
-    });
-    append(resultComplain);
+    console.log(result);
+    highPriority();
     appendrangeInputUpdate(resRange);
     appendrangeInputView1(resRange);
     appendIOUpdate(resIO);
     appendIONameView1(resIO);
-    appendIo(resIO)
-
-    // console.log(resultComplain);
-  }
+  };
   const appendrangeInputUpdate = (data) => {
     let rangeInputUpdate = document.getElementById("rangeInputUpdate");
     rangeInputUpdate.innerHTML = null;
@@ -1028,19 +1026,6 @@
       // IONameView1.append(option)
     });
   };
-  const appendIo = (data) => {
-  let container = document.getElementById("ioselect");
-  let updateCont = document.getElementById("");
-
-  data.map((el) => {
-    let option = document.createElement("option");
-    option.innerText = `${el.fname} ${el.lname}`;
-    option.value = el.email;
-    // console.log(option)
-    container.append(option);
-    // updateCont.append(option)
-  });
-};
   // view
 
   const appendrangeInputView1 = (data) => {
@@ -1062,6 +1047,13 @@
       IONameView1.append(option);
     });
   };
+  const highPriority = () => {
+    console.log(dataArr);
+    let newData = dataArr.filter((el) => {
+      return el.highPriority === true;
+    });
+    console.log(newData);
+    append(newData);
+  };
   a();
-  b();
 </script>

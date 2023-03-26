@@ -63,12 +63,12 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-calendar-day"></i> Total Complaints</a
+              <a class="aTag" href="./todayComplain.html"
+                ><i class="fa-solid fa-calendar-day"></i> Today Complaints</a
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
+              <a class="aTag" href="./highPriority.html"
                 ><i class="fa-solid fa-fire"></i>High Priority</a
               >
             </li>
@@ -203,7 +203,7 @@
   //   },
   // ];
   const getData = async () => {
-    let res = await fetch("https://haryanacms.onrender.com/user/allio");
+    let res = await fetch("https://hrycms.onrender.com/user/allio");
     res = await res.json();
     console.log(res);
     append(res);

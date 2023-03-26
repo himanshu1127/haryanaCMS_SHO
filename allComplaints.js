@@ -13,16 +13,16 @@ const changeComplains = () => {
   console.log(newData);
   append(newData);
 };
-const pending =()=>{
+const pending = () => {
   // window.location.href="./allComplaints.html"
   let newData = dataArr.filter((el) => {
-    return el.Status ==="PENDING"
-  })
+    return el.Status === "PENDING";
+  });
   console.log(newData);
   append(newData);
-}
+};
 const getComp = async () => {
-  const url = `https://haryanacms.onrender.com/complain/allcomplain`;
+  const url = `https://hrycms.onrender.com/complain/allcomplain`;
   let res = await fetch(url);
   let data = await res.json();
   console.log(data);
@@ -41,7 +41,7 @@ let convertDate = (id) => {
   return myDate.toLocaleDateString();
 };
 const getIO = async () => {
-  let res = await fetch(`https://haryanacms.onrender.com/user/allio`);
+  let res = await fetch(`https://hrycms.onrender.com/user/allio`);
   res = await res.json();
   // console.log(res);
   appendIo(res);
@@ -71,7 +71,7 @@ const append = (data) => {
     let td1 = document.createElement("td");
     td1.setAttribute("class", "tablecol");
     td1.setAttribute("class", "tablecol1");
-    td1.innerText = i;
+    td1.innerText = el.trackingId;
     let td2 = document.createElement("td");
     td2.setAttribute("class", "tablecol");
     td2.setAttribute("class", "tablecol2");
@@ -267,6 +267,8 @@ const updateData = async (el) => {
   get("complainStatusUpdate").value = el.Status;
   get("shortDescriptionUpdate").value = el.ComplaintShortDescription;
   get("complainCategoryUpdate").value = el.ComplaintCategory;
+  get("highPriorityUpdate").checked = el.highPriority;
+  get("complainantNumber").value = el.trackingId;
   // get("sectionsUpdate").value=el.
   // get("highPriorityUpdate").value=el.
 
@@ -281,7 +283,7 @@ const updateComplain = async () => {
   // alert("Update");
   // let compUpdate = document.querySelector(".displayUpdateComp");
   // compUpdate.classList.toggle("activeUpdateComp");
-  console.log(`https://haryanacms.onrender.com/complain/update/${localEl._id}`);
+  console.log(`https://hrycms.onrender.com/complain/update/${localEl._id}`);
   let obj = {
     ComplainantName: document.getElementById("complainantNameUpdate").value,
     Email: document.getElementById("complainantEmailUpdate").value,
@@ -307,13 +309,14 @@ const updateComplain = async () => {
     SPName: document.getElementById("IOUpdate").value,
     Status: document.getElementById("complainStatusUpdate").value,
     Markto: document.getElementById("IOUpdate").value,
+    highPriority: get("highPriorityUpdate").checked,
   };
   obj = JSON.stringify(obj);
   console.log(obj);
 
   try {
     let res = await fetch(
-      `https://haryanacms.onrender.com/complain/update/${localEl._id}`,
+      `https://hrycms.onrender.com/complain/update/${localEl._id}`,
       {
         method: "PUT",
         body: obj,
@@ -356,6 +359,7 @@ const viewData = (el) => {
   get("shortDescriptionView").value = el.ComplaintShortDescription;
   get("complainCategoryView").value = el.ComplaintCategory;
   get("complainantNumberView").value = el.trackingId;
+  get("highPriorityView").checked = el.highPriority;
   // get("dateOfSubView").value = convertDate(el.createdAt);
 };
 getComp();
