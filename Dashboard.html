@@ -333,8 +333,8 @@
           </table>
         </div>
         <div class="messages">
-          <div class="officerIngormation">
-            <div class="officerInformationSingleDiv">
+          <div class="officerIngormation" id="officerIngormation">
+            <!-- <div class="officerInformationSingleDiv">
               <h4>Officer Information</h4>
               <div class="officerInformationText">
                 <p>By Mahesh Singh, IO, Sadar, Karnal</p>
@@ -383,7 +383,7 @@
                   <i class="fa-solid fa-trash-can"></i>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <div class="messageFromADGP">
@@ -400,8 +400,8 @@
             </div>
           </div>
 
-          <div class="officersData">
-            <div class="OfficerDataSingleDiv">
+          <div class="officersData" id="officersData">
+            <!-- <div class="OfficerDataSingleDiv">
               <div class="officerImage">
                 <img src="./haryana_police_logo.webp" alt="" />
               </div>
@@ -436,7 +436,7 @@
                 <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
                 <div class="progressSlider">Slider</div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -1127,9 +1127,73 @@
     appendrangeInputView1(resRange);
     appendIOUpdate(resIO);
     appendIONameView1(resIO);
+    appendOfficerInfo(resIO);
+    appendImageIOInfo(resIO);
 
     console.log(resultComplain);
   }
+
+  const appendOfficerInfo = (data) => {
+    // <div class="officerInformationSingleDiv">
+    //   <h4>Officer Information</h4>
+    //   <div class="officerInformationText">
+    //     <p>By Mahesh Singh, IO, Sadar, Karnal</p>
+    //     <div class="officerInformationIcons">
+    //       <i class="fa-regular fa-pen-to-square"></i>
+    //       <i class="fa-solid fa-trash-can"></i>
+    //     </div>
+    //   </div>
+    // </div>;
+    console.log(data);
+    let cont = document.getElementById("officerIngormation");
+    cont.innerHTML = null;
+    data.map((el) => {
+      let div = document.createElement("div");
+      div.setAttribute("class", "officerInformationSingleDiv");
+      let h4 = document.createElement("h4");
+      h4.innerText = "Officer Information";
+      let divInner = document.createElement("div");
+      divInner.setAttribute("class", "officerInformationText");
+      let p = document.createElement("p");
+      p.innerText = `By ${el.fname} ${el.lname}, ${el.designation} ${el.policestation}`;
+
+      divInner.append(p);
+      div.append(h4, divInner);
+      cont.append(div);
+    });
+  };
+
+  let appendImageIOInfo = (data) => {
+    let cont = document.getElementById("officersData");
+
+    // <div class="OfficerDataSingleDiv">
+    //           <div class="officerImage">
+    //             <img src="./haryana_police_logo.webp" alt="" />
+    //           </div>
+    //           <div class="officersDetails">
+    //             <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
+    //             <div class="progressSlider">Slider</div>
+    //           </div>
+    //         </div>
+
+    data.map((el) => {
+      let div = document.createElement("div");
+      div.setAttribute("class","OfficerDataSingleDiv")
+      let divImg = document.createElement("div");
+      divImg.setAttribute("class","officerImage")
+      let img = document.createElement("img");
+      img.src = "./haryana_police_logo.webp";
+      let divText = document.createElement("div");
+      divText.setAttribute("class","officersDetails")
+      let p = document.createElement("p");
+      p.innerText=`${el.fname} ${el.lname}, ${el.designation} ${el.policestation}`
+
+      divImg.append(img)
+      divText.append(p)
+      div.append(divImg,divText)
+      cont.append(div)
+    });
+  };
 
   let convertDate = (id) => {
     let myDate = new Date(id);
