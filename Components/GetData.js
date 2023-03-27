@@ -56,7 +56,11 @@ async function getIO() {
   res = await res.json();
   return res;
 }
-async function getCategory() {}
+async function getCategory() {
+  let res = await fetch(`${url}/category/getcategory`);
+  res = res.json();
+  return res;
+}
 
 async function loading() {
   return `
@@ -64,4 +68,4 @@ async function loading() {
   `;
 }
 
-export { getUser, getComplain, getRange, getIO, loading, dataArr };
+export { getUser, getComplain, getRange, getIO, loading, dataArr, getCategory };

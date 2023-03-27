@@ -91,16 +91,24 @@ const append = (data) => {
 
     td9.append(divtd9);
     let td10 = document.createElement("td");
-    td10.innerText = el.Status;
+    td10.style.padding = "10px";
+    td9.style.padding = "10px";
+    let divtd10 = document.createElement("div");
+    divtd10.style.height = "40px";
+    let p10 = document.createElement("p");
+    p10.innerText = el.Status;
+    p10.style.margin = "10px 0px 10px 0px";
+    divtd10.append(p10);
+    td10.append(divtd10);
 
-    if (el.complaintType === "CAW") {
+    if (el.ComplaintCategory === "CAW") {
       divtd9.style.border = "1px solid navy";
       divtd9.style.backgroundColor = "navy";
       divtd9.style.boxSizing = "border-box";
       divtd9.style.alignSelf = "center";
       divtd9.style.height = "40px";
       divtd9.style.color = "white";
-    } else if (el.complaintType === "Officers") {
+    } else if (el.ComplaintCategory === "Officers") {
       divtd9.style.border = "1px solid brown";
       divtd9.style.backgroundColor = "brown";
       divtd9.style.boxSizing = "border-box";
@@ -109,7 +117,7 @@ const append = (data) => {
       divtd9.style.color = "white";
     }
 
-    if (el.priority === "high") {
+    if (el.highPriority) {
       divarea.style.border = "1px solid green";
       divarea.style.backgroundColor = "green";
       divarea.style.boxSizing = "border-box";
@@ -118,43 +126,42 @@ const append = (data) => {
       divarea.style.color = "white";
     }
 
-    if (el.status === "progress") {
-      divStatus.style.border = "1px solid lime";
-      divStatus.style.backgroundColor = "lime";
-      divStatus.style.boxSizing = "border-box";
-      divStatus.style.alignSelf = "center";
-      divStatus.style.height = "40px";
-      divStatus.style.color = "white";
+    if (el.Status === "IN-PROCESS") {
+      divtd10.style.border = "1px solid lime";
+      divtd10.style.backgroundColor = "lime";
+      divtd10.style.boxSizing = "border-box";
+      divtd10.style.alignSelf = "center";
+      divtd10.style.height = "40px";
+      divtd10.style.color = "white";
     } else if (el.Status === "PENDING") {
-      divStatus.style.border = "1px solid red";
-      divStatus.style.backgroundColor = "red";
-      divStatus.style.boxSizing = "border-box";
-      divStatus.style.alignSelf = "center";
-      divStatus.style.height = "40px";
-      divStatus.style.color = "white";
-    } else if (el.status === "closed") {
-      divStatus.style.border = "1px solid blue";
-      divStatus.style.backgroundColor = "blue";
-      divStatus.style.boxSizing = "border-box";
-      divStatus.style.alignSelf = "center";
-      divStatus.style.height = "40px";
-      divStatus.style.color = "white";
-    } else if (el.status === "overdue") {
-      divStatus.style.border = "1px solid darkviolet";
-      divStatus.style.backgroundColor = "darkviolet";
-      divStatus.style.boxSizing = "border-box";
-      divStatus.style.alignSelf = "center";
-      divStatus.style.height = "40px";
-      divStatus.style.color = "white";
-    } else if (el.status === "rejected") {
-      divStatus.style.border = "1px solid gray";
-      divStatus.style.backgroundColor = "gray";
-      divStatus.style.boxSizing = "border-box";
-      divStatus.style.alignSelf = "center";
-      divStatus.style.height = "40px";
-      divStatus.style.color = "white";
+      divtd10.style.border = "1px solid red";
+      divtd10.style.backgroundColor = "red";
+      divtd10.style.boxSizing = "border-box";
+      divtd10.style.alignSelf = "center";
+      divtd10.style.height = "40px";
+      divtd10.style.color = "white";
+    } else if (el.Status === "CLOSED") {
+      divtd10.style.border = "1px solid blue";
+      divtd10.style.backgroundColor = "blue";
+      divtd10.style.boxSizing = "border-box";
+      divtd10.style.alignSelf = "center";
+      divtd10.style.height = "40px";
+      divtd10.style.color = "white";
+    } else if (el.Status === "OVERDUE") {
+      divtd10.style.border = "1px solid darkviolet";
+      divtd10.style.backgroundColor = "darkviolet";
+      divtd10.style.boxSizing = "border-box";
+      divtd10.style.alignSelf = "center";
+      divtd10.style.height = "40px";
+      divtd10.style.color = "white";
+    } else if (el.Status === "REJECTED") {
+      divtd10.style.border = "1px solid gray";
+      divtd10.style.backgroundColor = "gray";
+      divtd10.style.boxSizing = "border-box";
+      divtd10.style.alignSelf = "center";
+      divtd10.style.height = "40px";
+      divtd10.style.color = "white";
     }
-
     let td8 = document.createElement("td");
     let divtd8 = document.createElement("div");
     divtd8.style.display = "inline";
@@ -306,7 +313,7 @@ const viewData = (el) => {
   get("shortDescriptionView").value = el.ComplaintShortDescription;
   get("complainCategoryView").value = el.ComplaintCategory;
   get("complainantNumberView").value = el.trackingId;
-  get("highPriorityView").checked=el.highPriority
+  get("highPriorityView").checked = el.highPriority;
   // get("dateOfSubView").value = convertDate(el.createdAt);
 };
 getIO();

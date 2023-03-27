@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>All Complain</title>
     <script
       src="https://kit.fontawesome.com/ffe2b9fea9.js"
       crossorigin="anonymous"
@@ -502,6 +502,9 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
+                  <option value="CLOSED">CLOSED</option>
+                  <option value="OVERDUE">OVERDUE</option>
+                  <option value="REJECTED">REJECTED</option>
                 </select>
               </div>
             </div>
@@ -826,6 +829,9 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
+                  <option value="CLOSED">CLOSED</option>
+                  <option value="OVERDUE">OVERDUE</option>
+                  <option value="REJECTED">REJECTED</option>
                 </select>
               </div>
             </div>
@@ -982,11 +988,13 @@
     getComplain,
     getRange,
     getIO,
+    getCategory,
   } from "./Components/GetData.js";
   let userName = document.getElementById("userDetail");
   async function a() {
     const result = await getUser();
-    console.log(result);
+    const res = await getCategory();
+    console.log(res);
     userName.innerText = `${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`;
   }
 

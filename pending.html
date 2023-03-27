@@ -502,6 +502,9 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
+                  <option value="CLOSED">CLOSED</option>
+                  <option value="OVERDUE">OVERDUE</option>
+                  <option value="REJECTED">REJECTED</option>
                 </select>
               </div>
             </div>
@@ -826,6 +829,9 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
+                  <option value="CLOSED">CLOSED</option>
+                  <option value="OVERDUE">OVERDUE</option>
+                  <option value="REJECTED">REJECTED</option>
                 </select>
               </div>
             </div>
@@ -1002,7 +1008,7 @@
     appendrangeInputView1(resRange);
     appendIOUpdate(resIO);
     appendIONameView1(resIO);
-    appendIo(resIO)
+    appendIo(resIO);
 
     // console.log(resultComplain);
   }
@@ -1029,18 +1035,18 @@
     });
   };
   const appendIo = (data) => {
-  let container = document.getElementById("ioselect");
-  let updateCont = document.getElementById("");
+    let container = document.getElementById("ioselect");
+    let updateCont = document.getElementById("");
 
-  data.map((el) => {
-    let option = document.createElement("option");
-    option.innerText = `${el.fname} ${el.lname}`;
-    option.value = el.email;
-    // console.log(option)
-    container.append(option);
-    // updateCont.append(option)
-  });
-};
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = `${el.fname} ${el.lname}`;
+      option.value = el.email;
+      // console.log(option)
+      container.append(option);
+      // updateCont.append(option)
+    });
+  };
   // view
 
   const appendrangeInputView1 = (data) => {
