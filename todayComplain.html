@@ -997,19 +997,19 @@
   //
   //   }
 
-  const a = async () => {
-    const result = await getComplain();
-    const user = await getUser();
-    userName.innerText = `${user.fname} ${user.lname}, ${user.designation}, ${user.policestation}`;
-    const resRange = await getRange();
-    const resIO = await getIO();
-    console.log(result);
-    highPriority();
-    appendrangeInputUpdate(resRange);
-    appendrangeInputView1(resRange);
-    appendIOUpdate(resIO);
-    appendIONameView1(resIO);
-  };
+//   const a = async () => {
+//     const result = await getComplain();
+//     const user = await getUser();
+//     userName.innerText = `${user.fname} ${user.lname}, ${user.designation}, ${user.policestation}`;
+//     const resRange = await getRange();
+//     const resIO = await getIO();
+//     console.log(result);
+//     highPriority();
+//     appendrangeInputUpdate(resRange);
+//     appendrangeInputView1(resRange);
+//     appendIOUpdate(resIO);
+//     appendIONameView1(resIO);
+//   };
   const appendrangeInputUpdate = (data) => {
     let rangeInputUpdate = document.getElementById("rangeInputUpdate");
     rangeInputUpdate.innerHTML = null;
