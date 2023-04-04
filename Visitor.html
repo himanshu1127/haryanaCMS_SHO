@@ -614,16 +614,60 @@
   };
 </script>
 <script type="module">
-  import { getVisitor, getUser } from "./Components/GetData.js";
-
-  let a = async () => {
-    let visitor = await getVisitor();
-    let user = await getUser();
-    // console.log(visitor, user);
-    visitor = visitor.filter((el) => {
-      return el.markto === user.email;
-    });
-    append(visitor);
-  };
-  a();
-</script>
+    import {
+      getVisitor,
+      getUser,
+      getDSP,
+      getSP,
+      getSHO,
+    } from "./Components/GetData.js";
+  
+    let a = async () => {
+      let visitor = await getVisitor();
+      let user = await getUser();
+      let sp = await getSP();
+      let dsp = await getDSP();
+      let sho = await getSHO();
+      // console.log(visitor, user);
+      appendSPView(sp)
+      appendDSPView(dsp)
+      appendSHOView(sho)
+      visitor = visitor.filter((el) => {
+        return el.markto === user.email;
+      });
+      append(visitor);
+    };
+    // view markToCompView
+    const appendSPView = (data) => {
+      let markToComp = document.getElementById("markToCompView");
+      data.map((el) => {
+        // console.log(el)
+        let option = document.createElement("option");
+        option.innerText = `${el.fname} ${el.lname} (${el.designation})`;
+        option.value = el.email;
+        markToComp.append(option);
+      });
+    };
+    const appendDSPView = (data) => {
+      let markToComp = document.getElementById("markToCompView");
+      data.map((el) => {
+        // console.log(el)
+        let option = document.createElement("option");
+        option.innerText = `${el.fname} ${el.lname} (${el.designation})`;
+        option.value = el.email;
+        markToComp.append(option);
+      });
+    };
+    const appendSHOView = (data) => {
+      let markToComp = document.getElementById("markToCompView");
+      data.map((el) => {
+        // console.log(el)
+        let option = document.createElement("option");
+        option.innerText = `${el.fname} ${el.lname} (${el.designation})`;
+        option.value = el.email;
+        markToComp.append(option);
+      });
+    };
+    a();
+  </script>
+  
