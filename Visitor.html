@@ -328,6 +328,7 @@
             placeholder="Complainant Number"
             class="formInput"
             id="complainNoInputView"
+            disabled
           />
         </div>
         <div class="formDivAdd">
@@ -340,6 +341,7 @@
             placeholder="FIR Number"
             class="formInput"
             id="firNumberView"
+            disabled
           />
         </div>
         <div class="formDivAdd">
@@ -350,6 +352,7 @@
             placeholder="Complainant Name"
             class="formInput"
             id="complaintNameView"
+            disabled
           />
         </div>
         <div class="formDivAdd">
@@ -362,6 +365,7 @@
             placeholder="Phone Number"
             class="formInput"
             id="phoneNoView"
+            disabled
           />
         </div>
         <div class="formDivAdd">
@@ -373,6 +377,7 @@
             id="problemByComplainantView"
             class="formInput"
             placeholder="Problem By Complainant"
+            disabled
           ></textarea>
         </div>
         <div class="formDivAdd">
@@ -385,6 +390,7 @@
             placeholder="Complain Clerk"
             class="formInput"
             id="compClerkView"
+            disabled
           />
         </div>
         <div class="formDivAdd">
@@ -396,6 +402,7 @@
             id="textByADGPView"
             class="formInput"
             placeholder="Order By ADGP"
+            disabled
           ></textarea>
         </div>
         <div class="formDivAdd">
@@ -407,6 +414,7 @@
             placeholder="Complainent Name"
             class="formInput"
             id="markToCompView"
+            disabled
           >
             <option value="select">Select SP</option>
           </select>
@@ -621,13 +629,14 @@
       getSP,
       getSHO,
     } from "./Components/GetData.js";
-  
+    let userName = document.getElementById("userDetail");
     let a = async () => {
       let visitor = await getVisitor();
       let user = await getUser();
       let sp = await getSP();
       let dsp = await getDSP();
       let sho = await getSHO();
+      userName.innerText = `${user.fname} ${user.lname}, ${user.designation}, ${user.policestation}`;
       // console.log(visitor, user);
       appendSPView(sp)
       appendDSPView(dsp)
