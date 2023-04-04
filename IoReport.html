@@ -84,8 +84,8 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-eye"></i>View Reports</a
+              <a class="aTag" href="./Visitor.html"
+                ><i class="fa-solid fa-eye"></i>View Visitor Complain</a
               >
             </li>
           </ul>
@@ -244,14 +244,14 @@
       updateIcon.setAttribute("class", "buttonsAction");
       viewIcon.setAttribute("class", "buttonsAction");
       commentsIcon.setAttribute("class", "buttonsAction");
-      updateIcon.innerText = "Update";
+      updateIcon.innerHTML = '<i class="fa-solid fa-pen"></i>';
       updateIcon.style.width = "30%";
 
-      viewIcon.innerText = "View";
+      viewIcon.innerHTML = '<i class="fa-solid fa-eye"></i>';
       viewIcon.style.margin = "5px";
       viewIcon.style.width = "20%";
 
-      commentsIcon.innerText = "Comment";
+      commentsIcon.innerHTML = '<i class="fa-solid fa-comment"></i>';
       commentsIcon.style.width = "40%";
       // commentsIcon.style.margin="5px"
 

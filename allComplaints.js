@@ -1,4 +1,5 @@
 let dataArr = [];
+let currentUser = {};
 const changeComplains = () => {
   const value = document.getElementById("ioselect").value;
   console.log(dataArr);
@@ -13,23 +14,31 @@ const changeComplains = () => {
   console.log(newData);
   append(newData);
 };
-const pending = () => {
-  // window.location.href="./allComplaints.html"
-  let newData = dataArr.filter((el) => {
-    return el.Status === "PENDING";
+// const pending = () => {
+//   // window.location.href="./allComplaints.html"
+//   let newData = dataArr.filter((el) => {
+//     return el.Status === "PENDING";
+//   });
+//   console.log(newData);
+//   append(newData);
+// };
+// console.log(currentUser)
+const dataPoliceStation = (data) => {
+  let newData = data.filter((el) => {
+    return el.policestation === currentUser.policestation;
   });
-  console.log(newData);
+  dataArr = newData;
   append(newData);
 };
-const getComp = async () => {
-  const url = `https://hrycms.onrender.com/complain/allcomplain`;
-  let res = await fetch(url);
-  let data = await res.json();
-  console.log(data);
-  append(data);
-  dataArr = data;
-  return dataArr;
-};
+// const getComp = async () => {
+//   const url = `https://hrycms.onrender.com/complain/allcomplain`;
+//   let res = await fetch(url);
+//   let data = await res.json();
+//   console.log(data);
+//   // append(data);
+//   // dataArr = data;
+//   return dataArr;
+// };
 
 let localEl = {};
 let get = (id) => {
@@ -40,12 +49,7 @@ let convertDate = (id) => {
   let myDate = new Date(id);
   return myDate.toLocaleDateString();
 };
-const getIO = async () => {
-  let res = await fetch(`https://hrycms.onrender.com/user/allio`);
-  res = await res.json();
-  // console.log(res);
-  appendIo(res);
-};
+
 const appendIo = (data) => {
   let container = document.getElementById("ioselect");
   let updateCont = document.getElementById("");
@@ -126,12 +130,12 @@ const append = (data) => {
     // let td10 = document.createElement("td");
     // td10.innerText = el.Status;
     let td10 = document.createElement("td");
-    td10.style.padding="10px"
+    td10.style.padding = "10px";
     td9.style.padding = "10px";
     let divtd10 = document.createElement("div");
     divtd10.style.height = "40px";
     let p10 = document.createElement("p");
-    p10.innerText = el.Status;;
+    p10.innerText = el.Status;
     p10.style.margin = "10px 0px 10px 0px";
     divtd10.append(p10);
     td10.append(divtd10);
@@ -210,20 +214,20 @@ const append = (data) => {
     updateIcon.setAttribute("id", "updateComp");
     viewIcon.setAttribute("class", "buttonsAction");
     commentsIcon.setAttribute("class", "buttonsAction");
-    updateIcon.innerText = "Update";
+    updateIcon.innerHTML = '<i class="fa-solid fa-pen"></i>';
     updateIcon.addEventListener("click", () => {
       updateData(el);
     });
     updateIcon.style.width = "30%";
 
-    viewIcon.innerText = "View";
+    viewIcon.innerHTML = '<i class="fa-solid fa-eye"></i>';
     viewIcon.addEventListener("click", () => {
       viewData(el);
     });
     viewIcon.style.margin = "5px";
     viewIcon.style.width = "20%";
 
-    commentsIcon.innerText = "Comment";
+    commentsIcon.innerHTML = '<i class="fa-solid fa-comment"></i>';
     commentsIcon.style.width = "40%";
     // commentsIcon.style.margin="5px"
 
@@ -246,7 +250,8 @@ const searchData = () => {
     ini: initial,
     fin: final,
   };
-  let newData = Data.filter((el, index) => {
+  console.log(dataArr);
+  let newData = dataArr.filter((el, index) => {
     // console.log(el.IssuedDate, "  ",initial)
     if (el.IssuedDate >= initial && el.IssuedDate <= final) {
       // console.log(el)
@@ -261,7 +266,7 @@ const searchData = () => {
 const updateData = async (el) => {
   let displayUpdateComp = document.querySelector(".displayUpdateComp");
   displayUpdateComp.classList.toggle("activeUpdateComp");
-
+  console.log(currentUser);
   console.log(el);
   localEl = el;
   get("complainantNameUpdate").value = el.ComplainantName;
@@ -316,7 +321,6 @@ const updateComplain = async () => {
       .value,
     SectionsofComplaint: "",
     Range: document.getElementById("rangeInputUpdate").value,
-    SPName: document.getElementById("IOUpdate").value,
     Status: document.getElementById("complainStatusUpdate").value,
     Markto: document.getElementById("IOUpdate").value,
     highPriority: get("highPriorityUpdate").checked,
@@ -364,7 +368,7 @@ const viewData = (el) => {
   get("alternateNumberView").value = el.alternateNumber;
   get("cityInputView").value = el.City;
   get("rangeInputView1").value = el.policerange;
-  get("IONameView1").value = el.SPName;
+  get("IONameView1").value = el.Markto;
   get("complainStatusView").value = el.Status;
   get("shortDescriptionView").value = el.ComplaintShortDescription;
   get("complainCategoryView").value = el.ComplaintCategory;
@@ -372,5 +376,3 @@ const viewData = (el) => {
   get("highPriorityView").checked = el.highPriority;
   // get("dateOfSubView").value = convertDate(el.createdAt);
 };
-getComp();
-getIO();
