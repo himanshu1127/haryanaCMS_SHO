@@ -33,7 +33,7 @@ const addComplain = async () => {
     ComplaintShortDescription: get("shortDescription").value,
     SectionsofComplaint: "",
     Range: get("rangeInput").value,
-    SPName: get("IOName").value,
+    // SPName: get("IOName").value,
     Status: get("complainStatus").value,
     Markto: get("IOName").value,
     trackingId: document.getElementById("complainantNumber").value,

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Dashboard.css" />
+    <link rel="stylesheet" href="./allComplaints.css" />
+    <link rel="stylesheet" href="./table.css" />
+    <title>Visitor Complain</title>
+    <style>
+      .displayViewComp {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        /* border: 1px solid red; */
+        height: 70%;
+        width: 60%;
+        font-size: 16px;
+        margin: auto;
+        z-index: 100;
+        background: #e2e8f0;
+        overflow-y: scroll;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 5px;
+      }
+      .closeIconView {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        cursor: pointer;
+        /* border: 1px solid red; */
+      }
+      .closeIconView div {
+        border: 1px solid black;
+        width: 20px;
+        font-weight: 900;
+      }
+      .line1 {
+        transform: rotate(45deg);
+      }
+      .line2 {
+        transform: rotate(-45deg);
+      }
+      #form {
+        padding: 1rem;
+      }
+      .formDivAdd {
+        /* border: 1px solid red; */
+        padding: 0.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .formInput {
+        width: 70%;
+        padding: 5px;
+      }
+      .activeAddComp {
+        display: block;
+      }
+      .required {
+        color: red;
+      }
+      .upperDivAddComp {
+        /* display: flex; */
+        position: relative;
+      }
+      .h3AddComp {
+        /* border: 1px solid red; */
+        text-align: center;
+        padding: 0.75rem;
+      }
+    </style>
+    <script
+      src="https://kit.fontawesome.com/ffe2b9fea9.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="headerLeft">
+        <img src="./haryana_police_logo.webp" alt="" />
+        <h2>Haryana CMS</h2>
+      </div>
+      <div class="headerRight">
+        <div class="inputDivMain">
+          <div class="hemIcon">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <div class="inputHeader">
+            <input type="text" placeholder="search" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
+        <div class="userDetails">
+          <div>
+            <h2>USER: <span id="userDetail"></span></h2>
+          </div>
+          <div class="userImage">
+            <img src="./haryana_police_logo.webp" alt="" />
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="mainDiv1">
+      <div id="sidebar">
+        <div class="sideTop">
+          <div>Main</div>
+          <div>
+            <a href="./Dashboard.html"
+              ><i class="fa-sharp fa-solid fa-house"></i> Dashboard</a
+            >
+          </div>
+        </div>
+        <div id="sideMenu">
+          <p>Manage Complaints</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="./allComplaints.html">
+                <i class="fa-solid fa-book-open"></i> All Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="./todayComplain.html"
+                ><i class="fa-solid fa-calendar-day"></i> Today Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="./highPriority.html"
+                ><i class="fa-solid fa-fire"></i>High Priority</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="./pending.html">
+                <i class="fa-sharp fa-regular fa-clock"></i> Pending
+                Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="./Visitor.html"
+                ><i class="fa-solid fa-eye"></i>View Visitor Complain</a
+              >
+            </li>
+          </ul>
+          <p>Manage Officers</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="#">
+                <i class="fa-solid fa-user"></i> View IO
+              </a>
+            </li>
+            <li class="liText">
+              <a class="aTag" href="./IoReport.html"
+                ><i class="fa-solid fa-square-poll-horizontal"></i>IO Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
+              >
+            </li>
+            <!-- <li class="liText">
+                    <a class="aTag" href="#">Add/View/Update SHO</a>
+                  </li>
+                  <li class="liText">
+                    <a class="aTag" href="#">Add/View/Update IO</a>
+                  </li> -->
+          </ul>
+          <!-- <p>Manage Category</p>
+                <ul>
+                  <li class="liText">
+                    <a class="aTag" href="#"
+                      >Add/View/Update Category</a
+                    >
+                  </li>
+                  <li class="liText">
+                    <a class="aTag" href="#">Add/View/Update ACT</a>
+                  </li>
+                </ul> -->
+          <p>Manage Reports</p>
+          <ul>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-circle-exclamation"></i>Pending
+                Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-circle-check"></i>Closed Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-bullseye"></i>Range Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-circle-exclamation"></i>High Priority
+                Reports</a
+              >
+            </li>
+            <li class="liText">
+              <a class="aTag" href="#"
+                ><i class="fa-solid fa-file-pdf"></i>View all Reports</a
+              >
+            </li>
+          </ul>
+          <div id="buttonDiv">
+            <button id="logoutButton" onclick="logout()">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </button>
+          </div>
+          <!-- <p>Manage Dept.</p>
+                    <p>Manage Category</p>
+                    <p>Manage Users (SHO)</p>
+                    <p>Manage Data</p> -->
+        </div>
+      </div>
+      <div class="rightContent">
+        <div id="table" style="width: 100%; margin: auto; height: 700px">
+          <div
+            style="
+              height: 80px;
+              display: flex;
+              /* border: 1px solid red; */
+              width: 100%;
+              padding: 10px;
+              box-sizing: border-box;
+              font-size: 12px;
+            "
+          >
+            <div
+              style="
+                align-self: center;
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+              "
+            >
+              <!-- <div>District Wise >> <span>All Complaints</span></div> -->
+              <div>
+                <!-- <select
+                  name=""
+                  onchange="changeComplains()"
+                  id="ioselect"
+                  style="border: none; outline: none"
+                >
+                  <option value="">Select IO</option>
+
+                </select> -->
+              </div>
+              <div class="dateFilterDiv">
+                <div>From: <input type="date" name="" id="initialDate" /></div>
+                <div>To: <input type="date" name="" id="finalDate" /></div>
+                <button onclick="searchData()">Submit</button>
+              </div>
+              <!-- <div style="display: flex">
+                  <span>Today Complaints : &nbsp; </span>
+                  <p style="color: blue">224</p>
+                </div>
+                <div style="display: flex">
+                  <span>Pending Complaints : &nbsp; </span>
+                  <p style="color: blue">224</p>
+                </div> -->
+              <!-- <div style="display: flex">
+                    <span>Closed Complaints : &nbsp; </span>
+                    <p style="color: blue">224</p>
+                  </div> -->
+              <!-- <div style="display: flex">
+                  <span style="color: red"
+                    >High Priority Complaints : &nbsp;
+                  </span>
+                  <p style="color: blue">224</p>
+                </div> -->
+            </div>
+          </div>
+          <div id="tableDiv">
+            <table border="1" class="table">
+              <thead class="tableHead">
+                <tr class="trHead">
+                  <th class="thHead thHead1">Tracking Id</th>
+                  <!-- <th class="thHead thHead2">Category</th> -->
+                  <th class="thHead thHead3">Complaint Name</th>
+                  <th class="thHead thHead9">FIR Number</th>
+                  <th class="thHead thHead4">Phone Number</th>
+                  <th class="thHead thHead5">Problem</th>
+                  <!-- <th class="thHead thHead6">Mark To</th> -->
+                  <th class="thHead">Order by adgp</th>
+                  <!-- <th class="thHead thHead7">Status</th> -->
+                  <th class="thHead thHead8">Action</th>
+                </tr>
+              </thead>
+              <tbody class="tableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="displayViewComp">
+      <div>
+        <div class="upperDivAddComp">
+          <h3 class="h3AddComp">View Visitor Complain</h3>
+          <div class="closeIconView">
+            <div class="line1"></div>
+            <div class="line2"></div>
+          </div>
+        </div>
+      </div>
+      <form action="" id="form">
+        <div class="formDivAdd">
+          <label for="complainentNumber"
+            >Complainant Number : <span class="required">*</span></label
+          >
+          <input
+            name="complainentNumber"
+            type="text"
+            placeholder="Complainant Number"
+            class="formInput"
+            id="complainNoInputView"
+          />
+        </div>
+        <div class="formDivAdd">
+          <label for="complainentNumber"
+            >FIR Number : <span class="required">*</span></label
+          >
+          <input
+            name="complainentNumber"
+            type="text"
+            placeholder="FIR Number"
+            class="formInput"
+            id="firNumberView"
+          />
+        </div>
+        <div class="formDivAdd">
+          <label for="name">Name : <span class="required">*</span></label>
+          <input
+            name="name"
+            type="text"
+            placeholder="Complainant Name"
+            class="formInput"
+            id="complaintNameView"
+          />
+        </div>
+        <div class="formDivAdd">
+          <label for="complainentNumber"
+            >Phone Number : <span class="required">*</span></label
+          >
+          <input
+            name="complainentNumber"
+            type="text"
+            placeholder="Phone Number"
+            class="formInput"
+            id="phoneNoView"
+          />
+        </div>
+        <div class="formDivAdd">
+          <label for="complainentProblem"
+            >Problem By Complainant : <span class="required">*</span></label
+          >
+          <textarea
+            name="complainentProblem"
+            id="problemByComplainantView"
+            class="formInput"
+            placeholder="Problem By Complainant"
+          ></textarea>
+        </div>
+        <div class="formDivAdd">
+          <label for="complainentNumber"
+            >Complain Clerk : <span class="required">*</span></label
+          >
+          <input
+            name="complainentNumber"
+            type="text"
+            placeholder="Complain Clerk"
+            class="formInput"
+            id="compClerkView"
+          />
+        </div>
+        <div class="formDivAdd">
+          <label for="orderBy"
+            >Order By ADGP : <span class="required">*</span></label
+          >
+          <textarea
+            name=""
+            id="textByADGPView"
+            class="formInput"
+            placeholder="Order By ADGP"
+          ></textarea>
+        </div>
+        <div class="formDivAdd">
+          <label for="markTo"
+            >Mark To (SP/DSP/SHO) : <span class="required">*</span></label
+          >
+          <select
+            type="text"
+            placeholder="Complainent Name"
+            class="formInput"
+            id="markToCompView"
+          >
+            <option value="select">Select SP</option>
+          </select>
+        </div>
+        <!-- <div class="formDivAdd">
+            <input class="addButton" type="submit" value=" Complain" />
+          </div> -->
+      </form>
+    </div>
+  </body>
+</html>
+<script>
+  let get = (id) => {
+    return document.getElementById(id);
+  };
+  let append = (data) => {
+    let container = document.querySelector(".tableBody");
+    // document.getElementById("totalComplaints").innerText = data.length;
+    container.innerHTML = null;
+    data.forEach((el) => {
+      //   console.log(el);
+      let tr = document.createElement("tr");
+      tr.setAttribute("class", "tableRow");
+      let td1 = document.createElement("td");
+      td1.setAttribute("class", "tablecol");
+      td1.setAttribute("class", "tablecol1");
+      td1.innerText = el.complainantNumber;
+      // let td2 = document.createElement("td");
+      // td2.setAttribute("class", "tablecol");
+      // td2.setAttribute("class", "tablecol2");
+      // td2.innerText = el.category;
+      let td3 = document.createElement("td");
+      td3.setAttribute("class", "tablecol");
+      td3.setAttribute("class", "tablecol3");
+      td3.innerText = el.complainantName;
+      let td4 = document.createElement("td");
+      td4.setAttribute("class", "tablecol");
+      td4.setAttribute("class", "tablecol4");
+      td4.innerText = el.FirNumber;
+      let td5 = document.createElement("td");
+      td5.setAttribute("class", "tablecol");
+      td5.setAttribute("class", "tablecol5");
+      td5.innerText = el.PhoneNumber;
+      let td6 = document.createElement("td");
+      td6.setAttribute("class", "tablecol");
+      td6.setAttribute("class", "tablecol6");
+      // td6.style.border = "1px solid red";
+      td6.style.padding = "10px";
+      let divarea = document.createElement("div");
+      let p6 = document.createElement("p");
+      p6.innerText = el.problem;
+      p6.style.margin = "10px 0px 10px 0px";
+      // p6.style.border="1px solid cyan"
+      divarea.style.borderRadius = "2%";
+      divarea.append(p6);
+      td6.append(divarea);
+      let td7 = document.createElement("td");
+      td7.setAttribute("class", "tablecol");
+      td7.setAttribute("class", "tablecol7");
+      td7.style.padding = "10px";
+
+      let divStatus = document.createElement("div");
+      divStatus.style.height = "40px";
+      let p10 = document.createElement("p");
+      p10.innerText = el.markto;
+      p10.style.margin = "10px 0px 10px 0px";
+      divStatus.append(p10);
+      td7.append(divStatus);
+
+      let td9 = document.createElement("td");
+      td9.style.padding = "10px";
+      let divtd9 = document.createElement("div");
+      // divtd9.style.border="1px solid cyan"
+      divtd9.style.height = "40px";
+      let p9 = document.createElement("p");
+      p9.innerText = el.orderbyadgp;
+      p9.style.margin = "10px 0px 10px 0px";
+      divtd9.append(p9);
+
+      td9.append(divtd9);
+      // let td10 = document.createElement("td");
+      // td10.innerText = el.Status;
+
+      if (el.ComplaintCategory === "CAW") {
+        divtd9.style.border = "1px solid navy";
+        divtd9.style.backgroundColor = "navy";
+        divtd9.style.boxSizing = "border-box";
+        divtd9.style.alignSelf = "center";
+        divtd9.style.height = "40px";
+        divtd9.style.color = "white";
+      } else if (el.ComplaintCategory === "Officers") {
+        divtd9.style.border = "1px solid brown";
+        divtd9.style.backgroundColor = "brown";
+        divtd9.style.boxSizing = "border-box";
+        divtd9.style.alignSelf = "center";
+        divtd9.style.height = "40px";
+        divtd9.style.color = "white";
+      }
+
+      if (el.highPriority) {
+        divarea.style.border = "1px solid green";
+        divarea.style.backgroundColor = "green";
+        divarea.style.boxSizing = "border-box";
+        divarea.style.alignSelf = "center";
+        divarea.style.height = "40px";
+        divarea.style.color = "white";
+      }
+
+      if (el.Status === "IN-PROCESS") {
+        divStatus.style.border = "1px solid lime";
+        divStatus.style.backgroundColor = "lime";
+        divStatus.style.boxSizing = "border-box";
+        divStatus.style.alignSelf = "center";
+        divStatus.style.height = "40px";
+        divStatus.style.color = "white";
+      } else if (el.Status === "PENDING") {
+        divStatus.style.border = "1px solid red";
+        divStatus.style.backgroundColor = "red";
+        divStatus.style.boxSizing = "border-box";
+        divStatus.style.alignSelf = "center";
+        divStatus.style.height = "40px";
+        divStatus.style.color = "white";
+      } else if (el.Status === "CLOSED") {
+        divStatus.style.border = "1px solid blue";
+        divStatus.style.backgroundColor = "blue";
+        divStatus.style.boxSizing = "border-box";
+        divStatus.style.alignSelf = "center";
+        divStatus.style.height = "40px";
+        divStatus.style.color = "white";
+      } else if (el.Status === "OVERDUE") {
+        divStatus.style.border = "1px solid darkviolet";
+        divStatus.style.backgroundColor = "darkviolet";
+        divStatus.style.boxSizing = "border-box";
+        divStatus.style.alignSelf = "center";
+        divStatus.style.height = "40px";
+        divStatus.style.color = "white";
+      } else if (el.Status === "REJECTED") {
+        divStatus.style.border = "1px solid gray";
+        divStatus.style.backgroundColor = "gray";
+        divStatus.style.boxSizing = "border-box";
+        divStatus.style.alignSelf = "center";
+        divStatus.style.height = "40px";
+        divStatus.style.color = "white";
+      }
+
+      let td8 = document.createElement("td");
+      td8.style.padding = "10px";
+      let divtd8 = document.createElement("div");
+      divtd8.style.display = "inline";
+      // divtd8.style.gap="5px"
+      let updateIcon = document.createElement("button");
+
+      let viewIcon = document.createElement("button");
+      viewIcon.addEventListener("click", () => {
+        viewData(el);
+      });
+      let commentsIcon = document.createElement("button");
+      updateIcon.setAttribute("class", "buttonsAction");
+      updateIcon.setAttribute("id", "updateComp");
+      viewIcon.setAttribute("class", "buttonsAction");
+      commentsIcon.setAttribute("class", "buttonsAction");
+      updateIcon.innerHTML = '<i class="fa-solid fa-pen"></i>';
+      updateIcon.addEventListener("click", () => {
+        updateData(el);
+      });
+      updateIcon.style.width = "25%";
+
+      viewIcon.innerHTML = '<i class="fa-solid fa-eye"></i>';
+      viewIcon.style.margin = "5px";
+      viewIcon.style.width = "25%";
+
+      commentsIcon.innerHTML = '<i class="fa-solid fa-comment"></i>';
+      commentsIcon.style.width = "40%";
+      commentsIcon.addEventListener("click", () => {
+        complainComment(el);
+      });
+      // commentsIcon.style.margin="5px"
+
+      // td8.innerText = "hi";
+      // updateIcon.innerHTML('<i class="fa-light fa-pen"></i>')
+
+      divtd8.append(viewIcon, commentsIcon);
+      td8.append(divtd8);
+      tr.append(td1, td3, td4, td5, td6, td9, td8);
+      // console.log(tr);
+      container.append(tr);
+    });
+  };
+  const viewData = (el) => {
+    let displayViewComp = document.querySelector(".displayViewComp");
+    displayViewComp.classList.toggle("activeAddComp");
+    get("complaintNameView").value = el.complainantName;
+    get("problemByComplainantView").value = el.problem;
+    get("textByADGPView").value = el.orderbyadgp;
+    get("markToCompView").value = el.markto;
+    get("firNumberView").value = el.FirNumber;
+    get("compClerkView").value = el.complainClerk;
+    get("phoneNoView").value = el.PhoneNumber;
+    get("complainNoInputView").value = el.complainantNumber;
+  };
+  let ViewComp = document.querySelector(".closeIconView");
+  ViewComp.onclick = function () {
+    let compUpdate = document.querySelector(".displayViewComp");
+    compUpdate.classList.toggle("activeAddComp");
+  };
+</script>
+<script type="module">
+  import { getVisitor, getUser } from "./Components/GetData.js";
+
+  let a = async () => {
+    let visitor = await getVisitor();
+    let user = await getUser();
+    // console.log(visitor, user);
+    visitor = visitor.filter((el) => {
+      return el.markto === user.email;
+    });
+    append(visitor);
+  };
+  a();
+</script>

@@ -174,20 +174,20 @@ const append = (data) => {
     updateIcon.setAttribute("id", "updateComp");
     viewIcon.setAttribute("class", "buttonsAction");
     commentsIcon.setAttribute("class", "buttonsAction");
-    updateIcon.innerText = "Update";
+    updateIcon.innerHTML = '<i class="fa-solid fa-pen"></i>';
     updateIcon.addEventListener("click", () => {
       updateData(el);
     });
     updateIcon.style.width = "30%";
 
-    viewIcon.innerText = "View";
+    viewIcon.innerHTML = '<i class="fa-solid fa-eye"></i>';
     viewIcon.addEventListener("click", () => {
       viewData(el);
     });
     viewIcon.style.margin = "5px";
     viewIcon.style.width = "20%";
 
-    commentsIcon.innerText = "Comment";
+    commentsIcon.innerHTML = '<i class="fa-solid fa-comment"></i>';
     commentsIcon.style.width = "40%";
     // commentsIcon.style.margin="5px"
 

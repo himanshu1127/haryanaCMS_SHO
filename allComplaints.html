@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./Dashboard.css" />
     <link rel="stylesheet" href="./table.css" />
     <link rel="stylesheet" href="./allComplaints.css" />
-    <link rel="stylesheet" href="addComplaints.css" />
+    <link rel="stylesheet" href="./addComplaints.css" />
     <style>
       .upperDivAddComp {
         text-align: center;
@@ -168,8 +168,8 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-eye"></i>View Reports</a
+              <a class="aTag" href="./Visitor.html"
+                ><i class="fa-solid fa-eye"></i>View Visitor Complain</a
               >
             </li>
           </ul>
@@ -270,7 +270,7 @@
                 justify-content: space-between;
               "
             >
-              <div>District Wise >> <span>All Complaints</span></div>
+              <!-- <div>District Wise >> <span>All Complaints</span></div> -->
               <div>
                 <select
                   name=""
@@ -991,22 +991,39 @@
     getCategory,
   } from "./Components/GetData.js";
   let userName = document.getElementById("userDetail");
+  // let currentUser={}
   async function a() {
     const result = await getUser();
     const res = await getCategory();
     console.log(res);
+    currentUser = result;
     userName.innerText = `${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`;
+    // console.log(currentUser)
+    return currentUser;
   }
 
   async function b() {
     const resultComplain = await getComplain();
     const resRange = await getRange();
-    const resIO = await getIO();
-    append(resultComplain);
+    let resIO = await getIO();
+    resIO = resIO.filter((el) => {
+      console.log(currentUser, el);
+      if (
+        el.policestation === currentUser.policestation &&
+        el.policerange === currentUser.policerange &&
+        el.districtofc === currentUser.districtofc
+      ) {
+        return el;
+      }
+    });
+    // append(resultComplain);
+    console.log(currentUser);
+    dataPoliceStation(resultComplain);
     appendrangeInputUpdate(resRange);
     appendrangeInputView1(resRange);
     appendIOUpdate(resIO);
     appendIONameView1(resIO);
+    appendIo(resIO);
 
     console.log(resultComplain);
   }
