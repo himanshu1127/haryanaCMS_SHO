@@ -66,7 +66,21 @@ async function getCategory() {
   res = res.json();
   return res;
 }
-
+async function getDSP() {
+  let res = await fetch(`${url}/user/alldsp`);
+  res = await res.json();
+  return res;
+}
+async function getSP() {
+  let res = await fetch(`${url}/user/allsp`);
+  res = await res.json();
+  return res;
+}
+async function getSHO() {
+  let res = await fetch(`${url}/user/allsho`);
+  res = await res.json();
+  return res;
+}
 async function loading() {
   return `
   <h1>Loading...</h1>
@@ -82,4 +96,7 @@ export {
   dataArr,
   getCategory,
   getVisitor,
+  getDSP,
+  getSP,
+  getSHO,
 };
