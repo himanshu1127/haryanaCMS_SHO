@@ -186,36 +186,7 @@
                     <a class="aTag" href="#">Add/View/Update ACT</a>
                   </li>
                 </ul> -->
-          <p>Manage Reports</p>
-          <ul>
-            <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-file-circle-exclamation"></i>Pending
-                Reports</a
-              >
-            </li>
-            <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-file-circle-check"></i>Closed Reports</a
-              >
-            </li>
-            <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-bullseye"></i>Range Reports</a
-              >
-            </li>
-            <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-circle-exclamation"></i>High Priority
-                Reports</a
-              >
-            </li>
-            <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-file-pdf"></i>View all Reports</a
-              >
-            </li>
-          </ul>
+
           <div id="buttonDiv">
             <button id="logoutButton" onclick="logout()">
               <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
@@ -426,6 +397,7 @@
     </div>
   </body>
 </html>
+<script src="./commonFunctions.js"></script>
 <script>
   let get = (id) => {
     return document.getElementById(id);
@@ -622,61 +594,60 @@
   };
 </script>
 <script type="module">
-    import {
-      getVisitor,
-      getUser,
-      getDSP,
-      getSP,
-      getSHO,
-    } from "./Components/GetData.js";
-    let userName = document.getElementById("userDetail");
-    let a = async () => {
-      let visitor = await getVisitor();
-      let user = await getUser();
-      let sp = await getSP();
-      let dsp = await getDSP();
-      let sho = await getSHO();
-      userName.innerText = `${user.fname} ${user.lname}, ${user.designation}, ${user.policestation}`;
-      // console.log(visitor, user);
-      appendSPView(sp)
-      appendDSPView(dsp)
-      appendSHOView(sho)
-      visitor = visitor.filter((el) => {
-        return el.markto === user.email;
-      });
-      append(visitor);
-    };
-    // view markToCompView
-    const appendSPView = (data) => {
-      let markToComp = document.getElementById("markToCompView");
-      data.map((el) => {
-        // console.log(el)
-        let option = document.createElement("option");
-        option.innerText = `${el.fname} ${el.lname} (${el.designation})`;
-        option.value = el.email;
-        markToComp.append(option);
-      });
-    };
-    const appendDSPView = (data) => {
-      let markToComp = document.getElementById("markToCompView");
-      data.map((el) => {
-        // console.log(el)
-        let option = document.createElement("option");
-        option.innerText = `${el.fname} ${el.lname} (${el.designation})`;
-        option.value = el.email;
-        markToComp.append(option);
-      });
-    };
-    const appendSHOView = (data) => {
-      let markToComp = document.getElementById("markToCompView");
-      data.map((el) => {
-        // console.log(el)
-        let option = document.createElement("option");
-        option.innerText = `${el.fname} ${el.lname} (${el.designation})`;
-        option.value = el.email;
-        markToComp.append(option);
-      });
-    };
-    a();
-  </script>
-  
+  import {
+    getVisitor,
+    getUser,
+    getDSP,
+    getSP,
+    getSHO,
+  } from "./Components/GetData.js";
+  let userName = document.getElementById("userDetail");
+  let a = async () => {
+    let visitor = await getVisitor();
+    let user = await getUser();
+    let sp = await getSP();
+    let dsp = await getDSP();
+    let sho = await getSHO();
+    userName.innerText = `${user.fname} ${user.lname}, ${user.designation}, ${user.policestation}`;
+    // console.log(visitor, user);
+    appendSPView(sp);
+    appendDSPView(dsp);
+    appendSHOView(sho);
+    visitor = visitor.filter((el) => {
+      return el.markto === user.email;
+    });
+    append(visitor);
+  };
+  // view markToCompView
+  const appendSPView = (data) => {
+    let markToComp = document.getElementById("markToCompView");
+    data.map((el) => {
+      // console.log(el)
+      let option = document.createElement("option");
+      option.innerText = `${el.fname} ${el.lname} (${el.designation})`;
+      option.value = el.email;
+      markToComp.append(option);
+    });
+  };
+  const appendDSPView = (data) => {
+    let markToComp = document.getElementById("markToCompView");
+    data.map((el) => {
+      // console.log(el)
+      let option = document.createElement("option");
+      option.innerText = `${el.fname} ${el.lname} (${el.designation})`;
+      option.value = el.email;
+      markToComp.append(option);
+    });
+  };
+  const appendSHOView = (data) => {
+    let markToComp = document.getElementById("markToCompView");
+    data.map((el) => {
+      // console.log(el)
+      let option = document.createElement("option");
+      option.innerText = `${el.fname} ${el.lname} (${el.designation})`;
+      option.value = el.email;
+      markToComp.append(option);
+    });
+  };
+  a();
+</script>
