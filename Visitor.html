@@ -141,8 +141,8 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
+              <a class="aTag" href="./dispose.html"
+                ><i class="fa-solid fa-circle-check"></i>Disposed Complaints</a
               >
             </li>
             <li class="liText">
@@ -153,21 +153,21 @@
           </ul>
           <p>Manage Officers</p>
           <ul>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#">
                 <i class="fa-solid fa-user"></i> View IO
               </a>
-            </li>
+            </li> -->
             <li class="liText">
               <a class="aTag" href="./IoReport.html"
                 ><i class="fa-solid fa-square-poll-horizontal"></i>IO Reports</a
               >
             </li>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#"
                 ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
               >
-            </li>
+            </li> -->
             <!-- <li class="liText">
                     <a class="aTag" href="#">Add/View/Update SHO</a>
                   </li>
@@ -232,9 +232,9 @@
                 </select> -->
               </div>
               <div class="dateFilterDiv">
-                <div>From: <input type="date" name="" id="initialDate" /></div>
+                <!-- <div>From: <input type="date" name="" id="initialDate" /></div>
                 <div>To: <input type="date" name="" id="finalDate" /></div>
-                <button onclick="searchData()">Submit</button>
+                <button onclick="searchData()">Submit</button> -->
               </div>
               <!-- <div style="display: flex">
                   <span>Today Complaints : &nbsp; </span>
@@ -245,7 +245,7 @@
                   <p style="color: blue">224</p>
                 </div> -->
               <!-- <div style="display: flex">
-                    <span>Closed Complaints : &nbsp; </span>
+                    <span>Disposed Complaints : &nbsp; </span>
                     <p style="color: blue">224</p>
                   </div> -->
               <!-- <div style="display: flex">
@@ -509,7 +509,7 @@
         divStatus.style.alignSelf = "center";
         divStatus.style.height = "40px";
         divStatus.style.color = "white";
-      } else if (el.Status === "CLOSED") {
+      } else if (el.Status === "DISPOSED") {
         divStatus.style.border = "1px solid blue";
         divStatus.style.backgroundColor = "blue";
         divStatus.style.boxSizing = "border-box";
@@ -595,26 +595,32 @@
 </script>
 <script type="module">
   import {
-    getVisitor,
-    getUser,
-    getDSP,
-    getSP,
-    getSHO,
+    a,
+    complain,
+    currentUser,
+    visitorComplain,
+    IO,
+    Ranges,
+    category,
+    currentRange,
+    currentDistrict,
+    currentPoliceStation,
+    districts,
+    act,
+    SP,
+    DSP,
+    SHO,
   } from "./Components/GetData.js";
   let userName = document.getElementById("userDetail");
-  let a = async () => {
-    let visitor = await getVisitor();
-    let user = await getUser();
-    let sp = await getSP();
-    let dsp = await getDSP();
-    let sho = await getSHO();
-    userName.innerText = `${user.fname} ${user.lname}, ${user.designation}, ${user.policestation}`;
+  let app = async () => {
+    await a();
+    userName.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.policestation}`;
     // console.log(visitor, user);
-    appendSPView(sp);
-    appendDSPView(dsp);
-    appendSHOView(sho);
-    visitor = visitor.filter((el) => {
-      return el.markto === user.email;
+    // appendSPView(SP);
+    // appendDSPView(DSP);
+    appendSHOView(SHO);
+    let visitor = visitorComplain.filter((el) => {
+      return el.markto === currentUser.email;
     });
     append(visitor);
   };
@@ -649,5 +655,5 @@
       markToComp.append(option);
     });
   };
-  a();
+  app();
 </script>

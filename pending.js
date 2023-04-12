@@ -1,21 +1,57 @@
-let dataArr = [];
+let pendingC = [];
 const userID = JSON.parse(localStorage.getItem("userID"));
 let get = (id) => {
   return document.getElementById(id);
 };
 
-const getComp = async () => {
-  const url = `https://hrycms.onrender.com/complain/allcomplain`;
-  let res = await fetch(url);
-  let data = await res.json();
-  console.log(data);
-  data = data.filter((el) => {
-    return el.Status === "PENDING";
+// const getComp = async () => {
+//   const url = `https://hrycms.onrender.com/complain/allcomplain`;
+//   let res = await fetch(url);
+//   let data = await res.json();
+//   console.log(data);
+//   data = data.filter((el) => {
+//     return el.Status === "PENDING";
+//   });
+//   console.log(data);
+//   append(data);
+//   //   dataArr = data;
+//   //   return dataArr;
+// };
+const searchData = () => {
+  let initial = document.getElementById("initialDate").value;
+  let final = document.getElementById("finalDate").value;
+
+  // console.log(typeof initial)
+  let obj = {
+    ini: initial,
+    fin: final,
+  };
+  console.log(pendingC);
+  let newData = pendingC.filter((el, index) => {
+    // console.log(el.IssuedDate, "  ",initial)
+    if (el.createdAt >= initial && el.createdAt <= final) {
+      // console.log(el)
+
+      return el;
+    }
   });
-  console.log(data);
-  append(data);
-  //   dataArr = data;
-  //   return dataArr;
+  console.log(newData);
+  append(newData);
+  // console.log(obj);
+};
+const changeComplains = () => {
+  const value = document.getElementById("ioselect").value;
+  console.log(pendingC);
+  let newData = pendingC.filter((el) => {
+    console.log(value);
+    if (value === "") {
+      return el;
+    } else {
+      return el.Markto === value;
+    }
+  });
+  console.log(newData);
+  append(newData);
 };
 let convertDate = (id) => {
   let myDate = new Date(id);
@@ -64,11 +100,11 @@ const append = (data) => {
     let td4 = document.createElement("td");
     td4.setAttribute("class", "tablecol");
     td4.setAttribute("class", "tablecol4");
-    td4.innerText = convertDate(el.createdAt);
+    td4.innerText = el.complainDate;
     let td5 = document.createElement("td");
     td5.setAttribute("class", "tablecol");
     td5.setAttribute("class", "tablecol5");
-    td5.innerText = el.deadline;
+    td5.innerText = el.targetDate;
     let td6 = document.createElement("td");
     td6.setAttribute("class", "tablecol");
     td6.setAttribute("class", "tablecol6");
@@ -154,7 +190,7 @@ const append = (data) => {
       divtd10.style.alignSelf = "center";
       divtd10.style.height = "40px";
       divtd10.style.color = "white";
-    } else if (el.Status === "CLOSED") {
+    } else if (el.Status === "DISPOSED") {
       divtd10.style.border = "1px solid blue";
       divtd10.style.backgroundColor = "blue";
       divtd10.style.boxSizing = "border-box";

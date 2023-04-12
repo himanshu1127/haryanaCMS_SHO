@@ -169,7 +169,7 @@ ul {
   color: #d88206;
   margin-left: 20px;
 }
-ul .liText{
+ul .liText {
   cursor: pointer;
 }
 #buttonDiv {
@@ -191,7 +191,7 @@ ul .liText{
   /* align-items: center; */
   margin: auto;
 }
-#logoutButton:hover{
+#logoutButton:hover {
   background: red;
 }
 
@@ -292,9 +292,9 @@ ul .liText{
   /* border: 1px solid cyan; */
   width: 65%;
 }
-.totalComplaintsStatsRight>img{
-    height: 100%;
-    width: 100%;
+.totalComplaintsStatsRight > img {
+  height: 100%;
+  width: 100%;
 }
 /* Chart */
 .chart {
@@ -397,19 +397,28 @@ ul .liText{
   gap: 15px;
   margin: 0.5rem;
 }
-.officerImage{
-    height: 100%;
+.officerImage {
+  height: 100%;
 }
-.officerImage>img{
-    height: 100%;
-    border-radius: 50%;
+.officerImage > img {
+  height: 100%;
+  border-radius: 50%;
+}
+.progressSlider {
+  /* border: 1px solid red; */
+  margin-top: 10px;
+}
 
-}
-.progressSlider{
-    /* border: 1px solid red; */
-    margin-top: 10px;
-}
-
-.hemIcon{
+.hemIcon {
   display: none;
+}
+#export {
+  height: 40px;
+  /* width: 100%; */
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }

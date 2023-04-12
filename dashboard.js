@@ -1,8 +1,8 @@
 let container = document.querySelector(".tableBody");
 
-const goToIO =()=>{
-  window.location.href = "./IoReport.html"
-}
+const goToIO = () => {
+  window.location.href = "./IoReport.html";
+};
 let displayUpdateComp = document.querySelector(".displayUpdateComp");
 let closeIconUpdate = document.querySelector(".closeIconUpdate");
 closeIconUpdate.addEventListener("click", () => {

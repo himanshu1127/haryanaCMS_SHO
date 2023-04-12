@@ -1,5 +1,5 @@
 let dataArr = [];
-let currentUser = {};
+let currUsr = {};
 const changeComplains = () => {
   const value = document.getElementById("ioselect").value;
   console.log(dataArr);
@@ -22,10 +22,10 @@ const changeComplains = () => {
 //   console.log(newData);
 //   append(newData);
 // };
-// console.log(currentUser)
+// console.log(currUsr)
 const dataPoliceStation = (data) => {
   let newData = data.filter((el) => {
-    return el.policestation === currentUser.policestation;
+    return el.policestation === currUsr.policestation;
   });
   dataArr = newData;
   append(newData);
@@ -47,7 +47,7 @@ let get = (id) => {
 let container = document.querySelector(".tableBody");
 let convertDate = (id) => {
   let myDate = new Date(id);
-  return myDate.toLocaleDateString();
+  return myDate.toISOString().substring(0, 10);
 };
 
 const appendIo = (data) => {
@@ -66,10 +66,8 @@ const appendIo = (data) => {
 const userID = JSON.parse(localStorage.getItem("userID"));
 const append = (data) => {
   container.innerHTML = null;
-  let i = 0;
   data.forEach((el) => {
     // console.log(el);
-    i++;
     let tr = document.createElement("tr");
     tr.setAttribute("class", "tableRow");
     let td1 = document.createElement("td");
@@ -91,7 +89,7 @@ const append = (data) => {
     let td5 = document.createElement("td");
     td5.setAttribute("class", "tablecol");
     td5.setAttribute("class", "tablecol5");
-    td5.innerText = el.deadline;
+    td5.innerText = el.targetDate;
     let td6 = document.createElement("td");
     td6.setAttribute("class", "tablecol");
     td6.setAttribute("class", "tablecol6");
@@ -179,7 +177,7 @@ const append = (data) => {
       divtd10.style.alignSelf = "center";
       divtd10.style.height = "40px";
       divtd10.style.color = "white";
-    } else if (el.Status === "CLOSED") {
+    } else if (el.Status === "DISPOSED") {
       divtd10.style.border = "1px solid blue";
       divtd10.style.backgroundColor = "blue";
       divtd10.style.boxSizing = "border-box";
@@ -241,6 +239,8 @@ const append = (data) => {
     container.append(tr);
   });
 };
+
+
 const searchData = () => {
   let initial = document.getElementById("initialDate").value;
   let final = document.getElementById("finalDate").value;
@@ -253,7 +253,7 @@ const searchData = () => {
   console.log(dataArr);
   let newData = dataArr.filter((el, index) => {
     // console.log(el.IssuedDate, "  ",initial)
-    if (el.IssuedDate >= initial && el.IssuedDate <= final) {
+    if (el.createdAt >= initial && el.createdAt <= final) {
       // console.log(el)
 
       return el;
@@ -266,7 +266,7 @@ const searchData = () => {
 const updateData = async (el) => {
   let displayUpdateComp = document.querySelector(".displayUpdateComp");
   displayUpdateComp.classList.toggle("activeUpdateComp");
-  console.log(currentUser);
+  console.log(currUsr);
   console.log(el);
   localEl = el;
   get("complainantNameUpdate").value = el.ComplainantName;
@@ -278,7 +278,7 @@ const updateData = async (el) => {
   get("alternateNumberUpdate").value = el.alternateNumber;
   get("cityInputUpdate").value = el.City;
   get("rangeInputUpdate").value = el.policerange;
-  get("IOUpdate").value = el.SPName;
+  get("IOUpdate").value = el.Markto;
   get("complainStatusUpdate").value = el.Status;
   get("shortDescriptionUpdate").value = el.ComplaintShortDescription;
   get("complainCategoryUpdate").value = el.ComplaintCategory;
@@ -305,7 +305,7 @@ const updateComplain = async () => {
     author_id: userID,
     policerange: document.getElementById("rangeInputUpdate").value,
     rangeDistrictName: document.getElementById("rangeInputUpdate").value,
-    policestation: "",
+    policestation: currUsr.policestation,
     phoneNumber: "",
     createdAt: "",
     updatedAt: "",

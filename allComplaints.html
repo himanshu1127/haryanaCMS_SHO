@@ -100,6 +100,93 @@
       .activeviewComp {
         display: block;
       }
+      .commentDiv {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        /* border: 1px solid red; */
+        /* height: fit-content; */
+        min-height: 50%;
+        max-height: 80%;
+        width: 80%;
+        font-size: 16px;
+        margin: auto;
+        z-index: 100;
+        background: #e2e8f0;
+        overflow-y: scroll;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 5px;
+        padding: 0 2rem 0 2rem;
+      }
+      .activecommentDiv {
+        display: block;
+      }
+      .commentMainDiv {
+        display: flex;
+        justify-content: space-between;
+        height: 80%;
+        /* border: 1px solid cyan; */
+      }
+      .commentMainDiv > div {
+        width: 50%;
+        height: 100%;
+      }
+      #commentForm {
+        /* border: 1px solid red; */
+        height: 100%;
+        padding: 2rem;
+      }
+      .innerTextDiv {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+      }
+      #commentText {
+        width: 100%;
+        min-height: 200px;
+        height: fit-content;
+        max-height: 400px;
+        border-radius: 5px;
+        padding: 1rem;
+      }
+      .showComments {
+        /* border: 1px solid red; */
+        padding: 2rem;
+        overflow-y: auto;
+      }
+
+      .closeIconComment {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        cursor: pointer;
+      }
+
+      .closeIconComment div {
+        border: 1px solid black;
+        width: 20px;
+        font-weight: 900;
+      }
+      .commentDivView {
+        /* border: 1px solid black; */
+        margin: 15px 0 15px 0;
+        background: whitesmoke;
+        padding: 1rem;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .commentTextView {
+        background: rgb(242, 242, 242);
+        padding: 0.5rem 0.25rem 0.5rem 0.25rem;
+        font-size: 14px;
+      }
     </style>
   </head>
   <body>
@@ -163,8 +250,8 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
+              <a class="aTag" href="./dispose.html"
+                ><i class="fa-solid fa-circle-check"></i>Disposed Complaints</a
               >
             </li>
             <li class="liText">
@@ -175,21 +262,21 @@
           </ul>
           <p>Manage Officers</p>
           <ul>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#">
                 <i class="fa-solid fa-user"></i> View IO
               </a>
-            </li>
+            </li> -->
             <li class="liText">
               <a class="aTag" href="./IoReport.html"
                 ><i class="fa-solid fa-square-poll-horizontal"></i>IO Reports</a
               >
             </li>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#"
                 ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
               >
-            </li>
+            </li> -->
             <!-- <li class="liText">
                   <a class="aTag" href="#">Add/View/Update SHO</a>
                 </li>
@@ -251,7 +338,7 @@
                 >
                   <option value="">Select IO</option>
 
-                  <!-- <option value="closed">Gurugram</option> -->
+                  <!-- <option value="DISPOSED">Gurugram</option> -->
                 </select>
               </div>
               <div class="dateFilterDiv">
@@ -259,6 +346,9 @@
                 <div>To: <input type="date" name="" id="finalDate" /></div>
                 <button onclick="searchData()">Submit</button>
               </div>
+              <!-- <div>
+                <button id="export">Export to Excel</button>
+              </div> -->
               <!-- <div style="display: flex">
                 <span>Today Complaints : &nbsp; </span>
                 <p style="color: blue">224</p>
@@ -268,7 +358,7 @@
                 <p style="color: blue">224</p>
               </div> -->
               <!-- <div style="display: flex">
-                  <span>Closed Complaints : &nbsp; </span>
+                  <span>Disposed Complaints : &nbsp; </span>
                   <p style="color: blue">224</p>
                 </div> -->
               <!-- <div style="display: flex">
@@ -473,7 +563,7 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
-                  <option value="CLOSED">CLOSED</option>
+                  <option value="DISPOSED">DISPOSED</option>
                   <option value="OVERDUE">OVERDUE</option>
                   <option value="REJECTED">REJECTED</option>
                 </select>
@@ -800,7 +890,7 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
-                  <option value="CLOSED">CLOSED</option>
+                  <option value="DISPOSED">DISPOSED</option>
                   <option value="OVERDUE">OVERDUE</option>
                   <option value="REJECTED">REJECTED</option>
                 </select>
@@ -948,56 +1038,100 @@
         </div>
       </div>
     </div>
+    <div class="commentDiv">
+      <div>
+        <div class="upperDivAddComp">
+          <h3 class="h3AddComp">Add Comments</h3>
+          <div class="closeIconComment">
+            <div class="line1"></div>
+            <div class="line2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="commentMainDiv">
+        <div>
+          <form id="commentForm" onsubmit="addComm(event)">
+            <div class="innerTextDiv">
+              <textarea
+                name=""
+                id="commentText"
+                placeholder="Write Comment"
+              ></textarea>
+              <input
+                type="submit"
+                value="Post Comment"
+                id="addComment"
+                class="addButton"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="showComments"></div>
+      </div>
+    </div>
   </body>
 </html>
 
 <script src="./allComplaints.js"></script>
+<script
+  type="text/javascript"
+  src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"
+></script>
 <script src="./commonFunctions.js"></script>
 <script type="module">
   import {
-    getUser,
-    getComplain,
-    getRange,
-    getIO,
-    getCategory,
+    a,
+    complain,
+    currentUser,
+    visitorComplain,
+    IO,
+    Ranges,
+    category,
+    currentRange,
+    currentDistrict,
+    currentPoliceStation,
+    districts,
   } from "./Components/GetData.js";
   let userName = document.getElementById("userDetail");
   // let currentUser={}
-  async function a() {
-    const result = await getUser();
-    const res = await getCategory();
-    console.log(res);
-    currentUser = result;
-    userName.innerText = `${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`;
-    // console.log(currentUser)
-    return currentUser;
+  async function app() {
+    await a();
+    currUsr = currentUser;
+    dataArr = complain;
+    userName.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.policestation}`;
+    append(complain);
+    appendrangeInputUpdate(Ranges);
+    appendrangeInputView1(Ranges);
+    appendIOUpdate(IO);
+    appendIONameView1(IO);
+    appendIo(IO);
   }
 
-  async function b() {
-    const resultComplain = await getComplain();
-    const resRange = await getRange();
-    let resIO = await getIO();
-    resIO = resIO.filter((el) => {
-      console.log(currentUser, el);
-      if (
-        el.policestation === currentUser.policestation &&
-        el.policerange === currentUser.policerange &&
-        el.districtofc === currentUser.districtofc
-      ) {
-        return el;
-      }
-    });
-    // append(resultComplain);
-    console.log(currentUser);
-    dataPoliceStation(resultComplain);
-    appendrangeInputUpdate(resRange);
-    appendrangeInputView1(resRange);
-    appendIOUpdate(resIO);
-    appendIONameView1(resIO);
-    appendIo(resIO);
+  // async function b() {
+  //   const resultComplain = await getComplain();
+  //   const resRange = await getRange();
+  //   let resIO = await getIO();
+  //   resIO = resIO.filter((el) => {
+  //     console.log(currentUser, el);
+  //     if (
+  //       el.policestation === currentUser.policestation &&
+  //       el.policerange === currentUser.policerange &&
+  //       el.districtofc === currentUser.districtofc
+  //     ) {
+  //       return el;
+  //     }
+  //   });
+  //   // append(resultComplain);
+  //   console.log(currentUser);
+  //   dataPoliceStation(resultComplain);
+  //   appendrangeInputUpdate(resRange);
+  //   appendrangeInputView1(resRange);
+  //   appendIOUpdate(resIO);
+  //   appendIONameView1(resIO);
+  //   appendIo(resIO);
 
-    console.log(resultComplain);
-  }
+  //   console.log(resultComplain);
+  // }
   const appendrangeInputUpdate = (data) => {
     let rangeInputUpdate = document.getElementById("rangeInputUpdate");
     rangeInputUpdate.innerHTML = null;
@@ -1041,6 +1175,16 @@
       IONameView1.append(option);
     });
   };
-  a();
-  b();
+  // function ExportToExcel(type, fn, dl) {
+  //   var elt = document.getElementById("tabll");
+  //   var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1", raw: true });
+  //   return dl
+  //     ? XLSX.write(wb, { bookType: type, bookSST: true, type: "base64" })
+  //     : XLSX.writeFile(wb, fn || "MySheetName." + (type || "xlsx"));
+  // }
+  // const exportBtn = document.getElementById("export");
+  // exportBtn.addEventListener("click", () => {
+  //   ExportToExcel("xlsx");
+  // });
+  app();
 </script>

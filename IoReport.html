@@ -79,8 +79,8 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
+              <a class="aTag" href="./dispose.html"
+                ><i class="fa-solid fa-circle-check"></i>Disposed Complaints</a
               >
             </li>
             <li class="liText">
@@ -91,21 +91,21 @@
           </ul>
           <p>Manage Officers</p>
           <ul>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#">
                 <i class="fa-solid fa-user"></i> View IO
               </a>
-            </li>
+            </li> -->
             <li class="liText">
               <a class="aTag" href="./IoReport.html"
                 ><i class="fa-solid fa-square-poll-horizontal"></i>IO Reports</a
               >
             </li>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#"
                 ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
               >
-            </li>
+            </li> -->
             <!-- <li class="liText">
                     <a class="aTag" href="#">Add/View/Update SHO</a>
                   </li>
@@ -173,12 +173,6 @@
   //     ioName: "Vikas Kumar",
   //   },
   // ];
-  const getData = async () => {
-    let res = await fetch("https://hrycms.onrender.com/user/allio");
-    res = await res.json();
-    console.log(res);
-    append(res);
-  };
 
   const append = (data) => {
     let container = document.querySelector(".tableBody");
@@ -236,16 +230,31 @@
       container.append(tr);
     });
   };
-  getData();
 </script>
 <script type="module">
-  import { getUser } from "./Components/getData.js";
+  import {
+    a,
+    complain,
+    currentUser,
+    visitorComplain,
+    IO,
+    Ranges,
+    category,
+    currentRange,
+    currentDistrict,
+    currentPoliceStation,
+    districts,
+    act,
+    SP,
+    DSP,
+    SHO,
+  } from "./Components/getData.js";
   let userName = document.getElementById("userDetail");
-  async function a() {
-    const result = await getUser();
-    console.log(result);
-    userName.innerText = `${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`;
+  async function app() {
+    await a();
+    userName.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.policestation}`;
+    append(IO);
   }
 
-  a();
+  app();
 </script>

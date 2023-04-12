@@ -1,14 +1,51 @@
+let todayComp = [];
 let convertDate = (id) => {
   let myDate = new Date(id);
   myDate = myDate.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
   return myDate.split(", ")[0].split("/").reverse().join("-");
 };
 const userID = JSON.parse(localStorage.getItem("userID"));
-const getIO = async () => {
-  let res = await fetch(`https://hrycms.onrender.com/user/allio`);
-  res = await res.json();
-  // console.log(res);
-  appendIo(res);
+// const getIO = async () => {
+//   let res = await fetch(`https://hrycms.onrender.com/user/allio`);
+//   res = await res.json();
+//   // console.log(res);
+//   appendIo(res);
+// };'
+const searchData = () => {
+  let initial = document.getElementById("initialDate").value;
+  let final = document.getElementById("finalDate").value;
+
+  // console.log(typeof initial)
+  let obj = {
+    ini: initial,
+    fin: final,
+  };
+  console.log(todayComp);
+  let newData = todayComp.filter((el, index) => {
+    // console.log(el.IssuedDate, "  ",initial)
+    if (el.createdAt >= initial && el.createdAt <= final) {
+      // console.log(el)
+
+      return el;
+    }
+  });
+  console.log(newData);
+  append(newData);
+  // console.log(obj);
+};
+const changeComplains = () => {
+  const value = document.getElementById("ioselect").value;
+  console.log(todayComp);
+  let newData = todayComp.filter((el) => {
+    console.log(value);
+    if (value === "") {
+      return el;
+    } else {
+      return el.Markto === value;
+    }
+  });
+  console.log(newData);
+  append(newData);
 };
 const appendIo = (data) => {
   let container = document.getElementById("ioselect");
@@ -50,11 +87,11 @@ const append = (data) => {
     let td4 = document.createElement("td");
     td4.setAttribute("class", "tablecol");
     td4.setAttribute("class", "tablecol4");
-    td4.innerText = convertDate(el.createdAt);
+    td4.innerText = el.complainDate;
     let td5 = document.createElement("td");
     td5.setAttribute("class", "tablecol");
     td5.setAttribute("class", "tablecol5");
-    td5.innerText = el.deadline;
+    td5.innerText = el.targetDate;
     let td6 = document.createElement("td");
     td6.setAttribute("class", "tablecol");
     td6.setAttribute("class", "tablecol6");
@@ -140,7 +177,7 @@ const append = (data) => {
       divtd10.style.alignSelf = "center";
       divtd10.style.height = "40px";
       divtd10.style.color = "white";
-    } else if (el.Status === "CLOSED") {
+    } else if (el.Status === "DISPOSED") {
       divtd10.style.border = "1px solid blue";
       divtd10.style.backgroundColor = "blue";
       divtd10.style.boxSizing = "border-box";
@@ -217,7 +254,7 @@ const updateData = async (el) => {
   get("alternateNumberUpdate").value = el.alternateNumber;
   get("cityInputUpdate").value = el.City;
   get("rangeInputUpdate").value = el.policerange;
-  get("IOUpdate").value = el.SPName;
+  get("IOUpdate").value = el.Markto;
   get("complainStatusUpdate").value = el.Status;
   get("shortDescriptionUpdate").value = el.ComplaintShortDescription;
   get("complainCategoryUpdate").value = el.ComplaintCategory;
@@ -244,7 +281,7 @@ const updateComplain = async () => {
     author_id: userID,
     policerange: document.getElementById("rangeInputUpdate").value,
     rangeDistrictName: document.getElementById("rangeInputUpdate").value,
-    policestation: "",
+    policestation: currUsr.policestation,
     phoneNumber: "",
     createdAt: "",
     updatedAt: "",
@@ -260,7 +297,6 @@ const updateComplain = async () => {
       .value,
     SectionsofComplaint: "",
     Range: document.getElementById("rangeInputUpdate").value,
-    SPName: document.getElementById("IOUpdate").value,
     Status: document.getElementById("complainStatusUpdate").value,
     Markto: document.getElementById("IOUpdate").value,
     highPriority: get("highPriorityUpdate").checked,
@@ -308,7 +344,7 @@ const viewData = (el) => {
   get("alternateNumberView").value = el.alternateNumber;
   get("cityInputView").value = el.City;
   get("rangeInputView1").value = el.policerange;
-  get("IONameView1").value = el.SPName;
+  get("IONameView1").value = el.Markto;
   get("complainStatusView").value = el.Status;
   get("shortDescriptionView").value = el.ComplaintShortDescription;
   get("complainCategoryView").value = el.ComplaintCategory;
@@ -316,4 +352,4 @@ const viewData = (el) => {
   get("highPriorityView").checked = el.highPriority;
   // get("dateOfSubView").value = convertDate(el.createdAt);
 };
-getIO();
+// getIO();

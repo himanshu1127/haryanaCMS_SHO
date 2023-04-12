@@ -4,10 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Haryana Complaint Management System</title>
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/ffe2b9fea9.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./Dashboard.css" />
     <link rel="stylesheet" href="./table.css" />
-    <link rel="stylesheet" href="./addComplaints.css" />
+    <link rel="stylesheet" href="./allComplaints.css" />
+    <link rel="stylesheet" href="addComplaints.css" />
     <style>
       .upperDivAddComp {
         text-align: center;
@@ -96,11 +101,6 @@
         display: block;
       }
     </style>
-    <script
-      src="https://kit.fontawesome.com/ffe2b9fea9.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
   </head>
   <body>
     <header>
@@ -158,8 +158,9 @@
             </li>
             <li class="liText">
               <a class="aTag" href="./pending.html">
-                <i class="fa-sharp fa-regular fa-clock"></i> Pending Complaints
-              </a>
+                <i class="fa-sharp fa-regular fa-clock"></i>
+                PendingComplaints</a
+              >
             </li>
             <li class="liText">
               <a class="aTag" href="./dispose.html"
@@ -190,23 +191,23 @@
               >
             </li> -->
             <!-- <li class="liText">
-              <a class="aTag" href="#">Add/View/Update SHO</a>
-            </li>
-            <li class="liText">
-              <a class="aTag" href="#">Add/View/Update IO</a>
-            </li> -->
+                  <a class="aTag" href="#">Add/View/Update SHO</a>
+                </li>
+                <li class="liText">
+                  <a class="aTag" href="#">Add/View/Update IO</a>
+                </li> -->
           </ul>
           <!-- <p>Manage Category</p>
-          <ul>
-            <li class="liText">
-              <a class="aTag" href="#"
-                >Add/View/Update Category</a
-              >
-            </li>
-            <li class="liText">
-              <a class="aTag" href="#">Add/View/Update ACT</a>
-            </li>
-          </ul> -->
+              <ul>
+                <li class="liText">
+                  <a class="aTag" href="#"
+                    >Add/View/Update Category</a
+                  >
+                </li>
+                <li class="liText">
+                  <a class="aTag" href="#">Add/View/Update ACT</a>
+                </li>
+              </ul> -->
 
           <div id="buttonDiv">
             <button id="logoutButton" onclick="logout()">
@@ -214,204 +215,89 @@
             </button>
           </div>
           <!-- <p>Manage Dept.</p>
-              <p>Manage Category</p>
-              <p>Manage Users (SHO)</p>
-              <p>Manage Data</p> -->
+                  <p>Manage Category</p>
+                  <p>Manage Users (SHO)</p>
+                  <p>Manage Data</p> -->
         </div>
       </div>
       <div class="rightContent">
-        <div class="rightTop">
-          <!-- <div class="rightTopLeft1">
-                <h2>Dashboard</h2>
-                <button>Add Complaint</button>
-                <button>hi</button>
-            </div> -->
-          <div class="rightTopLeft">
-            <div>
-              <h2>Dashboard</h2>
-            </div>
-            <div>
-              <button class="buttonTopRight" onclick="toaddComplaints()">
-                Add Complaint
-              </button>
-            </div>
-          </div>
-          <div class="rightTopRight">
-            <div class="a">
-              <button class="buttonTopLeft">View Report</button>
-              <button class="buttonTopLeft" onclick="goToIO()">
-                IO Details
-              </button>
-            </div>
-            <div class="b">Home / <span>Dashboard</span></div>
-          </div>
-        </div>
-        <!-- <div class="stats">
-          <div class="totalComplaintsStats">
-            <div class="totalComplaintsStatsLeft">
-              <p>Today Complaints</p>
-              <h4>0</h4>
-            </div>
-            <div class="totalComplaintsStatsRight">
-              <img src="./Screenshot 2023-03-13 at 9.38.39 PM.png" alt="" />
-            </div>
-          </div>
-          <div class="totalComplaintsStats">
-            <div class="totalComplaintsStatsLeft">
-              <p>Total Pending</p>
-              <h4>0</h4>
-            </div>
-            <div class="totalComplaintsStatsRight">
-              <img src="./Screenshot 2023-03-13 at 9.39.04 PM.png" alt="" />
-            </div>
-          </div>
-          <div class="totalComplaintsStats">
-            <div class="totalComplaintsStatsLeft">
-              <p>Total</p>
-              <h4>0</h4>
-            </div>
-            <div class="totalComplaintsStatsRight">
-              <img src="./Screenshot 2023-03-13 at 9.38.39 PM.png" alt="" />
-            </div>
-          </div>
-          <div class="totalComplaintsStats">
-            <div class="totalComplaintsStatsLeft">
-              <p>Officers Complaint</p>
-              <h4>0</h4>
-            </div>
-            <div class="totalComplaintsStatsRight">
-              <img src="./Screenshot 2023-03-13 at 9.39.04 PM.png" alt="" />
-            </div>
-          </div>
-        </div> -->
+        <div id="table" style="width: 100%; margin: auto; height: 700px">
+          <div
+            style="
+              height: 80px;
+              display: flex;
+              /* border: 1px solid red; */
+              width: 100%;
+              padding: 10px;
+              box-sizing: border-box;
+              font-size: 12px;
+            "
+          >
+            <div
+              style="
+                align-self: center;
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+              "
+            >
+              <!-- <div>District Wise >> <span>Pending Complaints</span></div> -->
+              <div>
+                <select
+                  name=""
+                  onchange="changeComplains()"
+                  id="ioselect"
+                  style="border: none; outline: none"
+                >
+                  <option value="">Select IO</option>
 
-        <div class="chart">
-          <table border="1" class="table" id="tabll">
-            <thead class="tableHead">
-              <tr class="trHead">
-                <th class="thHead thHead1">Tracking Id</th>
-                <!-- <th class="thHead thHead2">Category</th> -->
-                <th class="thHead thHead3">Complaint</th>
-                <th class="thHead thHead9">Complaint Type</th>
-                <th class="thHead thHead4">Issued Date</th>
-                <th class="thHead thHead5">Deadline</th>
-                <th class="thHead thHead6">Area</th>
-                <!-- <th class="thHead thHead7">Status</th> -->
-                <th class="thHead thHead8">Action</th>
-              </tr>
-            </thead>
-            <tbody class="tableBody"></tbody>
-          </table>
-        </div>
-        <div class="messages">
-          <div class="officerIngormation" id="officerIngormation">
-            <!-- <div class="officerInformationSingleDiv">
-              <h4>Officer Information</h4>
-              <div class="officerInformationText">
-                <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-                <div class="officerInformationIcons">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
+                  <!-- <option value="DISPOSED">Gurugram</option> -->
+                </select>
               </div>
-            </div>
-            <div class="officerInformationSingleDiv">
-              <h4>Officer Information</h4>
-              <div class="officerInformationText">
-                <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-                <div class="officerInformationIcons">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
+              <div class="dateFilterDiv">
+                <div>From: <input type="date" name="" id="initialDate" /></div>
+                <div>To: <input type="date" name="" id="finalDate" /></div>
+                <button onclick="searchData()">Submit</button>
               </div>
-            </div>
-            <div class="officerInformationSingleDiv">
-              <h4>Officer Information</h4>
-              <div class="officerInformationText">
-                <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-                <div class="officerInformationIcons">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
+              <!-- <div style="display: flex">
+                <span>Today Complaints : &nbsp; </span>
+                <p style="color: blue">224</p>
               </div>
-            </div>
-            <div class="officerInformationSingleDiv">
-              <h4>Officer Information</h4>
-              <div class="officerInformationText">
-                <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-                <div class="officerInformationIcons">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-              </div>
-            </div>
-            <div class="officerInformationSingleDiv">
-              <h4>Officer Information</h4>
-              <div class="officerInformationText">
-                <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-                <div class="officerInformationIcons">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-              </div>
-            </div> -->
-          </div>
-
-          <div class="messageFromADGP">
-            <h4>Message from ADGP</h4>
-            <hr />
-            <div class="messageFromADGPBox">
-              I am a firm believer that without public support, the Police can
-              not be effective. Crusade against criminals, terrorists,
-              anti-social elements, economic offend- ers, smugglers etc. cannot
-              be successful without the active cooperation of the public. I take
-              this opportunity to seek cooperation of all the citizens and reaf-
-              firm our resolve to make Haryana Police an effective and efficient
-              organization dedicated to the service of the people.
+              <div style="display: flex">
+                <span>Pending Complaints : &nbsp; </span>
+                <p style="color: blue">224</p>
+              </div> -->
+              <!-- <div style="display: flex">
+                  <span>Disposed Complaints : &nbsp; </span>
+                  <p style="color: blue">224</p>
+                </div> -->
+              <!-- <div style="display: flex">
+                <span style="color: red"
+                  >High Priority Complaints : &nbsp;
+                </span>
+                <p style="color: blue">224</p>
+              </div> -->
             </div>
           </div>
-
-          <div class="officersData" id="officersData">
-            <!-- <div class="OfficerDataSingleDiv">
-              <div class="officerImage">
-                <img src="./haryana_police_logo.webp" alt="" />
-              </div>
-              <div class="officersDetails">
-                <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
-                <div class="progressSlider">Slider</div>
-              </div>
-            </div>
-            <div class="OfficerDataSingleDiv">
-              <div class="officerImage">
-                <img src="./haryana_police_logo.webp" alt="" />
-              </div>
-              <div class="officersDetails">
-                <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
-                <div class="progressSlider">Slider</div>
-              </div>
-            </div>
-            <div class="OfficerDataSingleDiv">
-              <div class="officerImage">
-                <img src="./haryana_police_logo.webp" alt="" />
-              </div>
-              <div class="officersDetails">
-                <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
-                <div class="progressSlider">Slider</div>
-              </div>
-            </div>
-            <div class="OfficerDataSingleDiv">
-              <div class="officerImage">
-                <img src="./haryana_police_logo.webp" alt="" />
-              </div>
-              <div class="officersDetails">
-                <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
-                <div class="progressSlider">Slider</div>
-              </div>
-            </div> -->
+          <div class="tableDiv">
+            <table border="1" class="table">
+              <thead class="tableHead">
+                <tr class="trHead">
+                  <th class="thHead thHead1">Tracking Id</th>
+                  <th class="thHead thHead3">Complaint</th>
+                  <th class="thHead thHead9">Complaint Type</th>
+                  <th class="thHead thHead4">Issued Date</th>
+                  <th class="thHead thHead5">Deadline</th>
+                  <th class="thHead thHead6">Area</th>
+                  <th class="thHead">Flaging</th>
+                  <th class="thHead thHead8">Action</th>
+                </tr>
+              </thead>
+              <tbody class="tableBody"></tbody>
+            </table>
           </div>
         </div>
       </div>
-      <!-- <MainTable /> -->
     </div>
     <div class="displayUpdateComp">
       <div class="updateComp">
@@ -550,6 +436,7 @@
                   id="stateInputUpdate"
                   placeholder="Complaint Name"
                   class="complaintsInput"
+                  value="HARYANA"
                   readonly
                 />
               </div>
@@ -560,11 +447,10 @@
             <div class="">
               <label class="complaintsFormLabel">Range :</label>
               <div class="complaintContnetDivLeftTop">
-                <select
-                  name=""
-                  id="rangeInputUpdate"
-                  class="complaintsInput"
-                ></select>
+                <select name="" id="rangeInputUpdate" class="complaintsInput">
+                  <!-- <option value="HISAR">HISAR</option>
+                  <option value="AMBALA">AMBALA</option> -->
+                </select>
               </div>
             </div>
             <div class="">
@@ -713,7 +599,7 @@
 
           <div class="addButtonDiv">
             <button
-              id="updateButton"
+              onclick="updateComplain()"
               type="submit"
               class="addButton my-5 p-3 border-2 border-green-400 hover:border-green-600 hover:bg-green-600 transition-all rounded font-bold hover:text-white"
             >
@@ -892,8 +778,13 @@
             <div class="">
               <label class="complaintsFormLabel">IO Name :</label>
               <div class="complaintContnetDivLeftTop">
-                <select name="" id="IONameView1" class="complaintsInput">
-                  <option value="">Select IO</option>
+                <select
+                  name=""
+                  id="IONameView1"
+                  class="complaintsInput"
+                  disabled
+                >
+                  <!-- <option value="">Select IO</option> -->
                 </select>
               </div>
             </div>
@@ -968,7 +859,7 @@
                   id="highPriorityView"
                   placeholder="First Name"
                   class="border-2 rounded h-5 w-5"
-                  readonly
+                  disabled
                 />
               </div>
               <label class="text-xl">High Priority</label>
@@ -1059,24 +950,10 @@
     </div>
   </body>
 </html>
-<script src="./dashboard.js"></script>
+
+<script src="./pending.js"></script>
 <script src="./commonFunctions.js"></script>
-<script
-  type="text/javascript"
-  src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"
-></script>
 <script type="module">
-  //   import {getUser} from "./Components/getData.js"
-  // let data =[]
-  //
-  //   let a = async ()=>{
-  //     let b = await getUser(data)
-  //     console.log(b)
-  //     userName.innerText=`${b.fname}`
-  //   }
-  //   // console.log(a)
-  //   a()
-  //   // getComplain()
   import {
     a,
     complain,
@@ -1085,402 +962,58 @@
     IO,
     Ranges,
     category,
+    currentRange,
+    currentDistrict,
+    currentPoliceStation,
+    districts,
+    act,
   } from "./Components/GetData.js";
-  let userDetail = document.getElementById("userDetail");
-  // async function a() {
-  //   const result = await getUser();
-  //   console.log(result);
-  //   userName.innerText = `${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`;
-  //   user = result;
-  //   return user;
-  // }
+  let userName = document.getElementById("userDetail");
+  async function app() {
+    await a();
+    userName.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.policestation}`;
+    let pending = complain.filter((el) => {
+      return el.Status === "DISPOSED";
+    });
+    pendingC = pending;
+    append(pending);
+
+    appendrangeInputUpdate(Ranges);
+    appendrangeInputView1(Ranges);
+    appendIOUpdate(IO);
+    appendIONameView1(IO);
+    appendIo(IO);
+  }
+
   // async function b() {
-  //   const resultComplain = await getComplain();
+  //   let resultComplain = await getComplain();
   //   const resRange = await getRange();
   //   const resIO = await getIO();
+  //   resultComplain = resultComplain.filter((el) => {
+  //     return el.Status === "PENDING";
+  //   });
   //   append(resultComplain);
   //   appendrangeInputUpdate(resRange);
   //   appendrangeInputView1(resRange);
   //   appendIOUpdate(resIO);
   //   appendIONameView1(resIO);
-  //   appendOfficerInfo(resIO);
-  //   appendImageIOInfo(resIO);
+  //   appendIo(resIO);
 
-  //   console.log(resultComplain);
+  //   // console.log(resultComplain);
   // }
-
-  const app = async () => {
-    await a();
-    userDetail.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.policestation}`;
-    appendOfficerInfo(IO);
-    appendImageIOInfo(IO);
-    appendIOUpdate(IO);
-    appendIONameView1(IO);
-    append(complain);
-    appendrangeInputUpdate(Ranges);
-    appendrangeInputView1(Ranges);
-  };
-  const appendOfficerInfo = (data) => {
-    // <div class="officerInformationSingleDiv">
-    //   <h4>Officer Information</h4>
-    //   <div class="officerInformationText">
-    //     <p>By Mahesh Singh, IO, Sadar, Karnal</p>
-    //     <div class="officerInformationIcons">
-    //       <i class="fa-regular fa-pen-to-square"></i>
-    //       <i class="fa-solid fa-trash-can"></i>
-    //     </div>
-    //   </div>
-    // </div>;
-    console.log(data);
-    let cont = document.getElementById("officerIngormation");
-    if (data.length === 0) {
-      cont.innerHTML = `<h3>NO IO Added To this SHO </h3>`;
-    } else {
-      data.map((el) => {
-        let div = document.createElement("div");
-        div.setAttribute("class", "officerInformationSingleDiv");
-        let h4 = document.createElement("h4");
-        h4.innerText = "Officer Information";
-        let divInner = document.createElement("div");
-        divInner.setAttribute("class", "officerInformationText");
-        let p = document.createElement("p");
-        p.innerText = `By ${el.fname} ${el.lname}, ${el.designation} ${el.policestation}`;
-
-        divInner.append(p);
-        div.append(h4, divInner);
-        cont.append(div);
-      });
-    }
-  };
-
-  let appendImageIOInfo = (data) => {
-    let cont = document.getElementById("officersData");
-    cont.innerHTML = null;
-    if (data.length === 0) {
-      cont.innerHTML = `<h3>NO IO Added To this SHO </h3>`;
-    } else {
-      data.map((el) => {
-        let div = document.createElement("div");
-        div.setAttribute("class", "OfficerDataSingleDiv");
-        let divImg = document.createElement("div");
-        divImg.setAttribute("class", "officerImage");
-        let img = document.createElement("img");
-        img.src = "./haryana_police_logo.webp";
-        let divText = document.createElement("div");
-        divText.setAttribute("class", "officersDetails");
-        let p = document.createElement("p");
-        p.innerText = `${el.fname} ${el.lname}, ${el.designation} ${el.policestation}`;
-
-        divImg.append(img);
-        divText.append(p);
-        div.append(divImg, divText);
-        cont.append(div);
-      });
-    }
-
-    // <div class="OfficerDataSingleDiv">
-    //           <div class="officerImage">
-    //             <img src="./haryana_police_logo.webp" alt="" />
-    //           </div>
-    //           <div class="officersDetails">
-    //             <p>Abhishekh Kumar, IO, Hisar, Nagar</p>
-    //             <div class="progressSlider">Slider</div>
-    //           </div>
-    //         </div>
-  };
-  let convertDate = (id) => {
-    let myDate = new Date(id);
-    return myDate.toISOString().substring(0, 10);
-  };
-  const append = (data) => {
-    let container = document.querySelector(".tableBody");
-    container.innerHTML = null;
-    if (data.length === 0) {
-      container.innerText = `No Complain To This SHO`;
-    } else {
-      data.forEach((el) => {
-        // console.log(el);
-        let tr = document.createElement("tr");
-        tr.setAttribute("class", "tableRow");
-        let td1 = document.createElement("td");
-        td1.setAttribute("class", "tablecol");
-        td1.setAttribute("class", "tablecol1");
-        td1.innerText = el.trackingId;
-        let td2 = document.createElement("td");
-        td2.setAttribute("class", "tablecol");
-        td2.setAttribute("class", "tablecol2");
-        td2.innerText = el.category;
-        let td3 = document.createElement("td");
-        td3.setAttribute("class", "tablecol");
-        td3.setAttribute("class", "tablecol3");
-        td3.innerText = el.ComplainantName;
-        let td4 = document.createElement("td");
-        td4.setAttribute("class", "tablecol");
-        td4.setAttribute("class", "tablecol4");
-        td4.innerText = convertDate(el.createdAt);
-        let td5 = document.createElement("td");
-        td5.setAttribute("class", "tablecol");
-        td5.setAttribute("class", "tablecol5");
-        td5.innerText = el.targetDate;
-        let td6 = document.createElement("td");
-        td6.setAttribute("class", "tablecol");
-        td6.setAttribute("class", "tablecol6");
-        // td6.style.border = "1px solid red";
-        td6.style.padding = "10px";
-        let divarea = document.createElement("div");
-        let p6 = document.createElement("p");
-        p6.innerText = el.City;
-        p6.style.margin = "10px 0px 10px 0px";
-        // p6.style.border="1px solid cyan"
-        divarea.style.borderRadius = "2%";
-        divarea.append(p6);
-        td6.append(divarea);
-        let td7 = document.createElement("td");
-        td7.setAttribute("class", "tablecol");
-        td7.setAttribute("class", "tablecol7");
-        td7.style.padding = "10px";
-        let divStatus = document.createElement("div");
-        let p7 = document.createElement("p");
-        p7.innerText = el.status;
-        p7.style.margin = "10px 0px 10px 0px";
-        divStatus.append(p7);
-        td7.append(divStatus);
-
-        let td9 = document.createElement("td");
-        td9.style.padding = "10px";
-        let divtd9 = document.createElement("div");
-        // divtd9.style.border="1px solid cyan"
-        // divtd9.style.height = "40px";
-        let p9 = document.createElement("p");
-        p9.innerText = el.ComplaintCategory;
-        p9.style.margin = "10px 0px 10px 0px";
-        divtd9.append(p9);
-
-        td9.append(divtd9);
-
-        if (el.complaintType === "CAW") {
-          //   divtd9.style.border = "1px solid navy";
-          //   divtd9.style.backgroundColor = "navy";
-          divtd9.style.boxSizing = "border-box";
-          divtd9.style.alignSelf = "center";
-          //   divtd9.style.height = "40px";
-          //   divtd9.style.color = "white";
-        } else if (el.complaintType === "Officers") {
-          //   divtd9.style.border = "1px solid brown";
-          //   divtd9.style.backgroundColor = "brown";
-          divtd9.style.boxSizing = "border-box";
-          divtd9.style.alignSelf = "center";
-          //   divtd9.style.height = "40px";
-          //   divtd9.style.color = "white";
-        }
-
-        if (el.priority === "high") {
-          //   divarea.style.border = "1px solid green";
-          //   divarea.style.backgroundColor = "green";
-          divarea.style.boxSizing = "border-box";
-          divarea.style.alignSelf = "center";
-          //   divarea.style.height = "40px";
-          //   divarea.style.color = "white";
-        }
-
-        if (el.status === "progress") {
-          //   divStatus.style.border = "1px solid lime";
-          //   divStatus.style.backgroundColor = "lime";
-          divStatus.style.boxSizing = "border-box";
-          divStatus.style.alignSelf = "center";
-          //   divStatus.style.height = "40px";
-          //   divStatus.style.color = "white";
-        } else if (el.status === "pending") {
-          //   divStatus.style.border = "1px solid red";
-          //   divStatus.style.backgroundColor = "red";
-          divStatus.style.boxSizing = "border-box";
-          divStatus.style.alignSelf = "center";
-          //   divStatus.style.height = "40px";
-          //   divStatus.style.color = "white";
-        } else if (el.status === "DISPOSED") {
-          //   divStatus.style.border = "1px solid blue";
-          //   divStatus.style.backgroundColor = "blue";
-          divStatus.style.boxSizing = "border-box";
-          divStatus.style.alignSelf = "center";
-          //   divStatus.style.height = "40px";
-          //   divStatus.style.color = "white";
-        } else if (el.status === "overdue") {
-          //   divStatus.style.border = "1px solid darkviolet";
-          //   divStatus.style.backgroundColor = "darkviolet";
-          divStatus.style.boxSizing = "border-box";
-          divStatus.style.alignSelf = "center";
-          //   divStatus.style.height = "40px";
-          //   divStatus.style.color = "white";
-        } else if (el.status === "rejected") {
-          //   divStatus.style.border = "1px solid gray";
-          //   divStatus.style.backgroundColor = "gray";
-          divStatus.style.boxSizing = "border-box";
-          divStatus.style.alignSelf = "center";
-          //   divStatus.style.height = "40px";
-          //   divStatus.style.color = "white";
-        }
-
-        let td8 = document.createElement("td");
-        let divtd8 = document.createElement("div");
-        divtd8.style.display = "inline";
-        // divtd8.style.gap="5px"
-        let updateIcon = document.createElement("button");
-        updateIcon.addEventListener("click", () => {
-          updateData(el);
-        });
-
-        let viewIcon = document.createElement("button");
-        let commentsIcon = document.createElement("button");
-        updateIcon.setAttribute("class", "buttonsAction");
-        viewIcon.setAttribute("class", "buttonsAction");
-        commentsIcon.setAttribute("class", "buttonsAction");
-        updateIcon.innerHTML = '<i class="fa-solid fa-pen"></i>';
-        updateIcon.style.width = "30%";
-
-        viewIcon.innerHTML = '<i class="fa-solid fa-eye"></i>';
-        viewIcon.style.margin = "5px";
-        viewIcon.style.width = "20%";
-        viewIcon.addEventListener("click", () => {
-          viewData(el);
-        });
-
-        commentsIcon.innerHTML = '<i class="fa-solid fa-comment"></i>';
-        commentsIcon.style.width = "40%";
-        // commentsIcon.style.margin="5px"
-
-        // td8.innerText = "hi";
-        // updateIcon.innerHTML('<i class="fa-light fa-pen"></i>')
-
-        td8.style.width = "15%";
-        divtd8.append(updateIcon, viewIcon);
-        td8.append(divtd8);
-        tr.append(td1, td3, td9, td4, td5, td6, td8);
-        // console.log(tr);
-        container.append(tr);
-      });
-    }
-  };
-  let localEl = {};
-  const get = (id) => {
-    return document.getElementById(id);
-  };
-  const updateData = async (el) => {
-    let displayUpdateComp = document.querySelector(".displayUpdateComp");
-    displayUpdateComp.classList.toggle("activeUpdateComp");
-    localEl = el;
-    console.log(el);
-    get("complainantNameUpdate").value = el.ComplainantName;
-    get("fatherNameUpdate").value = el.FatherName;
-    get("complainantEmailUpdate").value = el.Email;
-    get("addressUpdate").value = el.Address;
-    get("mobileNoUpdate").value = el.ComplainantPhoneNumber;
-    get("addressLine1Update").value = el.AddressLine1;
-    get("alternateNumberUpdate").value = el.alternateNumber;
-    get("cityInputUpdate").value = el.City;
-    get("rangeInputUpdate").value = el.policerange;
-    get("IOUpdate").value = el.SPName;
-    get("complainStatusUpdate").value = el.Status;
-    get("shortDescriptionUpdate").value = el.ComplaintShortDescription;
-    get("complainCategoryUpdate").value = el.ComplaintCategory;
-    get("complainantNumber").value = el.trackingId;
-    // get("sectionsUpdate").value=el.
-    // get("highPriorityUpdate").value=el.
-
-    return localEl;
-  };
-
-  const updateComplain = async () => {
-    console.log(`https://hrycms.onrender.com/complain/update/${localEl._id}`);
-    let obj = {
-      ComplainantName: document.getElementById("complainantNameUpdate").value,
-      Email: document.getElementById("complainantEmailUpdate").value,
-      author_id: user._id,
-      policerange: document.getElementById("rangeInputUpdate").value,
-      rangeDistrictName: document.getElementById("rangeInputUpdate").value,
-      policestation: "",
-      phoneNumber: "",
-      createdAt: "",
-      updatedAt: "",
-      ComplainantPhoneNumber: document.getElementById("mobileNoUpdate").value,
-      alternateNumber: document.getElementById("alternateNumberUpdate").value,
-      FatherName: document.getElementById("fatherNameUpdate").value,
-      Address: document.getElementById("addressUpdate").value,
-      AddressLine1: document.getElementById("addressLine1Update").value,
-      State: document.getElementById("stateInputUpdate").value,
-      City: document.getElementById("cityInputUpdate").value,
-      ComplaintCategory: document.getElementById("complainCategoryUpdate")
-        .value,
-      ComplaintShortDescription: document.getElementById(
-        "shortDescriptionUpdate"
-      ).value,
-      SectionsofComplaint: "",
-      Range: document.getElementById("rangeInputUpdate").value,
-      SPName: document.getElementById("IOUpdate").value,
-      Status: document.getElementById("complainStatusUpdate").value,
-      Markto: document.getElementById("IOUpdate").value,
-    };
-    obj = JSON.stringify(obj);
-    console.log(obj);
-
-    try {
-      let res = await fetch(
-        `https://hrycms.onrender.com/complain/update/${localEl._id}`,
-        {
-          method: "PUT",
-          body: obj,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      res = await res.json();
-      console.log(res);
-      alert("Update");
-      window.location.reload();
-      let compUpdate = document.querySelector(".displayUpdateComp");
-      compUpdate.classList.toggle("activeUpdateComp");
-    } catch (err) {
-      alert(err);
-    }
-  };
-  let updateButton = document
-    .getElementById("updateButton")
-    .addEventListener("click", updateComplain);
-  const viewData = (el) => {
-    console.log(el);
-    let displayViewComp = document.querySelector(".displayViewComp");
-    displayViewComp.classList.toggle("activeviewComp");
-    get("complainantNameView").value = el.ComplainantName;
-    get("fatherNameView").value = el.FatherName;
-    get("complainantEmailView").value = el.Email;
-    get("addressView").value = el.Address;
-    get("mobileNoView").value = el.ComplainantPhoneNumber;
-    get("addressLine1View").value = el.AddressLine1;
-    get("alternateNumberView").value = el.alternateNumber;
-    get("cityInputView").value = el.City;
-    get("rangeInputView1").value = el.policerange;
-    get("IONameView1").value = el.SPName;
-    get("complainStatusView").value = el.Status;
-    get("shortDescriptionView").value = el.ComplaintShortDescription;
-    get("complainCategoryView").value = el.ComplaintCategory;
-    get("complainantNumberView").value = el.trackingId;
-    // get("dateOfSubView").value = convertDate(el.createdAt);
-  };
   const appendrangeInputUpdate = (data) => {
     let rangeInputUpdate = document.getElementById("rangeInputUpdate");
-    // let rangeInputView1 = document.getElementById("rangeInputView1")
     rangeInputUpdate.innerHTML = null;
     data.map((el) => {
       let option = document.createElement("option");
       option.innerText = el.rangeName;
       option.value = el.rangeName;
       rangeInputUpdate.append(option);
-      // rangeInputView1.append(option)
     });
   };
   const appendIOUpdate = (data) => {
     let IOUpdate = document.getElementById("IOUpdate");
-    let IONameView1 = document.getElementById("IONameView1");
+    // let IONameView1 = document.getElementById("IONameView1");
     IOUpdate.innerHTML = null;
     data.map((el) => {
       let option = document.createElement("option");
@@ -1488,6 +1021,19 @@
       option.value = el.email;
       IOUpdate.append(option);
       // IONameView1.append(option)
+    });
+  };
+  const appendIo = (data) => {
+    let container = document.getElementById("ioselect");
+    let updateCont = document.getElementById("");
+
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = `${el.fname} ${el.lname}`;
+      option.value = el.email;
+      // console.log(option)
+      container.append(option);
+      // updateCont.append(option)
     });
   };
   // view
@@ -1512,5 +1058,4 @@
     });
   };
   app();
-  // b();
 </script>

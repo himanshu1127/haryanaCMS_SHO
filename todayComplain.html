@@ -163,8 +163,8 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
+              <a class="aTag" href="./dispose.html"
+                ><i class="fa-solid fa-circle-check"></i>Disposed Complaints</a
               >
             </li>
             <li class="liText">
@@ -175,21 +175,21 @@
           </ul>
           <p>Manage Officers</p>
           <ul>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#">
                 <i class="fa-solid fa-user"></i> View IO
               </a>
-            </li>
+            </li> -->
             <li class="liText">
               <a class="aTag" href="./IoReport.html"
                 ><i class="fa-solid fa-square-poll-horizontal"></i>IO Reports</a
               >
             </li>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#"
                 ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
               >
-            </li>
+            </li> -->
             <!-- <li class="liText">
                   <a class="aTag" href="#">Add/View/Update SHO</a>
                 </li>
@@ -241,7 +241,7 @@
                 justify-content: space-between;
               "
             >
-              <div>District Wise >> <span>Today Complaints</span></div>
+              <!-- <div>District Wise >> <span>Today Complaints</span></div> -->
               <div>
                 <select
                   name=""
@@ -251,7 +251,7 @@
                 >
                   <option value="">Select IO</option>
 
-                  <!-- <option value="closed">Gurugram</option> -->
+                  <!-- <option value="DISPOSED">Gurugram</option> -->
                 </select>
               </div>
               <div class="dateFilterDiv">
@@ -268,7 +268,7 @@
                 <p style="color: blue">224</p>
               </div> -->
               <!-- <div style="display: flex">
-                  <span>Closed Complaints : &nbsp; </span>
+                  <span>Disposed Complaints : &nbsp; </span>
                   <p style="color: blue">224</p>
                 </div> -->
               <!-- <div style="display: flex">
@@ -473,7 +473,7 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
-                  <option value="CLOSED">CLOSED</option>
+                  <option value="DISPOSED">DISPOSED</option>
                   <option value="OVERDUE">OVERDUE</option>
                   <option value="REJECTED">REJECTED</option>
                 </select>
@@ -800,7 +800,7 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
-                  <option value="CLOSED">CLOSED</option>
+                  <option value="DISPOSED">DISPOSED</option>
                   <option value="OVERDUE">OVERDUE</option>
                   <option value="REJECTED">REJECTED</option>
                 </select>
@@ -955,11 +955,18 @@
 <script src="./commonFunctions.js"></script>
 <script type="module">
   import {
-    getComplain,
-    dataArr,
-    getUser,
-    getRange,
-    getIO,
+    a,
+    complain,
+    currentUser,
+    visitorComplain,
+    IO,
+    Ranges,
+    category,
+    currentRange,
+    currentDistrict,
+    currentPoliceStation,
+    districts,
+    act,
   } from "./Components/GetData.js";
   let userName = document.getElementById("userDetail");
   //   async function a() {
@@ -981,6 +988,15 @@
   //     appendIOUpdate(resIO);
   //     appendIONameView1(resIO);
   //   };
+  const app = async () => {
+    await a();
+    appendrangeInputUpdate(Ranges);
+    appendrangeInputView1(Ranges);
+    appendIOUpdate(IO);
+    appendIONameView1(IO);
+    appendIo(IO);
+    highPriority(complain);
+  };
   const appendrangeInputUpdate = (data) => {
     let rangeInputUpdate = document.getElementById("rangeInputUpdate");
     rangeInputUpdate.innerHTML = null;
@@ -1024,7 +1040,7 @@
       IONameView1.append(option);
     });
   };
-  const highPriority = () => {
+  const highPriority = (dataArr) => {
     console.log(dataArr);
     let newData = dataArr.filter((el) => {
       let dateObj = new Date(el.createdAt);
@@ -1040,8 +1056,9 @@
 
       return dateObj === dateNow;
     });
+    todayComp = newData;
     console.log(newData);
     append(newData);
   };
-  a();
+  app();
 </script>

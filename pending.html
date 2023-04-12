@@ -163,8 +163,8 @@
               >
             </li>
             <li class="liText">
-              <a class="aTag" href="#"
-                ><i class="fa-solid fa-circle-check"></i>Closed Complaints</a
+              <a class="aTag" href="./dispose.html"
+                ><i class="fa-solid fa-circle-check"></i>Disposed Complaints</a
               >
             </li>
             <li class="liText">
@@ -175,21 +175,21 @@
           </ul>
           <p>Manage Officers</p>
           <ul>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#">
                 <i class="fa-solid fa-user"></i> View IO
               </a>
-            </li>
+            </li> -->
             <li class="liText">
               <a class="aTag" href="./IoReport.html"
                 ><i class="fa-solid fa-square-poll-horizontal"></i>IO Reports</a
               >
             </li>
-            <li class="liText">
+            <!-- <li class="liText">
               <a class="aTag" href="#"
                 ><i class="fa-regular fa-paper-plane"></i>Send Notes</a
               >
-            </li>
+            </li> -->
             <!-- <li class="liText">
                   <a class="aTag" href="#">Add/View/Update SHO</a>
                 </li>
@@ -241,7 +241,7 @@
                 justify-content: space-between;
               "
             >
-              <div>District Wise >> <span>Pending Complaints</span></div>
+              <!-- <div>District Wise >> <span>Pending Complaints</span></div> -->
               <div>
                 <select
                   name=""
@@ -251,7 +251,7 @@
                 >
                   <option value="">Select IO</option>
 
-                  <!-- <option value="closed">Gurugram</option> -->
+                  <!-- <option value="DISPOSED">Gurugram</option> -->
                 </select>
               </div>
               <div class="dateFilterDiv">
@@ -268,7 +268,7 @@
                 <p style="color: blue">224</p>
               </div> -->
               <!-- <div style="display: flex">
-                  <span>Closed Complaints : &nbsp; </span>
+                  <span>Disposed Complaints : &nbsp; </span>
                   <p style="color: blue">224</p>
                 </div> -->
               <!-- <div style="display: flex">
@@ -473,7 +473,7 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
-                  <option value="CLOSED">CLOSED</option>
+                  <option value="DISPOSED">DISPOSED</option>
                   <option value="OVERDUE">OVERDUE</option>
                   <option value="REJECTED">REJECTED</option>
                 </select>
@@ -800,7 +800,7 @@
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="IN-PROCESS">IN-PROCESS</option>
-                  <option value="CLOSED">CLOSED</option>
+                  <option value="DISPOSED">DISPOSED</option>
                   <option value="OVERDUE">OVERDUE</option>
                   <option value="REJECTED">REJECTED</option>
                 </select>
@@ -955,34 +955,52 @@
 <script src="./commonFunctions.js"></script>
 <script type="module">
   import {
-    getUser,
-    getComplain,
-    getRange,
-    getIO,
+    a,
+    complain,
+    currentUser,
+    visitorComplain,
+    IO,
+    Ranges,
+    category,
+    currentRange,
+    currentDistrict,
+    currentPoliceStation,
+    districts,
+    act,
   } from "./Components/GetData.js";
   let userName = document.getElementById("userDetail");
-  async function a() {
-    const result = await getUser();
-    console.log(result);
-    userName.innerText = `${result.fname} ${result.lname}, ${result.designation}, ${result.policestation}`;
-  }
-
-  async function b() {
-    let resultComplain = await getComplain();
-    const resRange = await getRange();
-    const resIO = await getIO();
-    resultComplain = resultComplain.filter((el) => {
+  async function app() {
+    await a();
+    userName.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.policestation}`;
+    let pending = complain.filter((el) => {
       return el.Status === "PENDING";
     });
-    append(resultComplain);
-    appendrangeInputUpdate(resRange);
-    appendrangeInputView1(resRange);
-    appendIOUpdate(resIO);
-    appendIONameView1(resIO);
-    appendIo(resIO);
+    pendingC = pending;
+    append(pending);
 
-    // console.log(resultComplain);
+    appendrangeInputUpdate(Ranges);
+    appendrangeInputView1(Ranges);
+    appendIOUpdate(IO);
+    appendIONameView1(IO);
+    appendIo(IO);
   }
+
+  // async function b() {
+  //   let resultComplain = await getComplain();
+  //   const resRange = await getRange();
+  //   const resIO = await getIO();
+  //   resultComplain = resultComplain.filter((el) => {
+  //     return el.Status === "PENDING";
+  //   });
+  //   append(resultComplain);
+  //   appendrangeInputUpdate(resRange);
+  //   appendrangeInputView1(resRange);
+  //   appendIOUpdate(resIO);
+  //   appendIONameView1(resIO);
+  //   appendIo(resIO);
+
+  //   // console.log(resultComplain);
+  // }
   const appendrangeInputUpdate = (data) => {
     let rangeInputUpdate = document.getElementById("rangeInputUpdate");
     rangeInputUpdate.innerHTML = null;
@@ -1039,6 +1057,5 @@
       IONameView1.append(option);
     });
   };
-  a();
-  b();
+  app();
 </script>
