@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./Dashboard.css" />
     <link rel="stylesheet" href="./table.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <style>
       .tableDiv1 {
         padding: 1rem;
@@ -174,6 +175,8 @@
   //   },
   // ];
 
+  let complainData = [];
+
   const append = (data) => {
     let container = document.querySelector(".tableBody");
     container.innerHTML = null;
@@ -194,6 +197,9 @@
       td2.innerText = `${el.fname} ${el.lname}`;
       let td3 = document.createElement("td");
       let downloadButton = document.createElement("button");
+      downloadButton.addEventListener("click", () => {
+        exportToExcel();
+      });
       downloadButton.style.height = "30px";
       td3.setAttribute("class", "tablecol");
       td3.setAttribute("class", "tablecol3");
@@ -229,6 +235,19 @@
       // console.log(tr);
       container.append(tr);
     });
+    function exportToExcel() {
+      // Create a new Excel workbook
+      const workbook = XLSX.utils.book_new();
+
+      // Create a new worksheet
+      const worksheet = XLSX.utils.json_to_sheet(complainData);
+
+      // Add the worksheet to the workbook
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+      // Save the workbook as an Excel file
+      XLSX.writeFile(workbook, "data.xlsx");
+    }
   };
 </script>
 <script type="module">
@@ -252,6 +271,7 @@
   let userName = document.getElementById("userDetail");
   async function app() {
     await a();
+    complainData = complain;
     userName.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.policestation}`;
     append(IO);
   }
