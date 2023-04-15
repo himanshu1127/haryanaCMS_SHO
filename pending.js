@@ -1,4 +1,5 @@
 let pendingC = [];
+let currUsr = {};
 const userID = JSON.parse(localStorage.getItem("userID"));
 let get = (id) => {
   return document.getElementById(id);
@@ -240,6 +241,9 @@ const append = (data) => {
     commentsIcon.innerHTML = '<i class="fa-solid fa-comment"></i>';
     commentsIcon.style.width = "40%";
     // commentsIcon.style.margin="5px"
+    commentsIcon.addEventListener("click", () => {
+      complainComment(el);
+    });
 
     // td8.innerText = "hi";
     // updateIcon.innerHTML('<i class="fa-light fa-pen"></i>')
@@ -266,7 +270,7 @@ const updateData = async (el) => {
   get("alternateNumberUpdate").value = el.alternateNumber;
   get("cityInputUpdate").value = el.City;
   get("rangeInputUpdate").value = el.policerange;
-  get("IOUpdate").value = el.SPName;
+  get("IOUpdate").value = el.Markto;
   get("complainStatusUpdate").value = el.Status;
   get("shortDescriptionUpdate").value = el.ComplaintShortDescription;
   get("complainCategoryUpdate").value = el.ComplaintCategory;
@@ -293,7 +297,7 @@ const updateComplain = async () => {
     author_id: userID,
     policerange: document.getElementById("rangeInputUpdate").value,
     rangeDistrictName: document.getElementById("rangeInputUpdate").value,
-    policestation: "",
+    policestation: currUsr.policestation,
     phoneNumber: "",
     createdAt: "",
     updatedAt: "",
@@ -309,7 +313,7 @@ const updateComplain = async () => {
       .value,
     SectionsofComplaint: "",
     Range: document.getElementById("rangeInputUpdate").value,
-    SPName: document.getElementById("IOUpdate").value,
+    Markto: document.getElementById("IOUpdate").value,
     Status: document.getElementById("complainStatusUpdate").value,
     Markto: document.getElementById("IOUpdate").value,
     highPriority: get("highPriorityUpdate").checked,
@@ -357,7 +361,7 @@ const viewData = (el) => {
   get("alternateNumberView").value = el.alternateNumber;
   get("cityInputView").value = el.City;
   get("rangeInputView1").value = el.policerange;
-  get("IONameView1").value = el.SPName;
+  get("IONameView1").value = el.Markto;
   get("complainStatusView").value = el.Status;
   get("shortDescriptionView").value = el.ComplaintShortDescription;
   get("complainCategoryView").value = el.ComplaintCategory;
@@ -366,4 +370,79 @@ const viewData = (el) => {
   // get("dateOfSubView").value = convertDate(el.createdAt);
 };
 
-// getComp()
+let commentDiv = document.querySelector(".commentDiv");
+const showComp = async () => {
+  let res = await fetch(`https://haryanacms.onrender.com/comment/getcomment`);
+  res = await res.json();
+  console.log(res);
+  commentArr = res.filter((elem) => {
+    return elem.complain_id === complainID._id;
+  });
+  console.log(commentArr);
+  appendComment(commentArr);
+};
+const complainComment = async (el) => {
+  complainID = el;
+  console.log(el);
+  commentDiv.classList.toggle("activecommentDiv");
+  // console.log(currUsr)
+  showComp();
+};
+let addComm = async (event) => {
+  event.preventDefault();
+  let obj = {
+    author_id: currUsr._id,
+    complain_id: complainID._id,
+    authorName: `${currUsr.fname} ${currUsr.lname}`,
+    commentData: document.getElementById("commentText").value,
+    Designation: currUsr.designation,
+  };
+  obj = JSON.stringify(obj);
+  console.log(obj);
+  try {
+    let res = await fetch(
+      `https://haryanacms.onrender.com/comment/addcomment`,
+      {
+        method: "POST",
+        body: obj,
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+    res = await res.json();
+    alert("Comment Posted");
+    // commentDiv.classList.toggle("activecommentDiv");
+    showComp();
+    document.getElementById("commentText").value = "";
+    console.log(res);
+  } catch (err) {
+    alert("Not added");
+  }
+};
+
+let closeIconComment = document.querySelector(".closeIconComment");
+closeIconComment.addEventListener("click", () => {
+  commentDiv.classList.toggle("activecommentDiv");
+});
+
+let appendComment = (data) => {
+  let contan = document.querySelector(".showComments");
+  contan.innerHTML = null;
+  if (data.length > 0) {
+    data.map((el) => {
+      let div = document.createElement("div");
+      div.setAttribute("class", "commentDivView");
+      let h4 = document.createElement("h4");
+      let p = document.createElement("p");
+      h4.innerText = `Comment By : ${el.authorName}`;
+      h4.setAttribute("class", "commentUserView");
+      p.innerText = el.commentData;
+      p.setAttribute("class", "commentTextView");
+      div.append(h4, p);
+      contan.append(div);
+    });
+  } else {
+    contan.innerHTML = "<h3>No Comments</h3>";
+  }
+};

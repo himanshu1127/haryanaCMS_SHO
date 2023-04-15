@@ -228,6 +228,9 @@ const append = (data) => {
     commentsIcon.innerHTML = '<i class="fa-solid fa-comment"></i>';
     commentsIcon.style.width = "40%";
     // commentsIcon.style.margin="5px"
+    commentsIcon.addEventListener("click", () => {
+      complainComment(el);
+    });
 
     // td8.innerText = "hi";
     // updateIcon.innerHTML('<i class="fa-light fa-pen"></i>')
@@ -239,7 +242,6 @@ const append = (data) => {
     container.append(tr);
   });
 };
-
 
 const searchData = () => {
   let initial = document.getElementById("initialDate").value;
@@ -375,4 +377,80 @@ const viewData = (el) => {
   get("complainantNumberView").value = el.trackingId;
   get("highPriorityView").checked = el.highPriority;
   // get("dateOfSubView").value = convertDate(el.createdAt);
+};
+let commentDiv = document.querySelector(".commentDiv");
+const showComp = async () => {
+  let res = await fetch(`https://haryanacms.onrender.com/comment/getcomment`);
+  res = await res.json();
+  console.log(res);
+  commentArr = res.filter((elem) => {
+    return elem.complain_id === complainID._id;
+  });
+  console.log(commentArr);
+  appendComment(commentArr);
+};
+const complainComment = async (el) => {
+  complainID = el;
+  console.log(el);
+  commentDiv.classList.toggle("activecommentDiv");
+  // console.log(currUsr)
+  showComp();
+};
+let addComm = async (event) => {
+  event.preventDefault();
+  let obj = {
+    author_id: currUsr._id,
+    complain_id: complainID._id,
+    authorName: `${currUsr.fname} ${currUsr.lname}`,
+    commentData: document.getElementById("commentText").value,
+    Designation: currUsr.designation,
+  };
+  obj = JSON.stringify(obj);
+  console.log(obj);
+  try {
+    let res = await fetch(
+      `https://haryanacms.onrender.com/comment/addcomment`,
+      {
+        method: "POST",
+        body: obj,
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+    res = await res.json();
+    alert("Comment Posted");
+    // commentDiv.classList.toggle("activecommentDiv");
+    showComp();
+    document.getElementById("commentText").value = "";
+    console.log(res);
+  } catch (err) {
+    alert("Not added");
+  }
+};
+
+let closeIconComment = document.querySelector(".closeIconComment");
+closeIconComment.addEventListener("click", () => {
+  commentDiv.classList.toggle("activecommentDiv");
+});
+
+let appendComment = (data) => {
+  let contan = document.querySelector(".showComments");
+  contan.innerHTML = null;
+  if (data.length > 0) {
+    data.map((el) => {
+      let div = document.createElement("div");
+      div.setAttribute("class", "commentDivView");
+      let h4 = document.createElement("h4");
+      let p = document.createElement("p");
+      h4.innerText = `Comment By : ${el.authorName}`;
+      h4.setAttribute("class", "commentUserView");
+      p.innerText = el.commentData;
+      p.setAttribute("class", "commentTextView");
+      div.append(h4, p);
+      contan.append(div);
+    });
+  } else {
+    contan.innerHTML = "<h3>No Comments</h3>";
+  }
 };

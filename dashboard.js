@@ -1,5 +1,5 @@
 let container = document.querySelector(".tableBody");
-
+// console.log("hi")
 const goToIO = () => {
   window.location.href = "./IoReport.html";
 };

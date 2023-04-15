@@ -187,6 +187,19 @@
         padding: 0.5rem 0.25rem 0.5rem 0.25rem;
         font-size: 14px;
       }
+      .buttonAddComment {
+        height: 70%;
+        /* width: 100px; */
+        /* margin-top: 1.25rem; Equivalent to my-5 with default line height */
+        /* margin-bottom: 1.25rem; Equivalent to my-5 with default line height */
+        padding: 0.75rem; /* Equivalent to p-3 with default line height */
+        border: 2px solid #34d399; /* Equivalent to border-2 border-green-400 */
+        transition-duration: 0.3s; /* Default transition duration */
+        transition-property: all; /* Animate all properties on hover */
+        border-radius: 0.375rem; /* Equivalent to rounded */
+        font-weight: bold; /* Equivalent to font-bold */
+        color: #34d399;
+      }
     </style>
   </head>
   <body>
@@ -624,7 +637,7 @@
               <label class="text-xl">High Priority</label>
             </div>
           </div>
-          <div class="specialDiv">
+          <!-- <div class="specialDiv">
             <div>
               <label class="complaintsFormLabel">Complaints Category :</label>
               <div class="complaintContnetDivLeftTop">
@@ -685,8 +698,76 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
+          <div class="specialDiv">
+            <div>
+              <label class="complaintsFormLabel">Complaints Category :</label>
+              <div class="complaintContnetDivLeftTop">
+                <select
+                  name=""
+                  id="complainCategoryUpdate"
+                  class="complaintsInput"
+                ></select>
+              </div>
+            </div>
+            <div>
+              <label class="complaintsFormLabel" for="sections">ACT :</label>
+              <!-- <div class="sectionsDisplay"> -->
+              <!-- <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  placeholder="Write ACT"
+                ></textarea> -->
+              <select name="" id="actUpdate" class="complaintsInput"></select>
+            </div>
+            <div>
+              <label class="complaintsFormLabel">Sections :</label>
+              <div class="complaintContnetDivLeftTop">
+                <!-- <select name="" id="sections" class="complaintsInput"> -->
+                <!-- <option value="301">301</option>
+                  <option value="275">275</option> -->
+                <textarea name="" id="" cols="30" rows="5"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="filesDiv">
+            <p>Upload Files</p>
+            <!-- <div class="specialDiv"> -->
+            <div class="specialDivInner">
+              <!-- <label class="complaintsFormLabel">From Internet</label> -->
+              <!-- <input type="radio" /> -->
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="file"
+                  name=""
+                  id="inputFiles"
+                  placeholder="Special Remark"
+                  class="complaintsInput"
+                  multiple
+                />
+                <div id="inputFilesText"></div>
+              </div>
+            </div>
+            <!-- <div class="specialDivInner">
+                <label class="complaintsFormLabel" for="computer"
+                  >From My Computer</label
+                >
+                <input type="radio" name="computer" id="" />
+                <div class="complaintContnetDivLeftTop">
+                  <input
+                    type="file"
+                    name=""
+                    id="emailInput"
+                    placeholder="Write Complaint Here"
+                    class="complaintsInput"
+                  />
+                </div>
+              </div>
+            </div> -->
+          </div>
           <div class="addButtonDiv">
             <button
               onclick="updateComplain()"
@@ -955,7 +1036,7 @@
               <label class="text-xl">High Priority</label>
             </div>
           </div>
-          <div class="specialDiv">
+          <!-- <div class="specialDiv">
             <div>
               <label class="complaintsFormLabel">Complaints Category :</label>
               <div class="complaintContnetDivLeftTop">
@@ -989,7 +1070,7 @@
                 </select>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- <div class="filesDiv">
             <p>Upload Files</p>
             <div class="specialDiv">
@@ -1022,6 +1103,57 @@
                     readonly
                   />
                 </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="specialDiv">
+            <div>
+              <label class="complaintsFormLabel">Complaints Category :</label>
+              <div class="complaintContnetDivLeftTop">
+                <select
+                  name=""
+                  id="complainCategoryView"
+                  class="complaintsInput"
+                ></select>
+              </div>
+            </div>
+            <div>
+              <label class="complaintsFormLabel" for="sections">ACT :</label>
+              <!-- <div class="sectionsDisplay"> -->
+              <!-- <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  placeholder="Write ACT"
+                ></textarea> -->
+              <select name="" id="actView" class="complaintsInput">
+                <!-- <option value="">Select ACT</option> -->
+              </select>
+            </div>
+            <div>
+              <label class="complaintsFormLabel">Sections :</label>
+              <div class="complaintContnetDivLeftTop">
+                <!-- <select name="" id="sections" class="complaintsInput"> -->
+                <!-- <option value="301">301</option>
+                  <option value="275">275</option> -->
+                <textarea name="" id="" cols="30" rows="5"></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="filesDiv">
+            <p>Upload Files</p>
+            <div class="specialDivInner">
+              <div class="complaintContnetDivLeftTop">
+                <input
+                  type="file"
+                  name=""
+                  id="inputFiles"
+                  placeholder="Special Remark"
+                  class="complaintsInput"
+                  multiple
+                />
+                <div id="inputFilesText"></div>
               </div>
             </div>
           </div> -->
@@ -1061,7 +1193,7 @@
                 type="submit"
                 value="Post Comment"
                 id="addComment"
-                class="addButton"
+                class="buttonAddComment"
               />
             </div>
           </form>
@@ -1091,6 +1223,7 @@
     currentDistrict,
     currentPoliceStation,
     districts,
+    act,
   } from "./Components/GetData.js";
   let userName = document.getElementById("userDetail");
   // let currentUser={}
@@ -1105,6 +1238,10 @@
     appendIOUpdate(IO);
     appendIONameView1(IO);
     appendIo(IO);
+    appendcomplainCategoryUpdate(category);
+    appendcomplainCategoryView(category);
+    appendAct(act);
+    appendActview(act);
   }
 
   // async function b() {
@@ -1173,6 +1310,48 @@
       option.innerText = `${el.fname} ${el.lname}`;
       option.value = el.email;
       IONameView1.append(option);
+    });
+  };
+  let appendcomplainCategoryUpdate = (data) => {
+    let complainCategoryUpdate = document.getElementById(
+      "complainCategoryUpdate"
+    );
+    console.log(data);
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.categoryName;
+      option.value = el.categoryName;
+      complainCategoryUpdate.append(option);
+    });
+  };
+  let appendcomplainCategoryView = (data) => {
+    let complainCategoryView = document.getElementById("complainCategoryView");
+    console.log(data);
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.categoryName;
+      option.value = el.categoryName;
+      complainCategoryView.append(option);
+    });
+  };
+  let appendAct = (data) => {
+    let act = document.getElementById("actUpdate");
+    console.log(data);
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.actName;
+      option.value = el.actName;
+      act.append(option);
+    });
+  };
+  let appendActview = (data) => {
+    let act = document.getElementById("actView");
+    console.log(data);
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.actName;
+      option.value = el.actName;
+      act.append(option);
     });
   };
   // function ExportToExcel(type, fn, dl) {

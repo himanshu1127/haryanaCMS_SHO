@@ -445,10 +445,9 @@
                 <label class="complaintsFormLabel">Sections :</label>
                 <div class="complaintContnetDivLeftTop">
                   <!-- <select name="" id="sections" class="complaintsInput"> -->
-                    <!-- <option value="301">301</option>
+                  <!-- <option value="301">301</option>
                     <option value="275">275</option> -->
-                    <textarea name="" id="" cols="30" rows="5"></textarea>
-                  </select>
+                  <textarea name="" id="" cols="30" rows="5"></textarea>
                 </div>
               </div>
             </div>
@@ -489,11 +488,7 @@
             </div>
 
             <div class="addButtonDiv">
-              <button
-                onclick="addComplain()"
-                type="submit"
-                class="addButton"
-              >
+              <button onclick="addComplain()" type="submit" class="addButton">
                 Add
               </button>
             </div>
@@ -524,7 +519,7 @@
   let userDetail = document.getElementById("userDetail");
   async function app() {
     await a();
-    currUser = currentUser
+    currUser = currentUser;
     console.log(currentUser);
     userDetail.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.policestation}`;
     appendRange(Ranges, currentRange);

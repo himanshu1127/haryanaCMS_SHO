@@ -1,5 +1,5 @@
 let userId = JSON.parse(localStorage.getItem("userID"));
-const url = `https://hrycms.onrender.com`;
+const url = `https://haryanacms.onrender.com`;
 let currUser = {};
 
 const get = (id) => {
@@ -24,35 +24,35 @@ let setTargetDate = (date) => {
 const addComplain = async () => {
   let fileInput = document.getElementById("inputFiles");
   let compDate = document.getElementById("dateOfSub").value;
-  let obj = {
-    ComplainantName: get("complainantName").value,
-    Email: get("complainantEmail").value,
-    author_id: userId,
-    policerange: get("rangeInput").value,
-    rangeDistrictName: get("districtInput").value,
-    policestation: currUser.policestation,
-    phoneNumber: 0,
-    ComplainantPhoneNumber: get("mobileNo").value,
-    alternateNumber: get("alternateNumber").value,
-    FatherName: get("fatherName").value,
-    Address: get("address").value,
-    AddressLine1: get("addressLine1").value,
-    State: get("stateInput").value,
-    City: get("cityInput").value,
-    ComplaintCategory: get("complainCategory").value,
-    ComplaintShortDescription: get("shortDescription").value,
-    SectionsofComplaint: "",
-    Range: get("rangeInput").value,
-    // SPName: get("IOName").value,
-    Status: get("complainStatus").value,
-    Markto: get("IOName").value,
-    trackingId: document.getElementById("complainantNumber").value,
-    complainDate: compDate,
-    targetDate: setTargetDate(compDate),
-    highPriority: document.getElementById("highPriority").checked,
-  };
-  console.log(obj);
-  obj = JSON.stringify(obj);
+  // let obj = {
+  //   ComplainantName: get("complainantName").value,
+  //   Email: get("complainantEmail").value,
+  //   author_id: userId,
+  //   policerange: get("rangeInput").value,
+  //   rangeDistrictName: get("districtInput").value,
+  //   policestation: currUser.policestation,
+  //   phoneNumber: 0,
+  //   ComplainantPhoneNumber: get("mobileNo").value,
+  //   alternateNumber: get("alternateNumber").value,
+  //   FatherName: get("fatherName").value,
+  //   Address: get("address").value,
+  //   AddressLine1: get("addressLine1").value,
+  //   State: get("stateInput").value,
+  //   City: get("cityInput").value,
+  //   ComplaintCategory: get("complainCategory").value,
+  //   ComplaintShortDescription: get("shortDescription").value,
+  //   SectionsofComplaint: "",
+  //   Range: get("rangeInput").value,
+  //   // SPName: get("IOName").value,
+  //   Status: get("complainStatus").value,
+  //   Markto: get("IOName").value,
+  //   trackingId: document.getElementById("complainantNumber").value,
+  //   complainDate: compDate,
+  //   targetDate: setTargetDate(compDate),
+  //   highPriority: document.getElementById("highPriority").checked,
+  // };
+  // console.log(obj);
+  // obj = JSON.stringify(obj);
 
   let form = new FormData();
   form.append(
@@ -102,9 +102,9 @@ const addComplain = async () => {
   try {
     let res = await fetch(`${url}/complain/create`, {
       method: "POST",
-      body: obj,
+      body: form,
       headers: {
-        "Content-type": "application/json",
+        enctype: "multipart/form-data",
       },
     });
     res = await res.json();
