@@ -214,8 +214,12 @@
             <i class="fa-solid fa-bars"></i>
           </div>
           <div class="inputHeader">
-            <input type="text" placeholder="search" />
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              placeholder="Search By Complainant Name"
+              id="searchBox"
+            />
+            <i class="fa-solid fa-magnifying-glass" onclick="search()"></i>
           </div>
         </div>
         <div class="userDetails">
@@ -384,8 +388,8 @@
               <thead class="tableHead">
                 <tr class="trHead">
                   <th class="thHead thHead1">Tracking Id</th>
-                  <th class="thHead thHead3">Complaint</th>
-                  <th class="thHead thHead9">Complaint Type</th>
+                  <th class="thHead thHead3">Complainant Name</th>
+                  <th class="thHead thHead9">Category</th>
                   <th class="thHead thHead4">Issued Date</th>
                   <th class="thHead thHead5">Deadline</th>
                   <th class="thHead thHead6">Area</th>
@@ -1102,7 +1106,7 @@
   let userName = document.getElementById("userDetail");
   async function app() {
     await a();
-    currUsr = currentUser
+    currUsr = currentUser;
     userName.innerText = `${currentUser.fname} ${currentUser.lname}, ${currentUser.designation}, ${currentUser.policestation}`;
     let pending = complain.filter((el) => {
       return el.Status === "PENDING";

@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Complaint</title>
+    <style>
+      .required {
+        color: red;
+      }
+    </style>
     <script
       src="https://kit.fontawesome.com/ffe2b9fea9.js"
       crossorigin="anonymous"
@@ -24,8 +29,12 @@
             <i class="fa-solid fa-bars"></i>
           </div>
           <div class="inputHeader">
-            <input type="text" placeholder="search" />
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              placeholder="Search By Complainant Name"
+              id="searchBox"
+            />
+            <i class="fa-solid fa-magnifying-glass" onclick="search()"></i>
           </div>
         </div>
         <div class="userDetails">
@@ -182,19 +191,24 @@
                 </div>
               </div>
               <div>
-                <label class="complaintsFormLabel">Complaint Name:</label>
+                <label class="complaintsFormLabel"
+                  >Complainant Name: <span class="required">*</span></label
+                >
                 <div class="complaintContnetDivLeftTop">
                   <input
                     type="text"
                     name=""
                     id="complainantName"
-                    placeholder="Complaint Name"
+                    placeholder="Complainant Name"
                     class="complaintsInput"
+                    required
                   />
                 </div>
               </div>
               <div>
-                <label class="complaintsFormLabel">Father's Name :</label>
+                <label class="complaintsFormLabel"
+                  >Father's Name : <span class="required">*</span></label
+                >
                 <div class="complaintContnetDivLeftTop">
                   <input
                     type="text"
@@ -206,7 +220,9 @@
                 </div>
               </div>
               <div>
-                <label class="complaintsFormLabel">Email ID:</label>
+                <label class="complaintsFormLabel"
+                  >Email ID: <span class="required">*</span></label
+                >
                 <div class="complaintContnetDivLeftTop">
                   <input
                     type="text"
@@ -220,7 +236,9 @@
             </div>
             <div class="addressLine1andMobileDiv">
               <div class="complaintsAddressDiv">
-                <label class="complaintsFormLabel">Address Line 1</label>
+                <label class="complaintsFormLabel"
+                  >Address Line 1 <span class="required">*</span></label
+                >
                 <div class="complaintContnetDivLeftTop">
                   <input
                     type="text"
@@ -232,7 +250,9 @@
                 </div>
               </div>
               <div class="complaintPhoneDiv">
-                <label class="complaintsFormLabel">Mobile Number. :</label>
+                <label class="complaintsFormLabel"
+                  >Mobile Number. : <span class="required">*</span></label
+                >
                 <div class="complaintContnetDivLeftTop">
                   <input
                     type="text"
