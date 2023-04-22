@@ -346,17 +346,31 @@
               "
             >
               <!-- <div>District Wise >> <span>High Priority Complaints</span></div> -->
-              <div>
-                <select
-                  name=""
-                  onchange="changeComplains()"
-                  id="ioselect"
-                  style="border: none; outline: none"
-                >
-                  <option value="">Select IO</option>
+              <div style="display: flex; gap: 15px">
+                <div>
+                  <select
+                    name=""
+                    onchange="changeComplains()"
+                    id="ioselect"
+                    style="border: none; outline: none"
+                  >
+                    <option value="">Select IO</option>
 
-                  <!-- <option value="DISPOSED">Gurugram</option> -->
-                </select>
+                    <!-- <option value="DISPOSED">Gurugram</option> -->
+                  </select>
+                </div>
+                <div>
+                  <select
+                    name=""
+                    onchange="categoryFilter()"
+                    id="categoryFilter"
+                    style="border: none; outline: none"
+                  >
+                    <option value="">Select Category</option>
+
+                    <!-- <option value="DISPOSED">Gurugram</option> -->
+                  </select>
+                </div>
               </div>
               <div class="dateFilterDiv">
                 <div>From: <input type="date" name="" id="initialDate" /></div>
@@ -1120,6 +1134,7 @@
     appendIONameView1(IO);
     highPriority(complain);
     appendIo(IO);
+    appendcategoryFilter(category)
   };
   const appendrangeInputUpdate = (data) => {
     let rangeInputUpdate = document.getElementById("rangeInputUpdate");
@@ -1172,6 +1187,15 @@
     console.log(newData);
     todayComp = newData;
     append(newData);
+  };
+  const appendcategoryFilter = (data) => {
+    let categoryFilter = document.getElementById("categoryFilter");
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.categoryName;
+      option.value = el.categoryName;
+      categoryFilter.append(option);
+    });
   };
   app();
 </script>

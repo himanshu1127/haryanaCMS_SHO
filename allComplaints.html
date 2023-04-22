@@ -346,17 +346,32 @@
               "
             >
               <!-- <div>District Wise >> <span>All Complaints</span></div> -->
-              <div>
-                <select
-                  name=""
-                  onchange="changeComplains()"
-                  id="ioselect"
-                  style="border: none; outline: none"
-                >
-                  <option value="">Select IO</option>
+              <div style="display: flex; gap: 15px">
+                <div>
+                  <select
+                    name=""
+                    onchange="changeComplains()"
+                    id="ioselect"
+                    style="border: none; outline: none"
+                  >
+                    <option value="">Select IO</option>
 
-                  <!-- <option value="DISPOSED">Gurugram</option> -->
-                </select>
+                    <!-- <option value="DISPOSED">Gurugram</option> -->
+                  </select>
+                </div>
+                <div>
+                  <select
+                    name=""
+                    onchange="categoryFilter()"
+                    id="categoryFilter"
+                    style="border: none; outline: none"
+                    disabled
+                  >
+                    <option value="">Select Category</option>
+
+                    <!-- <option value="DISPOSED">Gurugram</option> -->
+                  </select>
+                </div>
               </div>
               <div class="dateFilterDiv">
                 <div>From: <input type="date" name="" id="initialDate" /></div>
@@ -410,7 +425,7 @@
       <div class="updateComp">
         <div>
           <div class="upperDivAddComp">
-            <h3 class="h3AddComp">Update Complaints</h3>
+            <h3 class="h3AddComp">Update Complaint</h3>
             <div class="closeIconUpdate">
               <div class="line1"></div>
               <div class="line2"></div>
@@ -605,26 +620,17 @@
           </div>
           <div class="complaintsText bottomDiv">
             <div class="m-5 flex-1">
-              <label class="complaintsFormLabel">Date of Submission</label>
+              <label class="complaintsFormLabel"
+                >Update Deadline <span class="required">*</span></label
+              >
               <div class="complaintContnetDivLeftTop">
                 <input
                   type="date"
                   name=""
-                  id="dateOfSubUpdate"
+                  id="deadlineUpdate"
                   placeholder=""
                   class="complaintsInput"
-                />
-              </div>
-            </div>
-            <div class="m-5 flex-1">
-              <label class="complaintsFormLabel">Target deadline</label>
-              <div class="complaintContnetDivLeftTop">
-                <input
-                  type="date"
-                  name=""
-                  id="emailInput"
-                  placeholder="="
-                  class="complaintsInput"
+                  required
                 />
               </div>
             </div>
@@ -641,69 +647,6 @@
               <label class="text-xl">High Priority</label>
             </div>
           </div>
-          <!-- <div class="specialDiv">
-            <div>
-              <label class="complaintsFormLabel">Complaints Category :</label>
-              <div class="complaintContnetDivLeftTop">
-                <select
-                  name=""
-                  id="complainCategoryUpdate"
-                  class="complaintsInput"
-                >
-                  <option value="CAW">CAW Complaints</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label class="complaintsFormLabel" for="sections"
-                >Sections :</label
-              >
-              <div class="sectionsDisplay"></div>
-            </div>
-            <div>
-              <label class="complaintsFormLabel">Sections :</label>
-              <div class="complaintContnetDivLeftTop">
-                <select name="" id="sectionsUpdate" class="complaintsInput">
-                  <option value="301">301</option>
-                  <option value="275">275</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="filesDiv">
-            <p>Upload Files</p>
-            <div class="specialDiv">
-              <div class="specialDivInner">
-                <label class="complaintsFormLabel">From Internet</label>
-                <input type="radio" />
-                <div class="complaintContnetDivLeftTop">
-                  <input
-                    type="file"
-                    name=""
-                    id="emailInput"
-                    placeholder="Special Remark"
-                    class="complaintsInput"
-                  />
-                </div>
-              </div>
-              <div class="specialDivInner">
-                <label class="complaintsFormLabel" for="computer"
-                  >From My Computer</label
-                >
-                <input type="radio" name="computer" id="" />
-                <div class="complaintContnetDivLeftTop">
-                  <input
-                    type="file"
-                    name=""
-                    id="emailInput"
-                    placeholder="Write Complaint Here"
-                    class="complaintsInput"
-                  />
-                </div>
-              </div>
-            </div>
-          </div> -->
-
           <div class="specialDiv">
             <div>
               <label class="complaintsFormLabel">Complaints Category :</label>
@@ -1244,6 +1187,7 @@
     appendIo(IO);
     appendcomplainCategoryUpdate(category);
     appendcomplainCategoryView(category);
+    appendcategoryFilter(category);
     appendAct(act);
     appendActview(act);
   }
@@ -1316,6 +1260,15 @@
       IONameView1.append(option);
     });
   };
+  const appendcategoryFilter = (data) => {
+    let categoryFilter = document.getElementById("categoryFilter");
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.categoryName;
+      option.value = el.categoryName;
+      categoryFilter.append(option);
+    });
+  };
   let appendcomplainCategoryUpdate = (data) => {
     let complainCategoryUpdate = document.getElementById(
       "complainCategoryUpdate"
@@ -1328,6 +1281,7 @@
       complainCategoryUpdate.append(option);
     });
   };
+  
   let appendcomplainCategoryView = (data) => {
     let complainCategoryView = document.getElementById("complainCategoryView");
     console.log(data);

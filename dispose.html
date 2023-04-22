@@ -346,17 +346,31 @@
               "
             >
               <!-- <div>District Wise >> <span>Pending Complaints</span></div> -->
-              <div>
-                <select
-                  name=""
-                  onchange="changeComplains()"
-                  id="ioselect"
-                  style="border: none; outline: none"
-                >
-                  <option value="">Select IO</option>
+              <div style="display: flex; gap: 15px">
+                <div>
+                  <select
+                    name=""
+                    onchange="changeComplains()"
+                    id="ioselect"
+                    style="border: none; outline: none"
+                  >
+                    <option value="">Select IO</option>
 
-                  <!-- <option value="DISPOSED">Gurugram</option> -->
-                </select>
+                    <!-- <option value="DISPOSED">Gurugram</option> -->
+                  </select>
+                </div>
+                <div>
+                  <select
+                    name=""
+                    onchange="categoryFilter()"
+                    id="categoryFilter"
+                    style="border: none; outline: none"
+                  >
+                    <option value="">Select Category</option>
+
+                    <!-- <option value="DISPOSED">Gurugram</option> -->
+                  </select>
+                </div>
               </div>
               <div class="dateFilterDiv">
                 <div>From: <input type="date" name="" id="initialDate" /></div>
@@ -1118,6 +1132,7 @@
     appendIOUpdate(IO);
     appendIONameView1(IO);
     appendIo(IO);
+    appendcategoryFilter(category);
   }
 
   // async function b() {
@@ -1190,6 +1205,15 @@
       option.innerText = `${el.fname} ${el.lname}`;
       option.value = el.email;
       IONameView1.append(option);
+    });
+  };
+  const appendcategoryFilter = (data) => {
+    let categoryFilter = document.getElementById("categoryFilter");
+    data.map((el) => {
+      let option = document.createElement("option");
+      option.innerText = el.categoryName;
+      option.value = el.categoryName;
+      categoryFilter.append(option);
     });
   };
   app();

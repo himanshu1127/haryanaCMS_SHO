@@ -1,5 +1,5 @@
 let todayComp = [];
-let currUsr = {}
+let currUsr = {};
 let convertDate = (id) => {
   let myDate = new Date(id);
   myDate = myDate.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
@@ -33,6 +33,17 @@ const searchData = () => {
   console.log(newData);
   append(newData);
   // console.log(obj);
+};
+const categoryFilter = () => {
+  const value = document.getElementById("categoryFilter").value;
+  let newData = todayComp.filter((el) => {
+    if (value === "") {
+      return el;
+    } else {
+      return el.ComplaintCategory === value;
+    }
+  });
+  append(newData);
 };
 const changeComplains = () => {
   const value = document.getElementById("ioselect").value;
@@ -422,11 +433,20 @@ let appendComment = (data) => {
       div.setAttribute("class", "commentDivView");
       let h4 = document.createElement("h4");
       let p = document.createElement("p");
-      h4.innerText = `Comment By : ${el.authorName}`;
+      console.log(el);
+      let h41 = document.createElement("h4");
+      let span = document.createElement("span");
+      span.innerText = "Comment By";
+      if (el.Designation === "ADGP") {
+        h4.style.color = "red";
+      }
+
+      h4.innerText = `${el.Designation} ${el.authorName}`;
+      h41.append(span, h4);
       h4.setAttribute("class", "commentUserView");
       p.innerText = el.commentData;
       p.setAttribute("class", "commentTextView");
-      div.append(h4, p);
+      div.append(h41, p);
       contan.append(div);
     });
   } else {

@@ -1,17 +1,32 @@
 let dataArr = [];
 let currUsr = {};
+let ioFilter = [];
 const changeComplains = () => {
   const value = document.getElementById("ioselect").value;
   console.log(dataArr);
-  let newData = dataArr.filter((el) => {
+  ioFilter = dataArr.filter((el) => {
     console.log(value);
+    if (value !== "") {
+      document.getElementById("categoryFilter").disabled = false;
+      return el.Markto === value;
+    } else {
+      document.getElementById("categoryFilter").value = "";
+      document.getElementById("categoryFilter").disabled = true;
+      return el;
+    }
+  });
+  console.log(ioFilter);
+  append(ioFilter);
+};
+const categoryFilter = () => {
+  const value = document.getElementById("categoryFilter").value;
+  let newData = ioFilter.filter((el) => {
     if (value === "") {
       return el;
     } else {
-      return el.Markto === value;
+      return el.ComplaintCategory === value;
     }
   });
-  console.log(newData);
   append(newData);
 };
 // const pending = () => {
@@ -266,6 +281,8 @@ const searchData = () => {
   // console.log(obj);
 };
 const updateData = async (el) => {
+  let deadline = new Date(el.targetDate);
+  deadline = deadline.toISOString().substring(0, 10);
   let displayUpdateComp = document.querySelector(".displayUpdateComp");
   displayUpdateComp.classList.toggle("activeUpdateComp");
   console.log(currUsr);
@@ -286,8 +303,7 @@ const updateData = async (el) => {
   get("complainCategoryUpdate").value = el.ComplaintCategory;
   get("highPriorityUpdate").checked = el.highPriority;
   get("complainantNumber").value = el.trackingId;
-  // get("sectionsUpdate").value=el.
-  // get("highPriorityUpdate").value=el.
+  get("deadlineUpdate").value = deadline;
 
   return localEl;
 };
@@ -443,11 +459,20 @@ let appendComment = (data) => {
       div.setAttribute("class", "commentDivView");
       let h4 = document.createElement("h4");
       let p = document.createElement("p");
-      h4.innerText = `Comment By : ${el.authorName}`;
+      console.log(el);
+      let h41 = document.createElement("h4");
+      let span = document.createElement("span");
+      span.innerText = "Comment By";
+      if (el.Designation === "ADGP") {
+        h4.style.color = "red";
+      }
+
+      h4.innerText = `${el.Designation} ${el.authorName}`;
+      h41.append(span, h4);
       h4.setAttribute("class", "commentUserView");
       p.innerText = el.commentData;
       p.setAttribute("class", "commentTextView");
-      div.append(h4, p);
+      div.append(h41, p);
       contan.append(div);
     });
   } else {
